@@ -66,15 +66,15 @@ const ContactSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch max-w-6xl mx-auto">
           {/* Left Column - Contact Information */}
           <Card className="bg-gradient-to-br from-white to-robin-cream shadow-lg rounded-xl border-t-4 border-robin-orange overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-            <div className="p-8 h-full flex flex-col justify-between">
-              <div>
-                <h3 className="text-2xl font-bold text-robin-dark mb-6">Contact Information</h3>
-                <p className="text-lg text-robin-dark/70 leading-relaxed mb-8">
+            <div className="p-8 h-full flex flex-col">
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold text-robin-dark mb-4">Contact Information</h3>
+                <p className="text-lg text-robin-dark/70 leading-relaxed">
                   Reach out to our team using any of the following contact methods or fill out the form to send us a direct message.
                 </p>
               </div>
               
-              <div className="space-y-8 mt-4">
+              <div className="space-y-6 mt-2">
                 <div className="flex items-start gap-4 group transition-all duration-300 hover:translate-x-2">
                   <div className="w-12 h-12 bg-robin-orange/10 rounded-full flex items-center justify-center shrink-0 text-robin-orange group-hover:bg-robin-orange group-hover:text-white transition-colors duration-300">
                     <Mail size={22} />
@@ -216,3 +216,4 @@ const ContactSection = () => {
 };
 
 export default ContactSection;
+
