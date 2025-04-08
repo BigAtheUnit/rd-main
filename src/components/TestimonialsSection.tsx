@@ -1,24 +1,34 @@
 
 import React from 'react';
-import { Quote } from 'lucide-react';
+import { Quote, Star } from 'lucide-react';
 
 type TestimonialProps = {
   quote: string;
   author: string;
   position: string;
   organization: string;
+  location: string;
+  rating: number;
 };
 
-const TestimonialCard = ({ quote, author, position, organization }: TestimonialProps) => {
+const TestimonialCard = ({ quote, author, position, organization, location, rating }: TestimonialProps) => {
   return (
-    <div className="bg-white rounded-xl p-8 shadow-md hover:shadow-xl transition-all duration-300 border border-robin-dark/5 h-full flex flex-col">
-      <div className="text-robin-orange mb-4">
-        <Quote size={32} />
+    <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-robin-dark/5 hover:border-robin-orange/20 h-full flex flex-col">
+      <div className="flex justify-between items-start mb-4">
+        <div className="text-robin-orange">
+          <Quote size={32} />
+        </div>
+        <div className="flex">
+          {[...Array(rating)].map((_, i) => (
+            <Star key={i} size={18} className="text-yellow-400 fill-yellow-400" />
+          ))}
+        </div>
       </div>
-      <blockquote className="text-robin-dark/80 italic flex-grow">"{quote}"</blockquote>
+      <blockquote className="text-robin-dark/80 italic flex-grow">{quote}</blockquote>
       <div className="mt-6 pt-6 border-t border-robin-dark/10">
         <p className="font-semibold text-robin-dark">{author}</p>
         <p className="text-robin-dark/70 text-sm">{position}, {organization}</p>
+        <p className="text-robin-dark/60 text-xs mt-1">{location}</p>
       </div>
     </div>
   );
@@ -28,27 +38,35 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       quote: "Robin Digital transformed our outdated website into a powerful fundraising tool. Donations increased by 40% in the first three months after launch.",
-      author: "Sarah Johnson",
+      author: "Emma Thompson",
       position: "Director of Digital",
-      organization: "Global Hope Charity"
+      organization: "Community Hope Trust",
+      location: "London, UK",
+      rating: 5
     },
     {
-      quote: "Their team understood our educational needs perfectly. The learning platform they developed has revolutionized how we deliver online courses.",
-      author: "Professor Thomas Chen",
-      position: "Dean of Digital Learning",
-      organization: "Metropolitan University"
+      quote: "Their WordPress template was exactly what our school needed. Easy to customise and maintain, with excellent support when we needed help.",
+      author: "Dr. James Wilson",
+      position: "Head of IT",
+      organization: "St. Andrew's Academy",
+      location: "Edinburgh, UK",
+      rating: 5
     },
     {
-      quote: "The custom CRM they built for our organization has streamlined operations and improved our service delivery to vulnerable communities.",
-      author: "Mark Williams",
-      position: "Operations Director",
-      organization: "City Council Services"
+      quote: "The custom CRM they built for our council has streamlined operations and improved our service delivery to vulnerable communities.",
+      author: "Olivia Murphy",
+      position: "Digital Transformation Manager",
+      organization: "Midlands County Council",
+      location: "Birmingham, UK",
+      rating: 5
     },
     {
-      quote: "We needed a partner who could innovate while understanding our business constraints. Robin Digital delivered a solution that exceeded our expectations.",
-      author: "Rebecca Taylor",
-      position: "Chief Technology Officer",
-      organization: "Nexus Innovations"
+      quote: "RobinShield has been a game-changer for our site security. After a previous breach, we've had zero incidents since installation. Worth every penny.",
+      author: "Liam O'Connor",
+      position: "Managing Director",
+      organization: "Celtic Innovations",
+      location: "Dublin, Ireland",
+      rating: 5
     }
   ];
 
@@ -70,6 +88,8 @@ const TestimonialsSection = () => {
               author={testimonial.author}
               position={testimonial.position}
               organization={testimonial.organization}
+              location={testimonial.location}
+              rating={testimonial.rating}
             />
           ))}
         </div>

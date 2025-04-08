@@ -1,107 +1,133 @@
 
 import React from 'react';
-import { ArrowRight, Shield, Zap, Code, Users, BarChart } from 'lucide-react';
+import { ArrowRight, Shield, FileEdit, Store, Clock, Tag } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+
+type ProductProps = {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  price: string;
+  isNew?: boolean;
+  isFeatured?: boolean;
+  imageSrc: string;
+};
+
+const ProductCard = ({ title, description, icon, price, isNew, isFeatured, imageSrc }: ProductProps) => {
+  return (
+    <div className="relative bg-white rounded-xl shadow-lg overflow-hidden border-2 border-robin-dark/5 hover:border-robin-orange/20 transition-all duration-300 flex flex-col h-full group">
+      {isNew && (
+        <div className="absolute top-4 right-4 bg-robin-orange text-white text-xs font-bold py-1 px-2 rounded-full z-10">
+          NEW
+        </div>
+      )}
+      {isFeatured && (
+        <div className="absolute top-4 left-4 bg-robin-dark text-white text-xs font-bold py-1 px-2 rounded-full z-10">
+          FEATURED
+        </div>
+      )}
+      <div className="relative h-48 overflow-hidden">
+        <img 
+          src={imageSrc} 
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+      </div>
+      
+      <div className="p-6 flex-grow">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-10 h-10 bg-robin-orange/10 rounded-lg flex items-center justify-center shrink-0 text-robin-orange">
+            {icon}
+          </div>
+          <h3 className="text-xl font-semibold text-robin-dark">{title}</h3>
+        </div>
+        
+        <p className="text-robin-dark/70 mb-6">{description}</p>
+        
+        <div className="mt-auto flex justify-between items-center">
+          <div>
+            <span className="block text-sm text-robin-dark/60">Starting from</span>
+            <span className="text-xl font-bold text-robin-dark">{price}</span>
+          </div>
+          <Button 
+            className="bg-robin-orange hover:bg-robin-dark transition-colors"
+          >
+            View Details
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const ToolsSection = () => {
-  const features = [
+  const products = [
     {
+      title: "RobinShield",
+      description: "Premium WordPress security plugin bundle that protects your site from malware, hackers, and vulnerabilities.",
       icon: <Shield size={24} />,
-      title: "Cybersecurity Plugins",
-      description: "Robust security tools that protect your digital assets and user data from evolving threats."
+      price: "£19.99/mo",
+      isFeatured: true,
+      imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
     {
-      icon: <Zap size={24} />,
-      title: "Performance Optimization",
-      description: "Tools that enhance speed and performance, delivering lightning-fast experiences for users."
+      title: "PDF Pro",
+      description: "Powerful PDF converter and editor for seamless document management and collaboration.",
+      icon: <FileEdit size={24} />,
+      price: "£9.99/mo",
+      isNew: true,
+      imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
     {
-      icon: <Code size={24} />,
-      title: "Integration Solutions",
-      description: "Seamless integration tools that connect your systems and create unified digital ecosystems."
+      title: "WordPress Templates",
+      description: "Premium WordPress themes designed for performance, SEO, and beautiful user experience.",
+      icon: <Store size={24} />,
+      price: "£59.99",
+      imageSrc: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
     {
-      icon: <Users size={24} />,
-      title: "User Management",
-      description: "Sophisticated user management tools that simplify access control and enhance the user experience."
-    },
-    {
-      icon: <BarChart size={24} />,
-      title: "Analytics Dashboards",
-      description: "Visual data tools that transform complex information into actionable insights."
+      title: "Booking System Pro",
+      description: "Complete appointment and booking solution for service-based businesses.",
+      icon: <Clock size={24} />,
+      price: "£14.99/mo",
+      imageSrc: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     }
   ];
 
   return (
     <section id="tools" className="section-padding bg-white">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-robin-dark">Tools & SaaS Solutions</h2>
-            <p className="text-lg text-robin-dark/70 leading-relaxed">
-              We develop practical, user-friendly digital tools and SaaS solutions that solve real-world challenges. Our approach combines innovation with usability, creating tools that become essential to your operations.
-            </p>
-            
-            <div className="space-y-6 mt-8">
-              {features.map((feature, index) => (
-                <div key={index} className="flex gap-4">
-                  <div className="w-12 h-12 bg-robin-orange/10 rounded-lg flex items-center justify-center shrink-0 text-robin-orange">
-                    {feature.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-medium text-robin-dark mb-1">{feature.title}</h3>
-                    <p className="text-robin-dark/70">{feature.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            
-            <a 
-              href="#contact" 
-              className={cn(
-                "inline-flex items-center text-robin-orange font-medium mt-4",
-                "hover:text-robin-dark transition-colors group"
-              )}
-            >
-              Discuss your SaaS project with us
-              <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
-          
-          <div className="relative">
-            <div className="relative z-10 bg-white p-8 rounded-xl shadow-xl border border-robin-dark/5">
-              <div className="aspect-square bg-gradient-to-br from-robin-orange/10 to-robin-orange/5 rounded-lg flex items-center justify-center mb-6">
-                <img 
-                  src="/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png" 
-                  alt="Robin Digital Tools" 
-                  className="w-1/2 object-contain"
-                />
-              </div>
-              <h3 className="text-xl font-semibold text-robin-dark mb-2">Custom Digital Tools</h3>
-              <p className="text-robin-dark/70">
-                Tailored digital solutions that address your specific needs, from workflow automation to specialized platforms.
-              </p>
-              <div className="mt-6 pt-6 border-t border-robin-dark/10">
-                <div className="flex justify-between">
-                  <div>
-                    <span className="block text-sm text-robin-dark/60">Starting from</span>
-                    <span className="text-2xl font-bold text-robin-dark">Contact us</span>
-                  </div>
-                  <a 
-                    href="#contact" 
-                    className={cn(
-                      "bg-robin-orange text-white px-4 py-2 rounded-md font-medium",
-                      "hover:bg-robin-dark transition-colors hover-scale inline-flex items-center"
-                    )}
-                  >
-                    Get a Quote
-                  </a>
-                </div>
-              </div>
-            </div>
-            
-            <div className="absolute top-4 left-4 w-full h-full bg-robin-orange/20 rounded-xl -z-10"></div>
-          </div>
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-robin-dark">Digital Products & Templates</h2>
+          <p className="text-lg text-robin-dark/70">
+            Ready-to-use digital tools and WordPress themes to enhance your online presence
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+          {products.map((product, index) => (
+            <ProductCard 
+              key={index}
+              title={product.title}
+              description={product.description}
+              icon={product.icon}
+              price={product.price}
+              isNew={product.isNew}
+              isFeatured={product.isFeatured}
+              imageSrc={product.imageSrc}
+            />
+          ))}
+        </div>
+        
+        <div className="mt-12 text-center">
+          <Button 
+            className="bg-robin-orange hover:bg-robin-dark transition-colors text-lg px-8 py-6 h-auto"
+          >
+            View All Products
+            <ArrowRight size={18} className="ml-2" />
+          </Button>
         </div>
       </div>
     </section>
