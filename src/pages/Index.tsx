@@ -18,9 +18,13 @@ const Index = () => {
       <Navbar />
       <main>
         <HeroSection />
+        <div className="py-4"></div> {/* Small spacing between sections */}
         <ServicesSection />
+        <div className="py-4"></div> {/* Small spacing between sections */}
         <SectorsSection />
+        <div className="py-4"></div> {/* Small spacing between sections */}
         <TestimonialsSection />
+        <div className="py-4"></div> {/* Small spacing between sections */}
         <ContactSection />
       </main>
       <Footer />

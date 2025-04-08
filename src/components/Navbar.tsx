@@ -33,42 +33,42 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-24 md:h-24" 
+            className="h-32 md:h-32" 
           />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <Link 
-            to={isProductsPage ? "/#solutions" : "#solutions"} 
+          <a 
+            href={isProductsPage ? "/#solutions" : "#solutions"} 
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Solutions
-          </Link>
-          <Link 
-            to={isProductsPage ? "/#sectors" : "#sectors"} 
+          </a>
+          <a 
+            href={isProductsPage ? "/#sectors" : "#sectors"} 
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Sectors
-          </Link>
+          </a>
           <Link 
             to="/products" 
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Products
           </Link>
-          <Link 
-            to={isProductsPage ? "/#testimonials" : "#testimonials"} 
+          <a 
+            href={isProductsPage ? "/#testimonials" : "#testimonials"} 
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Testimonials
-          </Link>
-          <Link 
-            to={isProductsPage ? "/#contact" : "#contact"} 
+          </a>
+          <a 
+            href={isProductsPage ? "/#contact" : "#contact"} 
             className="bg-robin-orange text-white px-5 py-2 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -82,21 +82,21 @@ const Navbar = () => {
         "fixed inset-0 bg-white z-40 pt-20 px-4 md:hidden transition-transform duration-300 ease-in-out",
         isMenuOpen ? "transform translate-x-0" : "transform translate-x-full"
       )}>
-        <nav className="flex flex-col space-y-6 items-center">
-          <Link 
-            to={isProductsPage ? "/#solutions" : "#solutions"}
+        <nav className="flex flex-col space-y-6 items-center bg-white">
+          <a 
+            href={isProductsPage ? "/#solutions" : "#solutions"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Solutions
-          </Link>
-          <Link 
-            to={isProductsPage ? "/#sectors" : "#sectors"}
+          </a>
+          <a 
+            href={isProductsPage ? "/#sectors" : "#sectors"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Sectors
-          </Link>
+          </a>
           <Link 
             to="/products"
             onClick={toggleMenu}
@@ -104,20 +104,20 @@ const Navbar = () => {
           >
             Products
           </Link>
-          <Link 
-            to={isProductsPage ? "/#testimonials" : "#testimonials"}
+          <a 
+            href={isProductsPage ? "/#testimonials" : "#testimonials"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Testimonials
-          </Link>
-          <Link 
-            to={isProductsPage ? "/#contact" : "#contact"}
+          </a>
+          <a 
+            href={isProductsPage ? "/#contact" : "#contact"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg w-full text-center bg-robin-orange text-white px-6 py-3 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
-          </Link>
+          </a>
         </nav>
       </div>
     </header>

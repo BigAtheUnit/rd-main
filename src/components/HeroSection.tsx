@@ -21,8 +21,8 @@ const HeroSection = () => {
       </div>
       
       <div className="container mx-auto px-4 md:px-6 z-10 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6 max-w-xl animate-fade-in">
+        <div className="flex flex-col items-center justify-center text-center max-w-3xl mx-auto">
+          <div className="space-y-6 animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark leading-tight">
               Digital Solutions That <span className="text-robin-orange relative inline-block transform hover:scale-105 transition-transform duration-300">
                 Transform
@@ -34,7 +34,7 @@ const HeroSection = () => {
               Empowering charities, public sector, education, and businesses with innovative digital solutions that make a difference.
             </p>
             
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <a 
                 href="#contact" 
                 onClick={scrollToContact}
@@ -58,17 +58,6 @@ const HeroSection = () => {
                 Explore Solutions
               </a>
             </div>
-          </div>
-          
-          <div className="relative hidden lg:block">
-            <div className="relative z-10 animate-fade-in-right">
-              <img 
-                src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
-                alt="Robin Digital" 
-                className="w-full max-w-lg mx-auto"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl transform rotate-3 scale-105 -z-10"></div>
           </div>
         </div>
       </div>

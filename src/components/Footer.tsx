@@ -39,16 +39,15 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#services" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Services</a></li>
+              <li><a href="#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Solutions</a></li>
               <li><a href="#sectors" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Sectors</a></li>
-              <li><a href="#tools" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Tools</a></li>
               <li><a href="#testimonials" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Success Stories</a></li>
               <li><a href="#contact" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Contact</a></li>
             </ul>
           </div>
           
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
+            <h3 className="text-lg font-semibold mb-4">Solutions</h3>
             <ul className="space-y-2">
               <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Web Development</a></li>
               <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">UX/UI Design</a></li>
@@ -83,7 +82,7 @@ const Footer = () => {
         
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
           <p className="text-robin-cream/60 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} Robin Digital. All rights reserved.
+            © {new Date().getFullYear()} Robin Digital. All rights reserved. Created by <a href="https://www.robindigital.io" className="text-robin-orange hover:text-white transition-colors">https://www.robindigital.io</a>
           </p>
           
           <div className="flex flex-col md:flex-row items-center gap-4">
