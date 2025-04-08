@@ -2,6 +2,10 @@
 <?php
 /**
  * Template Name: Privacy Policy
+ * 
+ * This is the template for displaying the Privacy Policy page.
+ * 
+ * @package RobinDigital
  */
 
 get_header();

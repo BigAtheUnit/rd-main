@@ -2,6 +2,10 @@
 <?php
 /**
  * Template Name: Terms of Service
+ * 
+ * This is the template for displaying the Terms of Service page.
+ * 
+ * @package RobinDigital
  */
 
 get_header();

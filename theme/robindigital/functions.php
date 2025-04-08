@@ -2,6 +2,8 @@
 <?php
 /**
  * Robin Digital functions and definitions
+ *
+ * @package RobinDigital
  */
 
 // Theme setup
@@ -172,6 +174,9 @@ add_action('admin_post_nopriv_robindigital_contact_form', 'robindigital_process_
 // Include custom template tags
 require get_template_directory() . '/inc/template-tags.php';
 
+// Include theme options
+require get_template_directory() . '/inc/theme-options.php';
+
 // Add ACF field groups if ACF plugin is active
 if (class_exists('ACF')) {
     require get_template_directory() . '/inc/acf-fields.php';
@@ -297,7 +302,8 @@ function robindigital_create_pages() {
             'post_status'   => 'publish',
             'post_author'   => 1,
             'post_type'     => 'page',
-            'post_name'     => 'privacy-policy'
+            'post_name'     => 'privacy-policy',
+            'page_template' => 'template-privacy-policy.php'
         );
         wp_insert_post($privacy_page);
     }
@@ -391,7 +397,8 @@ function robindigital_create_pages() {
             'post_status'   => 'publish',
             'post_author'   => 1,
             'post_type'     => 'page',
-            'post_name'     => 'terms-of-service'
+            'post_name'     => 'terms-of-service',
+            'page_template' => 'template-terms-of-service.php'
         );
         wp_insert_post($terms_page);
     }
@@ -403,3 +410,40 @@ function robindigital_create_pages() {
     update_option('robindigital_pages_created', true);
 }
 add_action('after_switch_theme', 'robindigital_create_pages');
+
+// Add custom image sizes
+add_image_size('robindigital-featured', 1200, 675, true);
+add_image_size('robindigital-thumbnail', 600, 400, true);
+add_image_size('robindigital-square', 600, 600, true);
+
+// Custom pagination function
+function robindigital_pagination() {
+    global $wp_query;
+    
+    if ($wp_query->max_num_pages <= 1) {
+        return;
+    }
+    
+    $big = 999999999; // Need an unlikely integer
+    
+    $pages = paginate_links(array(
+        'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+        'format' => '?paged=%#%',
+        'current' => max(1, get_query_var('paged')),
+        'total' => $wp_query->max_num_pages,
+        'type' => 'array',
+        'prev_next' => true,
+        'prev_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+        'next_text' => '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+    ));
+    
+    if (is_array($pages)) {
+        $paged = (get_query_var('paged') == 0) ? 1 : get_query_var('paged');
+        
+        echo '<div class="nav-links flex justify-center gap-2">';
+        foreach ($pages as $page) {
+            echo $page;
+        }
+        echo '</div>';
+    }
+}
