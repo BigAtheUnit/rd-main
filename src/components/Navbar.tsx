@@ -37,6 +37,11 @@ const Navbar = () => {
       const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
+    
+    // Close mobile menu if it's open
+    if (isMenuOpen) {
+      setIsMenuOpen(false);
+    }
   };
 
   return (
@@ -103,6 +108,15 @@ const Navbar = () => {
         isMenuOpen ? "transform translate-x-0" : "transform translate-x-full"
       )}>
         <nav className="flex flex-col space-y-6 items-center bg-white">
+          {/* Close Button for Mobile Menu */}
+          <button 
+            onClick={toggleMenu} 
+            className="absolute top-4 right-4 p-2 text-robin-dark hover:text-robin-orange"
+            aria-label="Close menu"
+          >
+            <X size={24} />
+          </button>
+          
           <a 
             href="#solutions"
             onClick={(e) => {

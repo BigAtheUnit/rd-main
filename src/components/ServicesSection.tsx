@@ -47,7 +47,7 @@ const ServicesSection = () => {
     },
     {
       title: "Custom Web Development",
-      description: "Fully bespoke websites built with modern frameworks and technologies that deliver unique user experiences and functionality.",
+      description: "Fully bespoke websites built with modern frameworks like React, Vue, and Next.js that deliver unique user experiences and functionality.",
       icon: <Code size={28} />,
     },
     {
@@ -88,7 +88,7 @@ const ServicesSection = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-robin-dark">Our Solutions</h2>
           <p className="text-lg text-robin-dark/70">
-            We deliver end-to-end digital solutions that solve real problems and create measurable impact.
+            We deliver end-to-end digital solutions across multiple platforms that solve real problems and create measurable impact.
           </p>
         </div>
         

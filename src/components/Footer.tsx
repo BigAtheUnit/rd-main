@@ -1,10 +1,26 @@
-
 import React from 'react';
 import { ArrowUp, Facebook, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    // If we're not on the home page, redirect to home with the section hash
+    if (window.location.pathname !== '/') {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    // Otherwise, scroll to the section on the current page
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const yOffset = -100;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -39,21 +55,21 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a href="#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Solutions</a></li>
-              <li><a href="#sectors" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Sectors</a></li>
-              <li><a href="#testimonials" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Success Stories</a></li>
-              <li><a href="#contact" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Contact</a></li>
+              <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Solutions</a></li>
+              <li><a href="/#sectors" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Sectors</a></li>
+              <li><a href="/#testimonials" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Success Stories</a></li>
+              <li><a href="/#contact" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Contact</a></li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Solutions</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Web Development</a></li>
-              <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">UX/UI Design</a></li>
-              <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Digital Strategy</a></li>
-              <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">AI Integration</a></li>
-              <li><a href="#" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Data Analytics</a></li>
+              <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Web Development</a></li>
+              <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">UX/UI Design</a></li>
+              <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Digital Strategy</a></li>
+              <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">AI Integration</a></li>
+              <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Data Analytics</a></li>
             </ul>
           </div>
           
@@ -65,12 +81,12 @@ const Footer = () => {
                 <span className="text-robin-cream/70">hello@robindigital.com</span>
               </li>
               <li>
-                <span className="block text-robin-cream/70">123 Digital Hub, Innovation Park</span>
-                <span className="block text-robin-cream/70">Nottingham, UK</span>
+                <span className="block text-robin-cream/70">123 Digital Hub, Lace Market</span>
+                <span className="block text-robin-cream/70">Nottingham City Centre, UK</span>
               </li>
               <li>
                 <a 
-                  href="#contact" 
+                  href="/#contact" 
                   className="inline-block bg-robin-orange text-white px-4 py-2 rounded-md font-medium hover:bg-white hover:text-robin-dark transition-colors"
                 >
                   Contact Us

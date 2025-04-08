@@ -30,6 +30,12 @@ type ProductDetailsDrawerProps = {
 const ProductDetailsDrawer = ({ open, onClose, product }: ProductDetailsDrawerProps) => {
   if (!product) return null;
   
+  const handleContactClick = () => {
+    onClose();
+    // Redirect to homepage with contact section anchor
+    window.location.href = "/#contact";
+  };
+  
   return (
     <Drawer open={open} onOpenChange={onClose}>
       <DrawerContent className="bg-white px-6 py-6">
@@ -55,10 +61,7 @@ const ProductDetailsDrawer = ({ open, onClose, product }: ProductDetailsDrawerPr
             <p className="text-robin-dark/70 mb-4">While this product is still in development, we can create a custom solution tailored to your specific needs.</p>
             <Button 
               className="bg-robin-orange hover:bg-robin-dark transition-colors w-full"
-              onClick={() => {
-                onClose();
-                window.location.href = "/#contact";
-              }}
+              onClick={handleContactClick}
             >
               Contact Us For Custom Solution
               <ArrowRight size={16} className="ml-2" />
