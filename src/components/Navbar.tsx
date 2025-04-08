@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,19 +27,19 @@ const Navbar = () => {
       isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <a href="#" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <img 
-            src="/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png" 
+            src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-10 md:h-12" 
+            className="h-16 md:h-16" 
           />
-        </a>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <a href="#services" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Services</a>
           <a href="#sectors" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Sectors</a>
-          <a href="#tools" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Tools</a>
+          <Link to="/products" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Products</Link>
           <a href="#testimonials" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Testimonials</a>
           <a href="#contact" className="bg-robin-orange text-white px-5 py-2 rounded-md hover:bg-robin-dark transition-colors">Contact Us</a>
         </nav>
@@ -69,13 +70,13 @@ const Navbar = () => {
           >
             Sectors
           </a>
-          <a 
-            href="#tools" 
+          <Link 
+            to="/products" 
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
-            Tools
-          </a>
+            Products
+          </Link>
           <a 
             href="#testimonials" 
             onClick={toggleMenu}
@@ -86,7 +87,7 @@ const Navbar = () => {
           <a 
             href="#contact" 
             onClick={toggleMenu}
-            className="bg-robin-orange text-white px-6 py-3 rounded-md hover:bg-robin-dark transition-colors text-lg w-full text-center"
+            className="text-robin-dark hover:text-robin-orange font-medium text-lg w-full text-center bg-robin-orange text-white px-6 py-3 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
           </a>

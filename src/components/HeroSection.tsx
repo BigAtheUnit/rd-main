@@ -16,7 +16,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 max-w-xl animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark leading-tight">
-              Digital Solutions That <span className="text-robin-orange">Transform</span>
+              Digital Solutions That <span className="text-robin-orange transform inline-block hover:scale-105 transition-transform duration-300 animate-pulse">Transform</span>
             </h1>
             
             <p className="text-lg md:text-xl text-robin-dark/80 leading-relaxed">
@@ -51,7 +51,7 @@ const HeroSection = () => {
           <div className="relative hidden lg:block">
             <div className="relative z-10 animate-fade-in-right">
               <img 
-                src="/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png" 
+                src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
                 alt="Robin Digital" 
                 className="w-full max-w-md mx-auto"
               />
