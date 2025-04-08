@@ -65,8 +65,8 @@ const Footer = () => {
                 <span className="text-robin-cream/70">hello@robindigital.com</span>
               </li>
               <li>
-                <span className="block text-robin-cream/70">123 Tech Hub, Innovation Street</span>
-                <span className="block text-robin-cream/70">London, UK</span>
+                <span className="block text-robin-cream/70">123 Digital Hub, Innovation Park</span>
+                <span className="block text-robin-cream/70">Nottingham, UK</span>
               </li>
               <li>
                 <a 

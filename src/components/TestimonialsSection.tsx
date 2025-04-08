@@ -4,14 +4,12 @@ import { Quote, Star } from 'lucide-react';
 
 type TestimonialProps = {
   quote: string;
-  author: string;
-  position: string;
+  role: string;
   organization: string;
-  location: string;
   rating: number;
 };
 
-const TestimonialCard = ({ quote, author, position, organization, location, rating }: TestimonialProps) => {
+const TestimonialCard = ({ quote, role, organization, rating }: TestimonialProps) => {
   return (
     <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-robin-dark/5 hover:border-robin-orange/20 h-full flex flex-col">
       <div className="flex justify-between items-start mb-4">
@@ -26,9 +24,8 @@ const TestimonialCard = ({ quote, author, position, organization, location, rati
       </div>
       <blockquote className="text-robin-dark/80 italic flex-grow">{quote}</blockquote>
       <div className="mt-6 pt-6 border-t border-robin-dark/10">
-        <p className="font-semibold text-robin-dark">{author}</p>
-        <p className="text-robin-dark/70 text-sm">{position}, {organization}</p>
-        <p className="text-robin-dark/60 text-xs mt-1">{location}</p>
+        <p className="text-robin-dark/70 text-sm">{role}</p>
+        <p className="text-robin-dark/70 text-sm">{organization}</p>
       </div>
     </div>
   );
@@ -38,34 +35,26 @@ const TestimonialsSection = () => {
   const testimonials = [
     {
       quote: "Robin Digital transformed our outdated website into a powerful fundraising tool. Donations increased by 40% in the first three months after launch.",
-      author: "Emma Thompson",
-      position: "Director of Digital",
-      organization: "Community Hope Trust",
-      location: "London, UK",
+      role: "Director of Digital",
+      organization: "Charity, London",
       rating: 5
     },
     {
       quote: "Their WordPress template was exactly what our school needed. Easy to customise and maintain, with excellent support when we needed help.",
-      author: "Dr. James Wilson",
-      position: "Head of IT",
-      organization: "St. Andrew's Academy",
-      location: "Edinburgh, UK",
+      role: "Head of IT",
+      organization: "Education, Scotland",
       rating: 5
     },
     {
       quote: "The custom CRM they built for our council has streamlined operations and improved our service delivery to vulnerable communities.",
-      author: "Olivia Murphy",
-      position: "Digital Transformation Manager",
-      organization: "Midlands County Council",
-      location: "Birmingham, UK",
+      role: "Digital Transformation Manager",
+      organization: "Public Sector, Midlands",
       rating: 5
     },
     {
-      quote: "RobinShield has been a game-changer for our site security. After a previous breach, we've had zero incidents since installation. Worth every penny.",
-      author: "Liam O'Connor",
-      position: "Managing Director",
-      organization: "Celtic Innovations",
-      location: "Dublin, Ireland",
+      quote: "Using their AI integration services has transformed our business processes, reducing manual work by 65% and allowing us to focus on growth.",
+      role: "Managing Director",
+      organization: "Business, Ireland",
       rating: 5
     }
   ];
@@ -85,10 +74,8 @@ const TestimonialsSection = () => {
             <TestimonialCard 
               key={index}
               quote={testimonial.quote}
-              author={testimonial.author}
-              position={testimonial.position}
+              role={testimonial.role}
               organization={testimonial.organization}
-              location={testimonial.location}
               rating={testimonial.rating}
             />
           ))}

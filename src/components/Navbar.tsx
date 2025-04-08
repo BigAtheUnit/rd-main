@@ -23,6 +23,22 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToSection = (sectionId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    if (isProductsPage) {
+      window.location.href = `/#${sectionId}`;
+      return;
+    }
+    
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const yOffset = -100; // Adjust offset to position sections correctly
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className={cn(
       "fixed w-full z-50 transition-all duration-300",
@@ -33,20 +49,22 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-32 md:h-32" 
+            className="h-36 md:h-36" 
           />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <a 
-            href={isProductsPage ? "/#solutions" : "#solutions"} 
+            href="#solutions" 
+            onClick={(e) => scrollToSection('solutions', e)}
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Solutions
           </a>
           <a 
-            href={isProductsPage ? "/#sectors" : "#sectors"} 
+            href="#sectors" 
+            onClick={(e) => scrollToSection('sectors', e)}
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Sectors
@@ -58,13 +76,15 @@ const Navbar = () => {
             Products
           </Link>
           <a 
-            href={isProductsPage ? "/#testimonials" : "#testimonials"} 
+            href="#testimonials" 
+            onClick={(e) => scrollToSection('testimonials', e)}
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
             Testimonials
           </a>
           <a 
-            href={isProductsPage ? "/#contact" : "#contact"} 
+            href="#contact" 
+            onClick={(e) => scrollToSection('contact', e)}
             className="bg-robin-orange text-white px-5 py-2 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
@@ -84,15 +104,21 @@ const Navbar = () => {
       )}>
         <nav className="flex flex-col space-y-6 items-center bg-white">
           <a 
-            href={isProductsPage ? "/#solutions" : "#solutions"}
-            onClick={toggleMenu}
+            href="#solutions"
+            onClick={(e) => {
+              toggleMenu();
+              scrollToSection('solutions', e);
+            }}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Solutions
           </a>
           <a 
-            href={isProductsPage ? "/#sectors" : "#sectors"}
-            onClick={toggleMenu}
+            href="#sectors"
+            onClick={(e) => {
+              toggleMenu();
+              scrollToSection('sectors', e);
+            }}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Sectors
@@ -105,15 +131,21 @@ const Navbar = () => {
             Products
           </Link>
           <a 
-            href={isProductsPage ? "/#testimonials" : "#testimonials"}
-            onClick={toggleMenu}
+            href="#testimonials"
+            onClick={(e) => {
+              toggleMenu();
+              scrollToSection('testimonials', e);
+            }}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Testimonials
           </a>
           <a 
-            href={isProductsPage ? "/#contact" : "#contact"}
-            onClick={toggleMenu}
+            href="#contact"
+            onClick={(e) => {
+              toggleMenu();
+              scrollToSection('contact', e);
+            }}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg w-full text-center bg-robin-orange text-white px-6 py-3 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us

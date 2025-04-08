@@ -112,7 +112,7 @@ const ProductsPage = () => {
     <div className="min-h-screen bg-robin-cream flex flex-col overflow-x-hidden">
       <Navbar />
       <main className="pt-24">
-        <section className="py-12 md:py-16 bg-white">
+        <section className="py-12 md:py-16 bg-robin-cream">
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h1 className="text-3xl md:text-5xl font-bold mb-4 text-robin-dark">
