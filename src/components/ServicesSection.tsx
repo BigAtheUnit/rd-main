@@ -6,8 +6,8 @@ import {
   Layout, 
   Code, 
   Heart, 
-  LineChart, 
   Lightbulb, 
+  LineChart, 
   Bot,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -42,8 +42,13 @@ const ServicesSection = () => {
   const services = [
     {
       title: "WordPress Development",
-      description: "Beautiful, responsive WordPress websites built with modern technologies that drive conversions and delight users.",
+      description: "Expert WordPress website development with custom themes, plugins and integrations tailored to your specific business needs.",
       icon: <Globe size={28} />,
+    },
+    {
+      title: "Custom Web Development",
+      description: "Fully bespoke websites built with modern frameworks and technologies that deliver unique user experiences and functionality.",
+      icon: <Code size={28} />,
     },
     {
       title: "Bespoke Digital Tools",
@@ -74,11 +79,6 @@ const ServicesSection = () => {
       title: "Data Analytics & Insights",
       description: "Unlock the value in your data with advanced analytics and actionable insights.",
       icon: <LineChart size={28} />,
-    },
-    {
-      title: "Custom Software Development",
-      description: "Bespoke software solutions that solve your unique business challenges and drive innovation.",
-      icon: <Code size={28} />,
     },
   ];
 
