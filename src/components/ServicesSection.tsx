@@ -6,11 +6,9 @@ import {
   Layout, 
   Code, 
   Heart, 
-  Database, 
   LineChart, 
   Lightbulb, 
   Bot,
-  Store
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -68,11 +66,6 @@ const ServicesSection = () => {
       icon: <Heart size={28} />,
     },
     {
-      title: "CMS Solutions",
-      description: "Powerful, flexible content management systems that give you control over your digital presence.",
-      icon: <Database size={28} />,
-    },
-    {
       title: "Digital Strategy",
       description: "Strategic planning and roadmapping to align your digital initiatives with organisational goals.",
       icon: <Lightbulb size={28} />,
@@ -90,10 +83,10 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section id="services" className="section-padding bg-gradient-to-b from-robin-cream to-white">
+    <section id="solutions" className="section-padding py-20 bg-gradient-to-b from-robin-cream to-white">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-robin-dark">Our Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-robin-dark">Our Solutions</h2>
           <p className="text-lg text-robin-dark/70">
             We deliver end-to-end digital solutions that solve real problems and create measurable impact.
           </p>

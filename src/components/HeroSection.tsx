@@ -4,6 +4,14 @@ import { ArrowDownCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const HeroSection = () => {
+  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-robin-cream">
       {/* Background decorative elements */}
@@ -18,7 +26,7 @@ const HeroSection = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark leading-tight">
               Digital Solutions That <span className="text-robin-orange relative inline-block transform hover:scale-105 transition-transform duration-300">
                 Transform
-                <span className="absolute inset-0 bg-white/20 animate-[shine_3s_ease-in-out_infinite] -skew-x-12"></span>
+                <span className="absolute inset-0 bg-white/20 animate-shine -skew-x-12"></span>
               </span>
             </h1>
             
@@ -29,6 +37,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <a 
                 href="#contact" 
+                onClick={scrollToContact}
                 className={cn(
                   "bg-robin-orange text-white px-8 py-3 rounded-md font-medium",
                   "hover:bg-robin-dark transition-colors text-center hover-scale",
@@ -38,7 +47,7 @@ const HeroSection = () => {
                 Start Your Project
               </a>
               <a 
-                href="#services" 
+                href="#solutions" 
                 className={cn(
                   "border-2 border-robin-dark/10 bg-white/50 backdrop-blur-sm",
                   "text-robin-dark px-8 py-3 rounded-md font-medium",
@@ -46,7 +55,7 @@ const HeroSection = () => {
                   "inline-flex items-center justify-center hover-scale"
                 )}
               >
-                Explore Services
+                Explore Solutions
               </a>
             </div>
           </div>
@@ -65,7 +74,7 @@ const HeroSection = () => {
       </div>
       
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#services" className="text-robin-dark/60 hover:text-robin-orange transition-colors">
+        <a href="#solutions" className="text-robin-dark/60 hover:text-robin-orange transition-colors">
           <ArrowDownCircle size={32} />
         </a>
       </div>

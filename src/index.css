@@ -69,10 +69,21 @@
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.3;
   }
   100% {
     left: 100%;
     opacity: 0;
   }
+}
+
+.animate-shine {
+  animation: shine 5s ease-in-out infinite;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.section-padding {
+  @apply py-16 md:py-20;
 }

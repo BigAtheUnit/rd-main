@@ -9,13 +9,12 @@ type ProductProps = {
   title: string;
   description: string;
   icon: React.ReactNode;
-  price: string;
   isNew?: boolean;
   isFeatured?: boolean;
   imageSrc: string;
 };
 
-const ProductCard = ({ title, description, icon, price, isNew, isFeatured, imageSrc }: ProductProps) => {
+const ProductCard = ({ title, description, icon, isNew, isFeatured, imageSrc }: ProductProps) => {
   return (
     <div className="relative bg-white rounded-xl shadow-lg overflow-hidden border-2 border-robin-dark/5 hover:border-robin-orange/20 transition-all duration-300 flex flex-col h-full group">
       {isNew && (
@@ -48,14 +47,12 @@ const ProductCard = ({ title, description, icon, price, isNew, isFeatured, image
         <p className="text-robin-dark/70 mb-6">{description}</p>
         
         <div className="mt-auto flex justify-between items-center">
-          <div>
-            <span className="block text-sm text-robin-dark/60">Starting from</span>
-            <span className="text-xl font-bold text-robin-dark">{price}</span>
-          </div>
+          <span className="text-robin-orange font-semibold">Coming Soon</span>
           <Button 
             className="bg-robin-orange hover:bg-robin-dark transition-colors"
+            disabled
           >
-            View Details
+            Learn More
           </Button>
         </div>
       </div>
@@ -74,7 +71,6 @@ const ProductsPage = () => {
       title: "RobinShield",
       description: "Premium WordPress security plugin bundle that protects your site from malware, hackers, and vulnerabilities.",
       icon: <Shield size={24} />,
-      price: "£19.99/mo",
       isFeatured: true,
       imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
@@ -82,7 +78,6 @@ const ProductsPage = () => {
       title: "PDF Pro",
       description: "Powerful PDF converter and editor for seamless document management and collaboration.",
       icon: <FileEdit size={24} />,
-      price: "£9.99/mo",
       isNew: true,
       imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
@@ -90,28 +85,24 @@ const ProductsPage = () => {
       title: "WordPress Templates",
       description: "Premium WordPress themes designed for performance, SEO, and beautiful user experience.",
       icon: <Store size={24} />,
-      price: "£59.99",
       imageSrc: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "Booking System Pro",
       description: "Complete appointment and booking solution for service-based businesses.",
       icon: <Clock size={24} />,
-      price: "£14.99/mo",
       imageSrc: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "E-commerce Template",
       description: "Fully responsive WordPress e-commerce theme with WooCommerce integration.",
       icon: <Store size={24} />,
-      price: "£79.99",
       imageSrc: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "Charity WordPress Theme",
       description: "Donor-focused WordPress theme built specifically for charitable organisations.",
       icon: <Store size={24} />,
-      price: "£49.99",
       isNew: true,
       imageSrc: "https://images.unsplash.com/photo-1473091534298-04dcbce3278c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     }
@@ -143,7 +134,6 @@ const ProductsPage = () => {
                   title={product.title}
                   description={product.description}
                   icon={product.icon}
-                  price={product.price}
                   isNew={product.isNew}
                   isFeatured={product.isFeatured}
                   imageSrc={product.imageSrc}

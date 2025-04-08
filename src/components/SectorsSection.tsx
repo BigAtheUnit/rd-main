@@ -29,9 +29,9 @@ const SectorCard = ({ title, description, icon }: SectorProps) => {
 const SectorsSection = () => {
   const sectors = [
     {
-      title: "Charities",
-      icon: <Heart size={24} />,
-      description: "We create donor-focused digital solutions that help charities maximise their impact, engage supporters, and streamline operations.",
+      title: "Businesses",
+      icon: <Briefcase size={24} />,
+      description: "We partner with businesses to develop digital solutions that drive growth, improve efficiency, and create competitive advantage.",
     },
     {
       title: "Public Sector",
@@ -39,19 +39,19 @@ const SectorsSection = () => {
       description: "We help public sector organisations deliver accessible, compliant digital services that meet the diverse needs of all citizens.",
     },
     {
+      title: "Charities",
+      icon: <Heart size={24} />,
+      description: "We create donor-focused digital solutions that help charities maximise their impact, engage supporters, and streamline operations.",
+    },
+    {
       title: "Education",
       icon: <GraduationCap size={24} />,
       description: "We support educational institutions with digital tools that enhance learning experiences and simplify administrative processes.",
-    },
-    {
-      title: "Businesses",
-      icon: <Briefcase size={24} />,
-      description: "We partner with businesses to develop digital solutions that drive growth, improve efficiency, and create competitive advantage.",
     }
   ];
 
   return (
-    <section id="sectors" className="section-padding bg-gradient-to-b from-white to-robin-cream/50">
+    <section id="sectors" className="section-padding py-20 bg-gradient-to-b from-white to-robin-cream/50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-robin-dark">Sectors We Serve</h2>

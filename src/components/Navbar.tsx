@@ -23,11 +23,6 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  // Get the base path for navigation links
-  const getNavLink = (section: string) => {
-    return isProductsPage ? `/${section}` : `#${section}`;
-  };
-
   return (
     <header className={cn(
       "fixed w-full z-50 transition-all duration-300",
@@ -38,17 +33,17 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-20 md:h-20" 
+            className="h-24 md:h-24" 
           />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link 
-            to={isProductsPage ? "/#services" : "#services"} 
+            to={isProductsPage ? "/#solutions" : "#solutions"} 
             className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
           >
-            Services
+            Solutions
           </Link>
           <Link 
             to={isProductsPage ? "/#sectors" : "#sectors"} 
@@ -89,11 +84,11 @@ const Navbar = () => {
       )}>
         <nav className="flex flex-col space-y-6 items-center">
           <Link 
-            to={isProductsPage ? "/#services" : "#services"}
+            to={isProductsPage ? "/#solutions" : "#solutions"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
-            Services
+            Solutions
           </Link>
           <Link 
             to={isProductsPage ? "/#sectors" : "#sectors"}
