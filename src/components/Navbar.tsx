@@ -2,11 +2,13 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
+  const isProductsPage = location.pathname === '/products';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +23,11 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Get the base path for navigation links
+  const getNavLink = (section: string) => {
+    return isProductsPage ? `/${section}` : `#${section}`;
+  };
+
   return (
     <header className={cn(
       "fixed w-full z-50 transition-all duration-300",
@@ -31,17 +38,42 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-16 md:h-16" 
+            className="h-20 md:h-20" 
           />
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#services" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Services</a>
-          <a href="#sectors" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Sectors</a>
-          <Link to="/products" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Products</Link>
-          <a href="#testimonials" className="text-robin-dark hover:text-robin-orange font-medium transition-colors">Testimonials</a>
-          <a href="#contact" className="bg-robin-orange text-white px-5 py-2 rounded-md hover:bg-robin-dark transition-colors">Contact Us</a>
+          <Link 
+            to={isProductsPage ? "/#services" : "#services"} 
+            className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
+          >
+            Services
+          </Link>
+          <Link 
+            to={isProductsPage ? "/#sectors" : "#sectors"} 
+            className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
+          >
+            Sectors
+          </Link>
+          <Link 
+            to="/products" 
+            className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
+          >
+            Products
+          </Link>
+          <Link 
+            to={isProductsPage ? "/#testimonials" : "#testimonials"} 
+            className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
+          >
+            Testimonials
+          </Link>
+          <Link 
+            to={isProductsPage ? "/#contact" : "#contact"} 
+            className="bg-robin-orange text-white px-5 py-2 rounded-md hover:bg-robin-dark transition-colors"
+          >
+            Contact Us
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -56,41 +88,41 @@ const Navbar = () => {
         isMenuOpen ? "transform translate-x-0" : "transform translate-x-full"
       )}>
         <nav className="flex flex-col space-y-6 items-center">
-          <a 
-            href="#services" 
+          <Link 
+            to={isProductsPage ? "/#services" : "#services"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Services
-          </a>
-          <a 
-            href="#sectors" 
+          </Link>
+          <Link 
+            to={isProductsPage ? "/#sectors" : "#sectors"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Sectors
-          </a>
+          </Link>
           <Link 
-            to="/products" 
+            to="/products"
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Products
           </Link>
-          <a 
-            href="#testimonials" 
+          <Link 
+            to={isProductsPage ? "/#testimonials" : "#testimonials"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Testimonials
-          </a>
-          <a 
-            href="#contact" 
+          </Link>
+          <Link 
+            to={isProductsPage ? "/#contact" : "#contact"}
             onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg w-full text-center bg-robin-orange text-white px-6 py-3 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

@@ -16,7 +16,10 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 max-w-xl animate-fade-in">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark leading-tight">
-              Digital Solutions That <span className="text-robin-orange transform inline-block hover:scale-105 transition-transform duration-300 animate-pulse">Transform</span>
+              Digital Solutions That <span className="text-robin-orange relative inline-block transform hover:scale-105 transition-transform duration-300">
+                Transform
+                <span className="absolute inset-0 bg-white/20 animate-[shine_3s_ease-in-out_infinite] -skew-x-12"></span>
+              </span>
             </h1>
             
             <p className="text-lg md:text-xl text-robin-dark/80 leading-relaxed">
@@ -53,7 +56,7 @@ const HeroSection = () => {
               <img 
                 src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
                 alt="Robin Digital" 
-                className="w-full max-w-md mx-auto"
+                className="w-full max-w-lg mx-auto"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl transform rotate-3 scale-105 -z-10"></div>
