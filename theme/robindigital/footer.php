@@ -1,3 +1,4 @@
+
 <?php
 /**
  * The template for displaying the footer
@@ -8,7 +9,15 @@
     <div class="container mx-auto px-4 md:px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-white.png" alt="<?php echo get_bloginfo('name'); ?> Logo" class="h-16 mb-4" />
+                <?php 
+                if (has_custom_logo()) {
+                    $custom_logo_id = get_theme_mod('custom_logo');
+                    $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                    echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . ' Logo" class="h-16 mb-4 invert">'; 
+                } else {
+                    echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-16 mb-4">';
+                }
+                ?>
                 <p class="text-robin-cream/80 mb-6">
                     <?php echo get_theme_mod('footer_tagline', 'Empowering organizations with innovative digital solutions that make a difference.'); ?>
                 </p>
@@ -85,7 +94,7 @@
                         <span class="block text-robin-cream/70"><?php echo get_theme_mod('contact_address_line2', 'Nottingham City Centre, UK'); ?></span>
                     </li>
                     <li>
-                        <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="inline-block bg-robin-orange text-white px-4 py-2 rounded-md font-medium hover:bg-white hover:text-robin-dark transition-colors">
+                        <a href="<?php echo esc_url(home_url('/#contact')); ?>" class="inline-block bg-robin-orange text-white px-4 py-2 rounded-md font-medium hover:bg-white hover:text-robin-dark transition-colors smooth-scroll">
                             Contact Us
                         </a>
                     </li>
@@ -101,8 +110,8 @@
             
             <div class="flex flex-col md:flex-row items-center gap-4">
                 <div class="flex gap-4">
-                    <a href="<?php echo get_permalink(get_page_by_path('privacy-policy')->ID); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Privacy Policy</a>
-                    <a href="<?php echo get_permalink(get_page_by_path('terms-of-service')->ID); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Terms of Service</a>
+                    <a href="<?php echo get_privacy_policy_url(); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Privacy Policy</a>
+                    <a href="<?php echo esc_url(home_url('/terms-of-service')); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Terms of Service</a>
                 </div>
                 
                 <button id="scroll-to-top" class="ml-4 w-10 h-10 bg-robin-orange/20 hover:bg-robin-orange rounded-full flex items-center justify-center text-white transition-colors" aria-label="Scroll to top">
@@ -117,7 +126,7 @@
 // Custom Walker for footer menu
 class Footer_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-        $output .= '<li><a href="' . esc_url($item->url) . '" class="text-robin-cream/70 hover:text-robin-orange transition-colors">' . esc_html($item->title) . '</a></li>';
+        $output .= '<li><a href="' . esc_url($item->url) . '" class="text-robin-cream/70 hover:text-robin-orange transition-colors smooth-scroll">' . esc_html($item->title) . '</a></li>';
     }
 }
 ?>
@@ -143,13 +152,35 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.getElementById(targetId);
             if (targetElement) {
                 // Improved smooth scrolling with offset
-                const yOffset = -80; // Adjust offset to account for fixed header
+                const yOffset = -100; // Adjust offset to account for fixed header
                 const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
                 
                 window.scrollTo({
                     top: y,
                     behavior: 'smooth'
                 });
+            }
+        });
+    });
+    
+    // Enable smooth scrolling for links with smooth-scroll class
+    document.querySelectorAll('.smooth-scroll').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            if (this.getAttribute('href').includes('#')) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').split('#')[1];
+                if (!targetId) return;
+                
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const yOffset = -100;
+                    const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    
+                    window.scrollTo({
+                        top: y,
+                        behavior: 'smooth'
+                    });
+                }
             }
         });
     });

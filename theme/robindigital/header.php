@@ -10,6 +10,9 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <?php wp_head(); ?>
 </head>
 
@@ -23,9 +26,9 @@
             if (has_custom_logo()) {
                 $custom_logo_id = get_theme_mod('custom_logo');
                 $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
-                echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . ' Logo" class="h-40 md:h-40">'; // Increased logo size
+                echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . ' Logo" class="h-16 md:h-20">'; 
             } else {
-                echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-40 md:h-40">'; // Increased logo size
+                echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-16 md:h-20">';
             }
             ?>
         </a>

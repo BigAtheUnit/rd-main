@@ -5,7 +5,7 @@
  */
 ?>
 
-<section class="relative min-h-screen flex items-center pt-20 pb-16 overflow-hidden bg-robin-cream">
+<section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-robin-cream">
     <!-- Background decorative elements -->
     <div class="absolute inset-0 z-0 opacity-5">
         <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-robin-orange blur-3xl"></div>
