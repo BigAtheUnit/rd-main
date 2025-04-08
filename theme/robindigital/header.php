@@ -21,9 +21,11 @@
         <a href="<?php echo esc_url(home_url('/')); ?>" class="flex items-center">
             <?php 
             if (has_custom_logo()) {
-                the_custom_logo();
+                $custom_logo_id = get_theme_mod('custom_logo');
+                $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
+                echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . ' Logo" class="h-40 md:h-40">'; // Increased logo size
             } else {
-                echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-36 md:h-36">';
+                echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-40 md:h-40">'; // Increased logo size
             }
             ?>
         </a>

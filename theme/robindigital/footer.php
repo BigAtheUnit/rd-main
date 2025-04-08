@@ -1,4 +1,3 @@
-
 <?php
 /**
  * The template for displaying the footer
@@ -9,7 +8,7 @@
     <div class="container mx-auto px-4 md:px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             <div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-white.png" alt="<?php echo get_bloginfo('name'); ?> Logo" class="h-12 mb-4" />
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-white.png" alt="<?php echo get_bloginfo('name'); ?> Logo" class="h-16 mb-4" />
                 <p class="text-robin-cream/80 mb-6">
                     <?php echo get_theme_mod('footer_tagline', 'Empowering organizations with innovative digital solutions that make a difference.'); ?>
                 </p>
@@ -102,16 +101,8 @@
             
             <div class="flex flex-col md:flex-row items-center gap-4">
                 <div class="flex gap-4">
-                    <?php if (get_privacy_policy_url()) : ?>
-                    <a href="<?php echo get_privacy_policy_url(); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Privacy Policy</a>
-                    <?php endif; ?>
-                    
-                    <?php
-                    $terms_page = get_page_by_path('terms-of-service');
-                    if ($terms_page) :
-                    ?>
-                    <a href="<?php echo get_permalink($terms_page->ID); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Terms of Service</a>
-                    <?php endif; ?>
+                    <a href="<?php echo get_permalink(get_page_by_path('privacy-policy')->ID); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Privacy Policy</a>
+                    <a href="<?php echo get_permalink(get_page_by_path('terms-of-service')->ID); ?>" class="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Terms of Service</a>
                 </div>
                 
                 <button id="scroll-to-top" class="ml-4 w-10 h-10 bg-robin-orange/20 hover:bg-robin-orange rounded-full flex items-center justify-center text-white transition-colors" aria-label="Scroll to top">
@@ -133,11 +124,33 @@ class Footer_Walker_Nav_Menu extends Walker_Nav_Menu {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Scroll to top
+    // Scroll to top with improved smoothness
     document.getElementById('scroll-to-top').addEventListener('click', function() {
         window.scrollTo({
             top: 0,
             behavior: 'smooth'
+        });
+    });
+    
+    // Make all anchor links smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            if (!targetId) return; // Skip if empty anchor
+            
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                // Improved smooth scrolling with offset
+                const yOffset = -80; // Adjust offset to account for fixed header
+                const y = targetElement.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                
+                window.scrollTo({
+                    top: y,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
     

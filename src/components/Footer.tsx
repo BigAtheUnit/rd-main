@@ -14,12 +14,15 @@ const Footer = () => {
       return;
     }
     
-    // Otherwise, scroll to the section on the current page
+    // Otherwise, scroll to the section on the current page with improved smoothness
     const section = document.getElementById(sectionId);
     if (section) {
-      const yOffset = -100;
+      const yOffset = -80; // Adjusted for better positioning
       const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ 
+        top: y, 
+        behavior: 'smooth' // Ensure smooth scrolling
+      });
     }
   };
 
@@ -31,7 +34,7 @@ const Footer = () => {
             <img 
               src="/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png" 
               alt="Robin Digital Logo" 
-              className="h-12 mb-4" 
+              className="h-16 mb-4" // Increased logo size
             />
             <p className="text-robin-cream/80 mb-6">
               Empowering organizations with innovative digital solutions that make a difference.
@@ -103,8 +106,8 @@ const Footer = () => {
           
           <div className="flex flex-col md:flex-row items-center gap-4">
             <div className="flex gap-4">
-              <a href="#" className="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Terms of Service</a>
+              <Link to="/privacy-policy" className="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="text-robin-cream/60 hover:text-robin-orange text-sm transition-colors">Terms of Service</Link>
             </div>
             
             <button 

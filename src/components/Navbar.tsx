@@ -33,9 +33,12 @@ const Navbar = () => {
     
     const section = document.getElementById(sectionId);
     if (section) {
-      const yOffset = -100; // Adjust offset to position sections correctly
+      const yOffset = -80; // Adjusted for better positioning
       const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ 
+        top: y, 
+        behavior: 'smooth'  // Ensure smooth scrolling
+      });
     }
     
     // Close mobile menu if it's open
@@ -54,7 +57,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-36 md:h-36" 
+            className="h-40 md:h-40" // Increased logo size
           />
         </Link>
 
