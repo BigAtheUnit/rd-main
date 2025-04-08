@@ -2,7 +2,7 @@
 import React from 'react';
 import { 
   Globe, 
-  Tool, 
+  Wrench, 
   Layout, 
   Code, 
   Heart, 
@@ -49,7 +49,7 @@ const ServicesSection = () => {
     {
       title: "Bespoke Digital Tools",
       description: "Custom tools tailored to your unique requirements, automating processes and improving efficiency.",
-      icon: <Tool size={24} />,
+      icon: <Wrench size={24} />,
     },
     {
       title: "UX and UI Design",
