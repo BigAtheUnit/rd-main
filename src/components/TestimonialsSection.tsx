@@ -13,12 +13,14 @@ const TestimonialsSection = () => {
     queryKey: ['testimonials'],
     queryFn: getTestimonials,
     retry: 1,
-    onError: () => {
-      toast({
-        title: "Information",
-        description: "Using demo testimonials while connecting to WordPress.",
-        duration: 5000,
-      });
+    onSettled: (data, error) => {
+      if (error) {
+        toast({
+          title: "Information",
+          description: "Using demo testimonials while connecting to WordPress.",
+          duration: 5000,
+        });
+      }
     }
   });
 
