@@ -1,4 +1,3 @@
-
 /**
  * WordPress API Service
  * 
@@ -7,7 +6,7 @@
  */
 
 // WordPress site URL - change this to your Hostinger domain
-const WORDPRESS_API_URL = 'https://your-wordpress-site.com/wp-json';
+const WORDPRESS_API_URL = 'https://your-hostinger-domain.com/wp-json';
 
 // Define types for WordPress API responses
 export interface ThemeSettings {
