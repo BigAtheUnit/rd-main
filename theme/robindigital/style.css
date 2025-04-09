@@ -1,108 +1,81 @@
 
 /*
 Theme Name: Robin Digital
-Theme URI: https://www.robindigital.io
-Author: Robin Digital
-Author URI: https://www.robindigital.io
-Description: A custom WordPress theme for Robin Digital
-Version: 1.0
+Theme URI: https://robindigital.com
+Author: Robin Digital Team
+Author URI: https://robindigital.com
+Description: A modern WordPress theme for digital agencies, designed for headless CMS use.
+Requires at least: WordPress 5.8
+Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: robindigital
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
-
-This theme, like WordPress, is licensed under the GPL.
-Use it to make something cool, have fun, and share what you've learned.
-
-Robin Digital is based on Underscores https://underscores.me/, (C) 2012-2022 Automattic, Inc.
-Underscores is distributed under the terms of the GNU GPL v2 or later.
+Tags: responsive, tailwind, headless, cms, agency, services
 */
 
-/* This file is intentionally left mostly blank
-   The actual styles are in assets/css/tailwind.css
-   This file is only used for WordPress theme identification
+/* 
+This is the main stylesheet for the Robin Digital WordPress theme.
+Most styles are in the Tailwind CSS file, but this file is required for WordPress theme recognition.
 */
 
-/* Basic style rules for WordPress editor compatibility */
+/* Basic WordPress Required Styles */
+.aligncenter {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .alignleft {
-    float: left;
-    margin-right: 1.5em;
-    margin-bottom: 1.5em;
+  float: left;
+  margin: 0.5em 1em 0.5em 0;
 }
 
 .alignright {
-    float: right;
-    margin-left: 1.5em;
-    margin-bottom: 1.5em;
+  float: right;
+  margin: 0.5em 0 0.5em 1em;
 }
 
-.aligncenter {
-    clear: both;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1.5em;
-}
-
-/* WordPress image and gallery styles */
 .wp-caption {
-    margin-bottom: 1.5em;
-    max-width: 100%;
+  max-width: 100%;
 }
 
-.wp-caption img[class*="wp-image-"] {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
 }
 
-.wp-caption .wp-caption-text {
-    margin: 0.8075em 0;
+.screen-reader-text:focus {
+  background-color: #eee;
+  clip: auto !important;
+  clip-path: none;
+  color: #444;
+  display: block;
+  font-size: 1em;
+  height: auto;
+  left: 5px;
+  line-height: normal;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  top: 5px;
+  width: auto;
+  z-index: 100000;
 }
 
-.gallery {
-    margin-bottom: 1.5em;
+/* For when WordPress admin bar is present */
+body.admin-bar {
+  margin-top: 32px;
 }
 
-.gallery-item {
-    display: inline-block;
-    text-align: center;
-    vertical-align: top;
-    width: 100%;
-}
-
-.gallery-columns-2 .gallery-item {
-    max-width: 50%;
-}
-
-.gallery-columns-3 .gallery-item {
-    max-width: 33.33%;
-}
-
-.gallery-columns-4 .gallery-item {
-    max-width: 25%;
-}
-
-.gallery-columns-5 .gallery-item {
-    max-width: 20%;
-}
-
-.gallery-columns-6 .gallery-item {
-    max-width: 16.66%;
-}
-
-.gallery-columns-7 .gallery-item {
-    max-width: 14.28%;
-}
-
-.gallery-columns-8 .gallery-item {
-    max-width: 12.5%;
-}
-
-.gallery-columns-9 .gallery-item {
-    max-width: 11.11%;
-}
-
-.gallery-caption {
-    display: block;
+@media screen and (max-width: 782px) {
+  body.admin-bar {
+    margin-top: 46px;
+  }
 }

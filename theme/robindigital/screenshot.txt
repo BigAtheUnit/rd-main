@@ -1,0 +1,10 @@
+
+# IMPORTANT:
+# This is a placeholder text file that reminds you to create a proper screenshot.png file.
+# 
+# For WordPress themes, you need to create a screenshot.png file with the following specifications:
+# - Dimensions: 1200×900 pixels
+# - Format: PNG
+# - Content: A representative image of your theme
+#
+# Please replace this text file with an actual PNG image before uploading to WordPress.
