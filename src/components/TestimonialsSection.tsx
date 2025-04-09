@@ -4,11 +4,22 @@ import { useQuery } from '@tanstack/react-query';
 import { getTestimonials, Testimonial } from '@/services/wordpress-api';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Star } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 const TestimonialsSection = () => {
+  const { toast } = useToast();
+  
   const { data: testimonials, isLoading, error } = useQuery({
     queryKey: ['testimonials'],
-    queryFn: getTestimonials
+    queryFn: getTestimonials,
+    retry: 1,
+    onError: () => {
+      toast({
+        title: "Information",
+        description: "Using demo testimonials while connecting to WordPress.",
+        duration: 5000,
+      });
+    }
   });
 
   return (
@@ -27,7 +38,7 @@ const TestimonialsSection = () => {
           </div>
         )}
 
-        {error && (
+        {error && !testimonials && (
           <div className="text-center text-red-500">
             <p>Failed to load testimonials. Please try again later.</p>
           </div>
