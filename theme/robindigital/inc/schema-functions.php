@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Schema.org structured data functions for the Robin Digital theme
@@ -21,7 +20,7 @@ function robindigital_add_schema_markup() {
     }
     
     $domain = 'https://www.robindigital.io';
-    $default_image = $domain . '/lovable-uploads/103a39e1-9bd6-489e-b437-2fb0efc3735b.png';
+    $default_image = $domain . '/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png';
     
     // Organization schema
     $schema = array(
@@ -46,7 +45,7 @@ function robindigital_add_schema_markup() {
         )
     );
     
-    // Add WebSite schema
+    // WebSite schema
     $website_schema = array(
         '@context' => 'https://schema.org',
         '@type' => 'WebSite',
