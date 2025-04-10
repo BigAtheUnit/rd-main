@@ -21,8 +21,14 @@ function robindigital_add_meta_tags() {
     // Default values
     $title = get_bloginfo('name');
     $description = get_bloginfo('description');
-    $image = get_theme_mod('robindigital_default_og_image', '/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png');
+    $default_image = '/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png';
+    $image = get_theme_mod('robindigital_default_og_image', $default_image);
     $domain = 'https://www.robindigital.io';
+    
+    // Ensure image has absolute URL
+    if (strpos($image, 'http') !== 0) {
+        $image = $domain . $image;
+    }
     
     // If we're on a singular post/page, get specific meta data
     if (is_singular()) {
@@ -31,7 +37,15 @@ function robindigital_add_meta_tags() {
         
         // Get featured image
         if (has_post_thumbnail()) {
-            $image = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large')[0];
+            $image_src = wp_get_attachment_image_src(get_post_thumbnail_id(), 'large');
+            if ($image_src) {
+                $image = $image_src[0];
+                
+                // Ensure image has absolute URL
+                if (strpos($image, 'http') !== 0) {
+                    $image = $domain . $image;
+                }
+            }
         }
     } elseif (is_category() || is_tag() || is_tax()) {
         $term = get_queried_object();
@@ -56,6 +70,9 @@ function robindigital_add_meta_tags() {
         echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
         echo '<meta property="og:image:width" content="1200" />' . "\n";
         echo '<meta property="og:image:height" content="630" />' . "\n";
+        // Add these tags to improve Facebook compatibility
+        echo '<meta property="og:image:type" content="image/png" />' . "\n";
+        echo '<meta property="og:image:alt" content="Robin Digital" />' . "\n";
     }
     
     // Twitter Card tags
@@ -66,6 +83,9 @@ function robindigital_add_meta_tags() {
     if ($image) {
         echo '<meta name="twitter:image" content="' . esc_url($image) . '" />' . "\n";
     }
+    
+    // Facebook specific tags
+    echo '<meta property="fb:app_id" content="' . esc_attr(get_theme_mod('robindigital_facebook_app_id', '')) . '" />' . "\n";
     
     // Canonical URL
     echo '<link rel="canonical" href="' . esc_url($domain . $_SERVER['REQUEST_URI']) . '" />' . "\n";
@@ -104,17 +124,26 @@ add_action('after_setup_theme', 'robindigital_responsive_image_support');
  * Add structured data for Robin Digital
  */
 function robindigital_structured_data() {
+    $domain = 'https://www.robindigital.io';
+    $logo = get_template_directory_uri() . '/assets/images/logo.png';
+    $image = $domain . '/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png';
+    
     $schema = [
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
         'name' => 'Robin Digital',
-        'url' => 'https://www.robindigital.io',
-        'logo' => get_template_directory_uri() . '/assets/images/logo.png',
-        'image' => 'https://www.robindigital.io/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png',
+        'url' => $domain,
+        'logo' => $logo,
+        'image' => $image,
         'description' => get_bloginfo('description'),
         'address' => [
             '@type' => 'PostalAddress',
             'addressCountry' => 'UK'
+        ],
+        'sameAs' => [
+            get_theme_mod('robindigital_facebook', ''),
+            get_theme_mod('robindigital_twitter', ''),
+            get_theme_mod('robindigital_linkedin', '')
         ]
     ];
     

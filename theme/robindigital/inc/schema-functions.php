@@ -20,13 +20,17 @@ function robindigital_add_schema_markup() {
         return;
     }
     
+    $domain = 'https://www.robindigital.io';
+    $default_image = $domain . '/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png';
+    
     // Organization schema
     $schema = array(
         '@context' => 'https://schema.org',
         '@type' => 'Organization',
         'name' => get_bloginfo('name'),
-        'url' => 'https://www.robindigital.io',
+        'url' => $domain,
         'logo' => get_site_icon_url(),
+        'image' => $default_image,
         'contactPoint' => array(
             '@type' => 'ContactPoint',
             'telephone' => get_theme_mod('robindigital_phone', '+44 123 456 7890'),
@@ -46,14 +50,15 @@ function robindigital_add_schema_markup() {
     $website_schema = array(
         '@context' => 'https://schema.org',
         '@type' => 'WebSite',
-        'url' => 'https://www.robindigital.io',
+        'url' => $domain,
         'name' => get_bloginfo('name'),
         'description' => get_bloginfo('description'),
         'potentialAction' => array(
             '@type' => 'SearchAction',
-            'target' => 'https://www.robindigital.io/?s={search_term_string}',
+            'target' => $domain . '/?s={search_term_string}',
             'query-input' => 'required name=search_term_string'
-        )
+        ),
+        'image' => $default_image
     );
     
     // Professional Service schema for digital services
@@ -61,8 +66,9 @@ function robindigital_add_schema_markup() {
         '@context' => 'https://schema.org',
         '@type' => 'ProfessionalService',
         'name' => get_bloginfo('name'),
-        'url' => 'https://www.robindigital.io',
+        'url' => $domain,
         'description' => 'Digital agency specializing in web development, CMS solutions, AI implementation, and digital transformation',
+        'image' => $default_image,
         'address' => array(
             '@type' => 'PostalAddress',
             'addressCountry' => 'UK'
