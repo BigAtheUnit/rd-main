@@ -32,7 +32,7 @@ const ProductDetailsDrawer = ({ open, onClose, product }: ProductDetailsDrawerPr
   
   const handleContactClick = () => {
     onClose();
-    // Redirect to homepage with contact section anchor
+    // Navigate to homepage and scroll to contact section
     window.location.href = "/#contact";
   };
   
@@ -131,6 +131,11 @@ const ProductsPage = () => {
     document.title = "Robin Digital | Digital Products";
     window.scrollTo(0, 0);
   }, []);
+
+  const handleContactClick = () => {
+    // Navigate to homepage and scroll to contact section
+    window.location.href = "/#contact";
+  };
 
   const products = [
     {
@@ -232,7 +237,7 @@ const ProductsPage = () => {
                 </p>
                 <Button 
                   className="bg-robin-orange hover:bg-robin-dark transition-colors text-lg px-8 py-6 h-auto"
-                  onClick={() => window.location.href = "/#contact"}
+                  onClick={handleContactClick}
                 >
                   Contact Us
                   <ArrowRight size={18} className="ml-2" />

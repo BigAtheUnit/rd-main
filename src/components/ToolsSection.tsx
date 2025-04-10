@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowRight, Shield, FileEdit, Store, Clock, Tag } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 type ProductProps = {
   title: string;
@@ -122,12 +123,14 @@ const ToolsSection = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <Button 
-            className="bg-robin-orange hover:bg-robin-dark transition-colors text-lg px-8 py-6 h-auto"
-          >
-            View All Products
-            <ArrowRight size={18} className="ml-2" />
-          </Button>
+          <Link to="/products">
+            <Button 
+              className="bg-robin-orange hover:bg-robin-dark transition-colors text-lg px-8 py-6 h-auto"
+            >
+              View All Products
+              <ArrowRight size={18} className="ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
