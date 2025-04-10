@@ -19,8 +19,33 @@ const ContactSection = () => {
         if (count > 10) {
           localStorage.setItem(countKey, '0');
         }
+        
+        // Additional VPN compatibility: Clear any stale data or corrupted entries
+        const lastSubmission = localStorage.getItem('lastFormSubmission');
+        if (lastSubmission) {
+          const lastSubmissionTime = parseInt(lastSubmission);
+          // If lastSubmission is corrupted or more than 24 hours old, reset it
+          if (isNaN(lastSubmissionTime) || Date.now() - lastSubmissionTime > 86400000) {
+            localStorage.removeItem('lastFormSubmission');
+          }
+        }
+        
+        // Try to access and clear sessionStorage as well for complete reset
+        if (window.sessionStorage.getItem('formStartTime')) {
+          const formStartTime = parseInt(window.sessionStorage.getItem('formStartTime') || '0');
+          // If the form start time is more than 1 hour old, reset it
+          if (Date.now() - formStartTime > 3600000) {
+            window.sessionStorage.removeItem('formStartTime');
+          }
+        }
       } catch (err) {
         console.error('Storage error:', err);
+        // Fallback: if localStorage access fails, try to use sessionStorage instead
+        try {
+          window.sessionStorage.setItem('vpnCompatibilityMode', 'true');
+        } catch (sessionErr) {
+          console.error('Session storage error:', sessionErr);
+        }
       }
     }
     
