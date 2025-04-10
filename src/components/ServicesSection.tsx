@@ -118,43 +118,55 @@ const ServicesSection = () => {
   }, [services]);
 
   return (
-    <section id="solutions" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="solutions" className="py-24 bg-gradient-to-b from-white to-robin-cream/30">
+      <div className="container mx-auto px-4 max-w-7xl">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-robin-dark mb-4">Our Digital Solutions</h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-robin-dark mb-4 leading-tight">
+            Our Digital <span className="text-robin-orange">Solutions</span>
+          </h2>
           <p className="text-xl text-robin-dark/70 max-w-3xl mx-auto">
             We provide a wide range of digital solutions to help organizations achieve their goals.
           </p>
+          <div className="w-24 h-1 bg-robin-orange mx-auto mt-8 rounded-full"></div>
         </div>
 
         {isLoading && (
-          <div className="flex justify-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-robin-orange"></div>
+          <div className="flex justify-center py-20">
+            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-t-2 border-robin-orange"></div>
           </div>
         )}
 
         {error && (
-          <div className="text-center text-red-500">
+          <div className="text-center text-red-500 mb-8">
             <p>Failed to load services. Showing default services instead.</p>
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {displayServices.map((service: Service) => (
-            <Card key={service.id} className="border-2 border-robin-dark/5 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px]">
-              <CardHeader>
-                <div className="flex justify-center items-center mb-4">
-                  <div className="w-14 h-14 bg-robin-orange/20 rounded-lg flex items-center justify-center text-robin-orange group-hover:bg-robin-orange group-hover:text-white transition-colors">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+          {displayServices.map((service: Service, index: number) => (
+            <Card 
+              key={service.id} 
+              className="border-none bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px] overflow-hidden group"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <CardHeader className="pb-0">
+                <div className="flex items-center justify-center mb-6">
+                  <div className="w-20 h-20 rounded-full bg-robin-orange/10 flex items-center justify-center group-hover:bg-robin-orange/20 transition-colors duration-300">
                     {getIcon(service.icon)}
                   </div>
                 </div>
-                <CardTitle className="text-xl font-bold text-center">{service.title}</CardTitle>
+                <CardTitle className="text-2xl font-bold text-center text-robin-dark group-hover:text-robin-orange transition-colors">
+                  {service.title}
+                </CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-robin-dark/80 text-center" dangerouslySetInnerHTML={{ __html: service.excerpt }} />
+              <CardContent className="px-8 pt-4">
+                <CardDescription className="text-robin-dark/80 text-center text-base" dangerouslySetInnerHTML={{ __html: service.excerpt }} />
               </CardContent>
-              <CardFooter className="flex justify-center">
-                <Button variant="outline" className="group">
+              <CardFooter className="flex justify-center p-6 pt-4">
+                <Button 
+                  variant="outline" 
+                  className="group border-robin-orange/30 hover:border-robin-orange hover:bg-robin-orange hover:text-white transition-all duration-300"
+                >
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
                 </Button>
