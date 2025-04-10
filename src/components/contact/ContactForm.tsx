@@ -33,18 +33,41 @@ const ContactForm = () => {
         form.setAttribute('autocomplete', 'on');
         form.setAttribute('data-is-ios', 'true');
         
-        // Fix for Safari focus issues
+        // Fix for iOS scroll issues - apply to all input fields
         const inputFields = form.querySelectorAll('input, textarea');
         inputFields.forEach(input => {
+          input.addEventListener('focus', (e) => {
+            // Store current scroll position on focus
+            (window as any).__lastScrollPosition = window.scrollY;
+          });
+          
           input.addEventListener('blur', (e) => {
-            // Prevent iOS keyboard issues
-            window.scrollTo(0, 0);
+            // Prevent iOS keyboard issues and restore scroll position
+            if (typeof (window as any).__lastScrollPosition !== 'undefined') {
+              setTimeout(() => {
+                window.scrollTo(0, (window as any).__lastScrollPosition);
+              }, 50);
+            }
           });
         });
       }
     }
     
     console.log("Form mounted - Applied compatibility fixes for all devices");
+    
+    // Cleanup function to remove event listeners
+    return () => {
+      if (isIOS || isSafari) {
+        const form = formRef.current;
+        if (form) {
+          const inputFields = form.querySelectorAll('input, textarea');
+          inputFields.forEach(input => {
+            input.removeEventListener('focus', () => {});
+            input.removeEventListener('blur', () => {});
+          });
+        }
+      }
+    };
   }, [isIOS, isSafari]);
 
   return (
@@ -69,6 +92,7 @@ const ContactForm = () => {
           className="space-y-5 relative flex-grow flex flex-col" 
           id="contact-form"
           data-ios-compatible={isIOS || isSafari ? "true" : "false"}
+          style={{ position: 'relative', zIndex: 1 }}
         >
           <div className="space-y-4 flex-grow">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

@@ -56,6 +56,17 @@ export function useFormSubmission(formData: ContactFormData, resetForm: () => vo
     }
   };
   
+  const preventIOSScrollReset = () => {
+    // Record current scroll position
+    const scrollPosition = window.scrollY;
+    
+    // Add event to restore scroll position after 100ms
+    // This handles both keyboard appearance and form submission
+    setTimeout(() => {
+      window.scrollTo(0, scrollPosition);
+    }, 100);
+  };
+  
   const applyIOSSafariFixes = async () => {
     // Special handling for iOS/Safari
     const isIOS = isIOSDevice();
@@ -64,6 +75,9 @@ export function useFormSubmission(formData: ContactFormData, resetForm: () => vo
     if (isIOS || isSafari) {
       // Apply additional iOS/Safari specific fixes for form submission
       console.log("Applying iOS/Safari specific form submission fixes");
+      
+      // Save scroll position before blurring focus
+      preventIOSScrollReset();
       
       // Force focus blur to avoid keyboard issues
       if (document.activeElement instanceof HTMLElement) {
@@ -77,6 +91,14 @@ export function useFormSubmission(formData: ContactFormData, resetForm: () => vo
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    
+    // Prevent default iOS scrolling behavior
+    const isIOS = isIOSDevice();
+    const isSafari = isSafariBrowser();
+    if (isIOS || isSafari) {
+      preventIOSScrollReset();
+    }
+    
     setIsSubmitting(true);
     
     try {
