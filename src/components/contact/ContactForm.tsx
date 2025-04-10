@@ -1,24 +1,35 @@
 
 import React, { useState } from 'react';
-import { Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useToast } from '@/hooks/use-toast';
+import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
-import { Card } from '@/components/ui/card';
+import { SendIcon } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+
+// Add EmailJS import and initialization
+emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+
+interface ContactFormData {
+  name: string;
+  email: string;
+  organization: string;
+  message: string;
+  newsletter: boolean;
+}
 
 const ContactForm = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
     organization: '',
     message: '',
     newsletter: false
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -39,9 +50,8 @@ const ContactForm = () => {
         throw new Error("Please fill in all required fields");
       }
       
-      // Send email using EmailJS or similar service
-      // This uses email.js format - you'd need to replace with your EmailJS credentials
-      const emailData = {
+      // Send email using EmailJS
+      const templateParams = {
         to_email: "hello@robindigital.io",
         from_name: formData.name,
         from_email: formData.email,
@@ -51,11 +61,15 @@ const ContactForm = () => {
       };
       
       // For demo purposes, we'll log the email data
-      console.log("Sending email to:", emailData.to_email);
-      console.log("Email data:", emailData);
+      console.log("Sending email to:", templateParams.to_email);
+      console.log("Email data:", templateParams);
       
-      // Simulate API call (replace with actual EmailJS or other email service)
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Replace with your actual EmailJS service ID and template ID
+      await emailjs.send(
+        "YOUR_SERVICE_ID", 
+        "YOUR_TEMPLATE_ID",
+        templateParams
+      );
       
       toast({
         title: "Message sent successfully",

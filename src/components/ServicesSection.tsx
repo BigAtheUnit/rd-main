@@ -37,10 +37,10 @@ const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="py-20 bg-white">
+    <section id="solutions" className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-robin-dark mb-4">Our Digital Services</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-robin-dark mb-4">Our Digital Solutions</h2>
           <p className="text-xl text-robin-dark/70 max-w-3xl mx-auto">
             We provide a wide range of digital solutions to help organizations achieve their goals.
           </p>
@@ -61,10 +61,12 @@ const ServicesSection = () => {
         {services && services.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service: Service) => (
-              <Card key={service.id} className="border-2 border-robin-dark/5 transition-all duration-300 hover:shadow-lg hover:-translate-y-2">
+              <Card key={service.id} className="border-2 border-robin-dark/5 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-5px]">
                 <CardHeader>
                   <div className="flex justify-center items-center mb-4">
-                    {getIcon(service.icon)}
+                    <div className="w-14 h-14 bg-robin-orange/20 rounded-lg flex items-center justify-center text-robin-orange group-hover:bg-robin-orange group-hover:text-white transition-colors">
+                      {getIcon(service.icon)}
+                    </div>
                   </div>
                   <CardTitle className="text-xl font-bold text-center">{service.title}</CardTitle>
                 </CardHeader>
