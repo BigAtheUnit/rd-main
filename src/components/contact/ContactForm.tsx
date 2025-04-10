@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
@@ -10,8 +10,8 @@ import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import { Card } from '@/components/ui/card';
 
-// Add EmailJS import and initialization
-emailjs.init("YOUR_EMAILJS_PUBLIC_KEY"); // Replace with your actual EmailJS public key
+// Initialize EmailJS
+emailjs.init("KZfkn5WO-xbVxXR1L"); // Public key for EmailJS
 
 interface ContactFormData {
   name: string;
@@ -24,6 +24,7 @@ interface ContactFormData {
 const ContactForm = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
@@ -51,30 +52,22 @@ const ContactForm = () => {
         throw new Error("Please fill in all required fields");
       }
       
+      if (!formRef.current) {
+        throw new Error("Form reference is not available");
+      }
+      
       // Send email using EmailJS
-      const templateParams = {
-        to_email: "hello@robindigital.io",
-        from_name: formData.name,
-        from_email: formData.email,
-        organization: formData.organization,
-        message: formData.message,
-        newsletter: formData.newsletter ? "Yes" : "No"
-      };
-      
-      // For demo purposes, we'll log the email data
-      console.log("Sending email to:", templateParams.to_email);
-      console.log("Email data:", templateParams);
-      
-      // Replace with your actual EmailJS service ID and template ID
-      await emailjs.send(
-        "YOUR_SERVICE_ID", 
-        "YOUR_TEMPLATE_ID",
-        templateParams
+      const result = await emailjs.sendForm(
+        "service_6xvofva", // Replace with your service ID
+        "template_5u9aebc", // Replace with your template ID
+        formRef.current
       );
+      
+      console.log("EmailJS result:", result.text);
       
       toast({
         title: "Message sent successfully",
-        description: "We'll get back to you as soon as possible.",
+        description: "Thank you for reaching out! We'll get back to you as soon as possible.",
         duration: 5000,
       });
       
@@ -110,7 +103,7 @@ const ContactForm = () => {
         
         <h3 className="text-2xl font-bold text-robin-dark mb-6 relative">Send us a message</h3>
         
-        <form onSubmit={handleSubmit} className="space-y-6 relative">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative">
           <div className="space-y-4">
             <div className="group">
               <Label htmlFor="name" className="block text-sm font-medium text-robin-dark/80 mb-2 group-hover:text-robin-orange transition-colors">
@@ -153,7 +146,6 @@ const ContactForm = () => {
                 value={formData.organization}
                 onChange={handleChange}
                 placeholder="Your organization name"
-                required
                 className="w-full border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/10 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow"
               />
             </div>
@@ -176,6 +168,7 @@ const ContactForm = () => {
             <div className="flex items-center space-x-2 pt-2">
               <Checkbox 
                 id="newsletter" 
+                name="newsletter"
                 checked={formData.newsletter}
                 onCheckedChange={handleCheckboxChange}
                 className="data-[state=checked]:bg-robin-orange data-[state=checked]:border-robin-orange"
