@@ -74,6 +74,18 @@ export const isSecureUrl = (url: string): boolean => {
   }
 };
 
+// Add Content Security Policy to the client side application
+export const applyCSP = (): void => {
+  // For browsers that support it, we can set a CSP via meta tag
+  // This is a fallback - the server should set these headers
+  if (!document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
+    const meta = document.createElement('meta');
+    meta.httpEquiv = 'Content-Security-Policy';
+    meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.robindigital.io https://www.google-analytics.com; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; block-all-mixed-content;";
+    document.head.appendChild(meta);
+  }
+};
+
 // Core Web Vitals optimization
 export const optimizeCWV = (): void => {
   // Optimize Largest Contentful Paint (LCP)
@@ -109,11 +121,50 @@ export const optimizeCWV = (): void => {
       effectiveDirective: e.effectiveDirective,
       blockedURI: e.blockedURI
     });
+    
+    // Optional: Send to your error tracking service
+    if (typeof window.fetch === 'function') {
+      fetch('https://www.robindigital.io/api/csp-report', {
+        method: 'POST',
+        body: JSON.stringify({
+          violatedDirective: e.violatedDirective,
+          effectiveDirective: e.effectiveDirective,
+          blockedURI: e.blockedURI,
+          timestamp: new Date().toISOString(),
+          userAgent: navigator.userAgent,
+          documentURI: document.location.href
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        mode: 'same-origin',
+        credentials: 'same-origin'
+      }).catch(err => console.error('Failed to report CSP violation:', err));
+    }
   });
+};
+
+// Check SSL/TLS configuration
+export const checkSecureConnection = (): void => {
+  if (window.location.protocol !== 'https:') {
+    console.warn('Site is not being served over HTTPS. This may pose security risks.');
+    
+    // Attempt to redirect to HTTPS if not already
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      window.location.href = window.location.href.replace('http:', 'https:');
+    }
+  }
 };
 
 // Initialize performance optimizations with security enhancements
 export const initPerformanceOptimizations = (): void => {
+  // Apply CSP as early as possible
+  applyCSP();
+  
+  // Verify we're on HTTPS
+  checkSecureConnection();
+  
+  // Initialize other optimizations
   optimizeCWV();
   
   // Add event listeners for link prefetching on hover with security checks
@@ -147,3 +198,6 @@ export const initPerformanceOptimizations = (): void => {
     }
   }, { capture: true });
 };
+
+// Initialize all performance and security optimizations
+initPerformanceOptimizations();

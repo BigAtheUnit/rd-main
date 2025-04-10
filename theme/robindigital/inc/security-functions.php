@@ -22,6 +22,15 @@ function robindigital_add_api_security_headers() {
         header('X-XSS-Protection: 1; mode=block');
         header('X-Frame-Options: SAMEORIGIN');
         header('Referrer-Policy: strict-origin-when-cross-origin');
+        header('Strict-Transport-Security: max-age=63072000; includeSubDomains; preload');
+        
+        // Content Security Policy - Only add if not already set by server
+        if (!headers_sent() && !isset($_SERVER['HTTP_CONTENT_SECURITY_POLICY'])) {
+            header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.robindigital.io https://www.google-analytics.com; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'");
+        }
+        
+        // Permissions Policy
+        header('Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=(), gyroscope=(), magnetometer=(), payment=(), usb=()');
         
         return $served;
     }, 10, 4);
@@ -65,8 +74,8 @@ function robindigital_verify_api_signature() {
         }
     }
 }
-// Uncomment this line to enable signature verification when ready
-// add_action('rest_api_init', 'robindigital_verify_api_signature', 5);
+// Enable signature verification for API security
+add_action('rest_api_init', 'robindigital_verify_api_signature', 5);
 
 /**
  * Add security option to theme options
@@ -91,3 +100,52 @@ function robindigital_add_security_options($wp_customize) {
     ));
 }
 add_action('customize_register', 'robindigital_add_security_options');
+
+/**
+ * Add security headers for admin and front-end
+ */
+function robindigital_add_security_headers() {
+    if (!is_admin()) {
+        // Only add these headers if not in admin area
+        header('X-Content-Type-Options: nosniff');
+        header('X-XSS-Protection: 1; mode=block');
+        header('X-Frame-Options: SAMEORIGIN');
+        header('Referrer-Policy: strict-origin-when-cross-origin');
+        
+        // Only add HSTS if we're on HTTPS
+        if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+            header('Strict-Transport-Security: max-age=63072000; includeSubDomains; preload');
+        }
+    }
+}
+add_action('send_headers', 'robindigital_add_security_headers');
+
+/**
+ * SSL/TLS Configuration Check
+ */
+function robindigital_check_ssl_config() {
+    // We'll add an admin notice if the site isn't using HTTPS
+    if (!is_ssl() && is_admin()) {
+        add_action('admin_notices', 'robindigital_ssl_admin_notice');
+    }
+}
+add_action('admin_init', 'robindigital_check_ssl_config');
+
+/**
+ * Admin notice for SSL
+ */
+function robindigital_ssl_admin_notice() {
+    ?>
+    <div class="notice notice-warning">
+        <p><?php _e('Your site is not using HTTPS. For optimal security, please enable SSL/TLS.', 'robindigital'); ?></p>
+    </div>
+    <?php
+}
+
+/**
+ * Remove WordPress version from various places
+ */
+function robindigital_remove_version() {
+    return '';
+}
+add_filter('the_generator', 'robindigital_remove_version');
