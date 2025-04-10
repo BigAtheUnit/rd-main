@@ -78,8 +78,7 @@ const detectVpnUsage = (): boolean => {
     // Check for unusual user agent or navigator properties
     const userAgent = navigator.userAgent.toLowerCase();
     const hasVpnSignals = userAgent.includes('anonymized') || 
-                          userAgent.includes('proxy') ||
-                          typeof navigator.connection === 'undefined';
+                          userAgent.includes('proxy');
     
     // Check for timezone inconsistencies
     const browserTime = new Date();
@@ -146,4 +145,3 @@ declare global {
     __lastFormSubmission?: number;
   }
 }
-
