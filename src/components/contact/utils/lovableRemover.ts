@@ -19,6 +19,19 @@ export const removeLovableReferences = (): void => {
       element.remove();
     });
 
+    // Remove any elements with href attributes containing lovable.dev
+    document.querySelectorAll('a[href*="lovable.dev"]').forEach(link => {
+      link.remove();
+    });
+
+    // Find and remove any meta tags with lovable in the content
+    document.querySelectorAll('meta').forEach(meta => {
+      const content = meta.getAttribute('content') || '';
+      if (content.includes('lovable') && !meta.getAttribute('name')?.includes('description')) {
+        meta.remove();
+      }
+    });
+
     // Add specific CSS to ensure editor is not shown in screenshots
     // But allow the required gptengineer.js script
     const style = document.createElement('style');
@@ -42,6 +55,11 @@ export const removeLovableReferences = (): void => {
         opacity: 1 !important;
         visibility: visible !important;
       }
+      
+      /* Hide any badge elements */
+      [href*="lovable.dev"] {
+        display: none !important;
+      }
     `;
     document.head.appendChild(style);
 
@@ -59,6 +77,21 @@ export const removeLovableReferences = (): void => {
         scriptTag.remove();
       }
     });
+    
+    // Verify that OG and Twitter images are set correctly
+    const correctImageUrl = 'https://www.robindigital.io/lovable-uploads/a66dd7fe-3331-45db-a03b-de02400f9e5b.png';
+    
+    // Update OG image if needed
+    const ogImage = document.querySelector('meta[property="og:image"]');
+    if (ogImage) {
+      ogImage.setAttribute('content', correctImageUrl);
+    }
+    
+    // Update Twitter image if needed
+    const twitterImage = document.querySelector('meta[name="twitter:image"]');
+    if (twitterImage) {
+      twitterImage.setAttribute('content', correctImageUrl);
+    }
   });
   
   // Listen for any new elements being added to the DOM that might be from Lovable
@@ -80,6 +113,11 @@ export const removeLovableReferences = (): void => {
                   node.getAttribute('src') === 'https://cdn.gpteng.co/gptengineer.js') {
                 return;
               }
+              node.remove();
+            }
+            
+            // Remove any links to lovable.dev
+            if (node.tagName === 'A' && node.getAttribute('href')?.includes('lovable.dev')) {
               node.remove();
             }
             
