@@ -33,24 +33,55 @@ const ContactForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    toast({
-      title: "Message sent successfully",
-      description: "We'll get back to you as soon as possible.",
-      duration: 5000,
-    });
-    
-    setFormData({
-      name: '',
-      email: '',
-      organization: '',
-      message: '',
-      newsletter: false
-    });
-    
-    setIsSubmitting(false);
+    try {
+      // Form validation
+      if (!formData.name || !formData.email || !formData.message) {
+        throw new Error("Please fill in all required fields");
+      }
+      
+      // Send email using EmailJS or similar service
+      // This uses email.js format - you'd need to replace with your EmailJS credentials
+      const emailData = {
+        to_email: "hello@robindigital.io",
+        from_name: formData.name,
+        from_email: formData.email,
+        organization: formData.organization,
+        message: formData.message,
+        newsletter: formData.newsletter ? "Yes" : "No"
+      };
+      
+      // For demo purposes, we'll log the email data
+      console.log("Sending email to:", emailData.to_email);
+      console.log("Email data:", emailData);
+      
+      // Simulate API call (replace with actual EmailJS or other email service)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast({
+        title: "Message sent successfully",
+        description: "We'll get back to you as soon as possible.",
+        duration: 5000,
+      });
+      
+      // Clear form after successful submission
+      setFormData({
+        name: '',
+        email: '',
+        organization: '',
+        message: '',
+        newsletter: false
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error sending message",
+        description: error instanceof Error ? error.message : "Please try again later.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -13,8 +13,9 @@ const TestimonialsSection = () => {
     queryKey: ['testimonials'],
     queryFn: getTestimonials,
     retry: 1,
-    onSettled: (data, error) => {
-      if (error) {
+    meta: {
+      // Using meta for additional data safe from TypeScript errors
+      onQueryError: () => {
         toast({
           title: "Information",
           description: "Using demo testimonials while connecting to WordPress.",
@@ -23,6 +24,17 @@ const TestimonialsSection = () => {
       }
     }
   });
+
+  // Use effect to trigger the toast when there's an error
+  React.useEffect(() => {
+    if (error) {
+      toast({
+        title: "Information",
+        description: "Using demo testimonials while connecting to WordPress.",
+        duration: 5000,
+      });
+    }
+  }, [error, toast]);
 
   return (
     <section id="testimonials" className="py-20 bg-robin-cream relative overflow-hidden">
