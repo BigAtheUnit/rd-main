@@ -78,10 +78,6 @@ export function useContactForm() {
         throw new Error("Message is too long. Please limit to 2000 characters.");
       }
       
-      if (!formRef.current) {
-        throw new Error("Form reference is not available");
-      }
-      
       // Create sanitized data to send
       const sanitizedData = {
         name: sanitizeInput(formData.name),
@@ -102,8 +98,14 @@ export function useContactForm() {
       console.log("Attempting to send form with EmailJS...");
       console.log("Form data:", sanitizedData);
       
-      // iOS compatibility fix: Instead of using the form element directly,
-      // prepare the template parameters manually for iOS
+      // Detect if the user is on Safari/iOS
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      
+      console.log("Browser detection:", { isIOS, isSafari, userAgent: navigator.userAgent });
+      
+      // Always use the direct send method for all browsers to ensure consistency
       const templateParams = {
         name: sanitizedData.name,
         email: sanitizedData.email,
@@ -114,15 +116,20 @@ export function useContactForm() {
       
       console.log("Template params for EmailJS:", templateParams);
       
-      // Try the direct send method first (better for iOS)
-      const result = await emailjs.send(
-        "service_0ifrai8", // Service ID
-        "template_833msmm", // Template ID
-        templateParams,
-        "2e9rybcQIWSRcCfQ9" // Public key
-      );
-      
-      console.log("EmailJS direct send result:", result.text);
+      try {
+        // Direct send method (better compatibility with Safari/iOS)
+        const result = await emailjs.send(
+          "service_0ifrai8", // Service ID
+          "template_833msmm", // Template ID
+          templateParams,
+          "2e9rybcQIWSRcCfQ9" // Public key
+        );
+        
+        console.log("EmailJS direct send result:", result);
+      } catch (emailError) {
+        console.error("EmailJS direct send error:", emailError);
+        throw new Error("There was a problem sending your message. Please try again later.");
+      }
       
       // Record successful submission time for rate limiting
       localStorage.setItem('lastFormSubmission', Date.now().toString());
@@ -136,10 +143,7 @@ export function useContactForm() {
       }
       
       // Hide Lovable edit button on iOS by adding a specific URL parameter
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      
-      if (isIOS) {
+      if (isIOS || isSafari) {
         // Set a flag to hide the Lovable edit button in localStorage
         localStorage.setItem('hideLovableEditor', 'true');
         
@@ -156,9 +160,9 @@ export function useContactForm() {
       // Updated success message
       toast({
         title: "🎉 Message sent successfully! 🎉",
-        description: "Fantastic! Your message is on its way to our team. We're thrilled to hear from you and will be in touch very soon!",
+        description: "Your message is on its way to our team. We'll be in touch soon!",
         duration: 6000,
-        className: "bg-gradient-to-r from-robin-orange/90 to-robin-orange border-robin-orange text-white",
+        className: "bg-gradient-to-r from-robin-orange to-robin-orange border-robin-orange text-white",
       });
       
       // Clear form after successful submission

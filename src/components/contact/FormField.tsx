@@ -27,7 +27,7 @@ const FormField: React.FC<FormFieldProps> = ({
     <div className="group space-y-2">
       <Label 
         htmlFor={id} 
-        className="block text-sm font-medium text-robin-dark/80 group-hover:text-robin-orange transition-colors"
+        className="block text-sm font-medium text-robin-dark group-hover:text-robin-orange transition-colors"
       >
         {label}
       </Label>
@@ -40,7 +40,7 @@ const FormField: React.FC<FormFieldProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-          className="w-full min-h-[140px] rounded-md border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/20 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow resize-none"
+          className="w-full min-h-[140px] rounded-md border-robin-dark/20 focus:border-robin-orange focus:ring-robin-orange/20 transition-all duration-300 bg-white shadow-sm hover:shadow resize-none text-robin-dark"
         />
       ) : (
         <Input
@@ -51,7 +51,7 @@ const FormField: React.FC<FormFieldProps> = ({
           onChange={onChange}
           placeholder={placeholder}
           required={required}
-          className="w-full rounded-md border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/20 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow"
+          className="w-full rounded-md border-robin-dark/20 focus:border-robin-orange focus:ring-robin-orange/20 transition-all duration-300 bg-white shadow-sm hover:shadow text-robin-dark"
         />
       )}
     </div>

@@ -23,17 +23,20 @@ const Contact = () => {
         // Use history API to avoid page reload
         window.history.replaceState({}, document.title, newUrl);
       }
+      
+      // Set local storage flag
+      localStorage.setItem('hideLovableEditor', 'true');
     }
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-robin-cream flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-white flex flex-col overflow-x-hidden">
       <Navbar />
       <main className="flex-1">
         {/* Hero Section */}
         <div className="relative">
           {/* Background gradients */}
-          <div className="absolute inset-0 bg-gradient-to-r from-robin-orange/5 to-robin-cream/30 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white to-white pointer-events-none" />
           <div className="absolute -right-40 top-20 w-80 h-80 bg-robin-orange/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -left-40 top-40 w-80 h-80 bg-robin-orange/5 rounded-full blur-3xl pointer-events-none" />
           
@@ -47,7 +50,7 @@ const Contact = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark mb-4">
                 Let's <span className="text-robin-orange">Connect</span>
               </h1>
-              <p className="text-xl text-robin-dark/70 leading-relaxed">
+              <p className="text-xl text-robin-dark leading-relaxed">
                 Have a question or ready to start your next digital project? We're here to help transform your ideas into reality.
               </p>
             </motion.div>

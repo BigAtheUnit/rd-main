@@ -20,7 +20,7 @@ const NewsletterCheckbox: React.FC<NewsletterCheckboxProps> = ({ checked, onChec
       />
       <Label 
         htmlFor="newsletter" 
-        className="text-sm text-robin-dark/70 leading-tight peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+        className="text-sm text-robin-dark leading-tight peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
       >
         Keep me updated with industry news, design tips, and special offers from Robin Digital
       </Label>

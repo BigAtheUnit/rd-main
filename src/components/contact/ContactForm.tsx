@@ -33,18 +33,24 @@ const ContactForm = () => {
     
     // Hide the Lovable editor on iOS devices
     if (isIOS) {
-      // If it's iOS, try to hide the editor by applying a URL parameter
+      // Apply the parameter to the URL to hide the Lovable badge
       if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+        // Create the new URL with the parameter
         const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
         const newUrl = window.location.href + separator + 'forceHideBadge=true';
+        
+        // Apply the URL change without page reload
         window.history.replaceState({}, document.title, newUrl);
       }
       
-      // Add additional meta viewport tag for iOS
-      const existingViewport = document.querySelector('meta[name="viewport"]');
-      if (existingViewport) {
-        existingViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+      // Add meta tag to prevent zooming on iOS
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (viewportMeta) {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
       }
+      
+      // Set local storage flag to hide Lovable editor
+      localStorage.setItem('hideLovableEditor', 'true');
     }
   }, []);
 
@@ -52,13 +58,10 @@ const ContactForm = () => {
     <Card className="h-full bg-white shadow-xl rounded-2xl border-t-4 border-robin-orange overflow-hidden transition-all duration-300 hover:shadow-2xl">
       <div className="p-6 md:p-8 relative h-full">
         {/* Background gradient effect */}
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white to-robin-cream/30 pointer-events-none"></div>
-        
-        {/* Shine animation effect */}
-        <div className="absolute -left-10 top-0 h-full w-20 bg-white/20 transform rotate-15 animate-shine pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white to-white pointer-events-none"></div>
         
         <h3 className="text-2xl font-bold text-robin-dark mb-2 relative">Get in Touch</h3>
-        <p className="text-robin-dark/70 mb-6">We'd love to hear from you. Fill out the form below.</p>
+        <p className="text-robin-dark mb-6">We'd love to hear from you. Fill out the form below.</p>
         
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" id="contact-form">
           <div className="space-y-4">
