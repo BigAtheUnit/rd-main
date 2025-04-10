@@ -2,73 +2,64 @@
 export const defaultServices = [
   {
     id: 1,
-    title: 'Web Development',
-    excerpt: 'Custom web development with solutions tailored to your specific business needs and objectives.',
+    title: 'Custom Web Development',
+    excerpt: 'Bespoke websites built around your unique goals and branding. We handle everything from frontend interfaces to backend integrations.',
     icon: 'code',
-    content: 'Our development services deliver bespoke, high-performance websites that are secure, scalable and easy to manage. We build using modern frameworks and technologies to create solutions that perfectly match your brand and business requirements, with a focus on optimised user experiences and conversion-focused designs.',
+    content: 'Bespoke websites built around your unique goals and branding. We handle everything from frontend interfaces to backend integrations—ensuring speed, security, and scalability. Our development team creates high-performance solutions that represent your brand perfectly while providing seamless user experiences.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 2,
     title: 'AI Consulting & Implementation',
-    excerpt: 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.',
+    excerpt: 'Stay ahead of the curve with data-driven solutions, predictive analytics, and automation. From chatbots to machine learning models.',
     icon: 'bot',
-    content: 'Harness the transformative potential of artificial intelligence for your organisation. Our AI consulting services help you identify opportunities for AI implementation, from chatbots and natural language processing to machine learning models that deliver actionable insights from your data, creating smarter, more efficient systems.',
+    content: 'Stay ahead of the curve with data-driven solutions, predictive analytics, and automation. From AI-powered chatbots to advanced machine learning models, we design and implement AI to meet your specific needs. Our AI solutions help you analyze data, automate processes, and deliver personalized experiences to your customers.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 3,
-    title: 'CMS Solutions',
-    excerpt: 'Expert development with WordPress, Drupal, Shopify, and other content management systems.',
+    title: 'CMS & E-commerce Solutions',
+    excerpt: 'Expert development for WordPress, Drupal, Shopify, and beyond. We build intuitive, SEO-ready platforms.',
     icon: 'globe',
-    content: 'We specialize in developing with popular content management systems including WordPress, Drupal, Shopify, and more. Our team creates custom themes, plugins, and modules that make your content management seamless and efficient. We build secure, scalable CMS solutions that are both powerful for administrators and engaging for users.',
+    content: 'Expert development for WordPress, Drupal, Shopify, and beyond. We build intuitive, SEO-ready platforms that make content management straightforward and keep your audience engaged. Our CMS solutions are tailored to your specific needs, whether you need a simple content site or a complex e-commerce platform.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 4,
-    title: 'UX and UI Design',
-    excerpt: 'User-centred design that creates intuitive, engaging experiences that keep users coming back.',
+    title: 'UX & UI Design',
+    excerpt: 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching.',
     icon: 'layout',
-    content: 'Our design approach puts users at the heart of everything we create. We conduct thorough research to understand your users\' needs, behaviours and preferences, before designing intuitive interfaces that delight users and drive engagement. Our designs are beautiful, functional and optimised for conversion.',
+    content: 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty. Our design team combines aesthetics with functionality to create interfaces that users love to interact with.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 5,
-    title: 'Bespoke Digital Tools',
-    excerpt: 'Custom tools tailored to your unique requirements, automating processes and improving efficiency.',
+    title: 'Ongoing Support & Maintenance',
+    excerpt: 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth.',
     icon: 'wrench',
-    content: 'We create bespoke digital tools that automate complex processes, streamline operations and solve specific business challenges. From custom dashboards and reporting tools to process automation systems, we design and build solutions that save time, reduce costs and drive efficiency throughout your organisation.',
+    content: 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve. We offer comprehensive maintenance packages to ensure your digital presence remains robust and effective.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 6,
-    title: 'Charity & Non-Profit Solutions',
-    excerpt: 'Specialised websites and digital tools for charities that connect with donors and maximise fundraising potential.',
-    icon: 'heart',
-    content: 'We understand the unique needs of charities and non-profit organisations. Our dedicated charity website services create compelling digital experiences that connect with donors, tell your story effectively and maximise donations. We integrate seamless donation systems, impact reporting and supporter engagement tools.',
+    title: 'Digital Strategy & Consultancy',
+    excerpt: 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success.',
+    icon: 'lightbulb',
+    content: 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI. Our consultancy services help you navigate the complex digital landscape with confidence.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 7,
-    title: 'Digital Strategy & Analytics',
-    excerpt: 'Strategic planning and data analytics to align your digital initiatives with organisational goals.',
-    icon: 'lightbulb',
-    content: 'Develop a clear roadmap for your digital future. Our strategic consultancy services help you identify opportunities, prioritise initiatives and create a comprehensive plan for digital transformation. We combine this with powerful data analytics to help you collect, analyse and visualise your data to uncover insights that drive better decision-making.',
-    permalink: '#',
-    featured_image: ''
-  },
-  {
-    id: 8,
-    title: 'Cyber Security',
-    excerpt: 'Protect your digital assets and data with comprehensive security solutions and best practices.',
-    icon: 'shield',
-    content: 'In today\'s threat landscape, robust security is essential. We provide comprehensive cyber security services including vulnerability assessments, security audits, secure coding practices and ongoing monitoring. Our approach ensures your digital assets, customer data and reputation are protected against evolving threats.',
+    title: 'Custom Digital Solutions',
+    excerpt: 'We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it.',
+    icon: 'briefcase',
+    content: 'We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it. Our team has experience with a wide range of technologies and industries, allowing us to create bespoke solutions for unique challenges.',
     permalink: '#',
     featured_image: ''
   }

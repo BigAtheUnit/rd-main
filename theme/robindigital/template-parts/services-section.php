@@ -33,44 +33,34 @@ if ($services_query->have_posts()) {
     // Use default service data if no posts
     $services = [
         [
-            'title' => 'Web Development',
-            'description' => 'Custom web development with solutions tailored to your specific business needs and objectives.',
+            'title' => 'Custom Web Development',
+            'description' => 'Bespoke websites built around your unique goals and branding. We handle everything from frontend interfaces to backend integrations—ensuring speed, security, and scalability.',
             'icon' => 'code',
         ],
         [
             'title' => 'AI Consulting & Implementation',
-            'description' => 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.',
+            'description' => 'Stay ahead of the curve with data-driven solutions, predictive analytics, and automation. From AI-powered chatbots to advanced machine learning models, we design and implement AI to meet your specific needs.',
             'icon' => 'bot',
         ],
         [
-            'title' => 'CMS Solutions',
-            'description' => 'Expert development with WordPress, Drupal, Shopify, and other content management systems.',
+            'title' => 'CMS & E-commerce Solutions',
+            'description' => 'Expert development for WordPress, Drupal, Shopify, and beyond. We build intuitive, SEO-ready platforms that make content management straightforward and keep your audience engaged.',
             'icon' => 'globe',
         ],
         [
-            'title' => 'UX and UI Design',
-            'description' => 'User-centred design that creates intuitive, engaging experiences that keep users coming back.',
+            'title' => 'UX & UI Design',
+            'description' => 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty.',
             'icon' => 'layout',
         ],
         [
-            'title' => 'Bespoke Digital Tools',
-            'description' => 'Custom tools tailored to your unique requirements, automating processes and improving efficiency.',
+            'title' => 'Ongoing Support & Maintenance',
+            'description' => 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve.',
             'icon' => 'wrench',
         ],
         [
-            'title' => 'Donor-Centric Charity Websites',
-            'description' => 'Specialised websites for charities that connect with donors and maximise fundraising potential.',
-            'icon' => 'heart',
-        ],
-        [
-            'title' => 'Digital Strategy',
-            'description' => 'Strategic planning and roadmapping to align your digital initiatives with organisational goals.',
+            'title' => 'Digital Strategy & Consultancy',
+            'description' => 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI.',
             'icon' => 'lightbulb',
-        ],
-        [
-            'title' => 'Cyber Security',
-            'description' => 'Protect your digital assets and data with comprehensive security solutions and best practices.',
-            'icon' => 'shield',
         ]
     ];
 }
@@ -110,6 +100,16 @@ if ($services_query->have_posts()) {
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
+        </div>
+        
+        <div class="mt-16 text-center">
+            <div class="bg-white rounded-xl p-8 shadow-lg border-2 border-robin-orange/10 max-w-3xl mx-auto">
+                <h3 class="text-2xl font-semibold mb-4 text-robin-dark">Looking for something else?</h3>
+                <p class="text-robin-dark/70 mb-6">We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it.</p>
+                <a href="#contact" class="inline-block bg-robin-orange hover:bg-robin-orange/90 text-white px-6 py-3 rounded-lg transition-colors font-medium">
+                    Get in Touch
+                </a>
+            </div>
         </div>
     </div>
 </section>

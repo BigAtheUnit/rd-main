@@ -73,18 +73,33 @@ function robindigital_add_schema_markup() {
             'itemListElement' => array(
                 array(
                     '@type' => 'Offer',
-                    'name' => 'Web Development',
-                    'description' => 'Custom web development with solutions tailored to your specific business needs and objectives.'
+                    'name' => 'Custom Web Development',
+                    'description' => 'Bespoke websites built around your unique goals and branding. We handle everything from frontend interfaces to backend integrations—ensuring speed, security, and scalability.'
                 ),
                 array(
                     '@type' => 'Offer',
                     'name' => 'AI Consulting & Implementation',
-                    'description' => 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.'
+                    'description' => 'Stay ahead of the curve with data-driven solutions, predictive analytics, and automation. From AI-powered chatbots to advanced machine learning models, we design and implement AI to meet your specific needs.'
                 ),
                 array(
                     '@type' => 'Offer',
-                    'name' => 'CMS Solutions',
-                    'description' => 'Expert development with WordPress, Drupal, Shopify, and other content management systems.'
+                    'name' => 'CMS & E-commerce Solutions',
+                    'description' => 'Expert development for WordPress, Drupal, Shopify, and beyond. We build intuitive, SEO-ready platforms that make content management straightforward and keep your audience engaged.'
+                ),
+                array(
+                    '@type' => 'Offer',
+                    'name' => 'UX & UI Design',
+                    'description' => 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty.'
+                ),
+                array(
+                    '@type' => 'Offer',
+                    'name' => 'Ongoing Support & Maintenance',
+                    'description' => 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve.'
+                ),
+                array(
+                    '@type' => 'Offer',
+                    'name' => 'Digital Strategy & Consultancy',
+                    'description' => 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI.'
                 )
             )
         )
