@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { getServices, Service } from '@/services/wordpress-api';
@@ -206,7 +205,7 @@ const ServicesSection = () => {
                       </DialogTitle>
                     </DialogHeader>
                     <DialogDescription className="text-robin-dark/80 mt-4 text-base leading-relaxed">
-                      {service.description || `Our ${service.title} services are designed to help your organisation thrive in the digital landscape. We combine technical expertise with strategic thinking to deliver solutions that create real impact.`}
+                      {service.content || `Our ${service.title} services are designed to help your organisation thrive in the digital landscape. We combine technical expertise with strategic thinking to deliver solutions that create real impact.`}
                     </DialogDescription>
                     <div className="mt-6">
                       <Button 
