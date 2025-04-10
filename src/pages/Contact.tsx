@@ -8,6 +8,21 @@ const Contact = () => {
   useEffect(() => {
     document.title = "Robin Digital | Contact Us";
     window.scrollTo(0, 0);
+    
+    // Check if iOS and attempt to hide the Lovable editor
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    
+    if (isIOS) {
+      // If on iOS, apply the URL parameter to hide the Lovable editor
+      if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+        const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
+        const newUrl = window.location.href + separator + 'forceHideBadge=true';
+        
+        // Use history API to avoid page reload
+        window.history.replaceState({}, document.title, newUrl);
+      }
+    }
   }, []);
 
   return (

@@ -5,6 +5,7 @@ import FormField from './FormField';
 import FormActions from './FormActions';
 import NewsletterCheckbox from './NewsletterCheckbox';
 import { useContactForm } from './hooks/useContactForm';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const ContactForm = () => {
   const {
@@ -15,15 +16,35 @@ const ContactForm = () => {
     handleCheckboxChange,
     handleSubmit
   } = useContactForm();
+  
+  const isMobile = useIsMobile();
 
-  // Log platform info for debugging
+  // Log platform info for debugging and hide editor on iOS
   useEffect(() => {
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    
     console.log("Form mounted - Platform info:", {
       userAgent: navigator.userAgent,
       platform: navigator.platform,
-      isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+      isIOS: isIOS
     });
+    
+    // Hide the Lovable editor on iOS devices
+    if (isIOS) {
+      // If it's iOS, try to hide the editor by applying a URL parameter
+      if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+        const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
+        const newUrl = window.location.href + separator + 'forceHideBadge=true';
+        window.history.replaceState({}, document.title, newUrl);
+      }
+      
+      // Add additional meta viewport tag for iOS
+      const existingViewport = document.querySelector('meta[name="viewport"]');
+      if (existingViewport) {
+        existingViewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+      }
+    }
   }, []);
 
   return (

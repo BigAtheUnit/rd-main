@@ -135,6 +135,24 @@ export function useContactForm() {
         });
       }
       
+      // Hide Lovable edit button on iOS by adding a specific URL parameter
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
+      if (isIOS) {
+        // Set a flag to hide the Lovable edit button in localStorage
+        localStorage.setItem('hideLovableEditor', 'true');
+        
+        // If on iOS, append a URL parameter to hide the Lovable button
+        if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+          const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
+          const newUrl = window.location.href + separator + 'forceHideBadge=true';
+          
+          // Use history API to avoid page reload
+          window.history.replaceState({}, document.title, newUrl);
+        }
+      }
+      
       // Updated success message
       toast({
         title: "🎉 Message sent successfully! 🎉",
