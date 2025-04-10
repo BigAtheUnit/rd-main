@@ -3,6 +3,7 @@ import React from 'react';
 import { ArrowRight, X, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerClose } from '@/components/ui/drawer';
+import { useNavigate } from 'react-router-dom';
 
 type ProductDetailsDrawerProps = {
   open: boolean;
@@ -18,11 +19,12 @@ const ProductDetailsDrawer = ({ open, onClose, product }: ProductDetailsDrawerPr
   if (!product) return null;
   
   const { title, fullDescription, icon: Icon } = product;
+  const navigate = useNavigate();
   
   const handleContactClick = () => {
     onClose();
-    // Navigate to homepage and scroll to contact section
-    window.location.href = "/#contact";
+    // Navigate to dedicated contact page
+    navigate('/contact');
   };
   
   return (

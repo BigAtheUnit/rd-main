@@ -8,6 +8,22 @@ import { trackFormInteraction } from './contact/utils/rateLimiting';
 const ContactSection = () => {
   // Track when the form section is viewed
   useEffect(() => {
+    // Force clear any potential issues with local storage that might be affected by VPN changes
+    if (typeof window !== 'undefined') {
+      try {
+        const today = new Date().toDateString();
+        const countKey = `submissions_${today}`;
+        
+        // Reset limit if it's unreasonably high (could happen with VPN IP changes)
+        const count = parseInt(localStorage.getItem(countKey) || '0');
+        if (count > 10) {
+          localStorage.setItem(countKey, '0');
+        }
+      } catch (err) {
+        console.error('Storage error:', err);
+      }
+    }
+    
     trackFormInteraction();
   }, []);
 

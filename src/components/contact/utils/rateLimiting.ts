@@ -11,11 +11,12 @@ export const trackFormInteraction = (): void => {
 
 /**
  * Check if a submission is within the rate limit
+ * VPN compatible with less restrictive limits for legitimate users
  * @param cooldownMs Cooldown period in milliseconds
  * @returns Boolean indicating if submission is allowed
  */
-export const isWithinRateLimit = (cooldownMs: number = 300000): boolean => {
-  // 5 minute cooldown between submissions (increased from 1 minute)
+export const isWithinRateLimit = (cooldownMs: number = 180000): boolean => {
+  // 3 minute cooldown between submissions (reduced for legitimate VPN users)
   const lastSubmission = localStorage.getItem('lastFormSubmission');
   const now = Date.now();
   
@@ -23,11 +24,11 @@ export const isWithinRateLimit = (cooldownMs: number = 300000): boolean => {
     return false;
   }
   
-  // Check daily submission limit (5 per day max) to prevent spam
+  // More permissive daily submission limit (10 per day)
   const today = new Date().toDateString();
   const dailySubmissionCount = parseInt(localStorage.getItem(`submissions_${today}`) || '0');
   
-  if (dailySubmissionCount >= 5) {
+  if (dailySubmissionCount >= 10) {
     console.log("Daily submission limit reached");
     return false;
   }
