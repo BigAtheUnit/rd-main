@@ -1,96 +1,20 @@
 
-import React, { useState, useRef } from 'react';
-import { Button } from '@/components/ui/button';
-import { Textarea } from '@/components/ui/textarea';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
-import { Label } from '@/components/ui/label';
-import { Send } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
-import emailjs from '@emailjs/browser';
+import React from 'react';
 import { Card } from '@/components/ui/card';
-
-// Initialize EmailJS
-emailjs.init("KZfkn5WO-xbVxXR1L"); // Public key for EmailJS
-
-interface ContactFormData {
-  name: string;
-  email: string;
-  organization: string;
-  message: string;
-  newsletter: boolean;
-}
+import FormField from './FormField';
+import FormActions from './FormActions';
+import NewsletterCheckbox from './NewsletterCheckbox';
+import { useContactForm } from './hooks/useContactForm';
 
 const ContactForm = () => {
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const formRef = useRef<HTMLFormElement>(null);
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    organization: '',
-    message: '',
-    newsletter: false
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData(prev => ({ ...prev, newsletter: checked }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      // Form validation
-      if (!formData.name || !formData.email || !formData.message) {
-        throw new Error("Please fill in all required fields");
-      }
-      
-      if (!formRef.current) {
-        throw new Error("Form reference is not available");
-      }
-      
-      // Send email using EmailJS
-      const result = await emailjs.sendForm(
-        "service_6xvofva", // Replace with your service ID
-        "template_5u9aebc", // Replace with your template ID
-        formRef.current
-      );
-      
-      console.log("EmailJS result:", result.text);
-      
-      toast({
-        title: "Message sent successfully",
-        description: "Thank you for reaching out! We'll get back to you as soon as possible.",
-        duration: 5000,
-      });
-      
-      // Clear form after successful submission
-      setFormData({
-        name: '',
-        email: '',
-        organization: '',
-        message: '',
-        newsletter: false
-      });
-    } catch (error) {
-      console.error("Error sending message:", error);
-      toast({
-        title: "Error sending message",
-        description: error instanceof Error ? error.message : "Please try again later.",
-        variant: "destructive",
-        duration: 5000,
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const {
+    formData,
+    formRef,
+    isSubmitting,
+    handleChange,
+    handleCheckboxChange,
+    handleSubmit
+  } = useContactForm();
 
   return (
     <Card className="bg-gradient-to-br from-white to-robin-cream/70 shadow-lg rounded-xl border-t-4 border-robin-orange overflow-hidden transform transition-all duration-300 hover:shadow-xl">
@@ -105,91 +29,50 @@ const ContactForm = () => {
         
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative">
           <div className="space-y-4">
-            <div className="group">
-              <Label htmlFor="name" className="block text-sm font-medium text-robin-dark/80 mb-2 group-hover:text-robin-orange transition-colors">
-                Your Name
-              </Label>
-              <Input
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="John Smith"
-                required
-                className="w-full border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/10 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow"
-              />
-            </div>
+            <FormField
+              id="name"
+              label="Your Name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="John Smith"
+              required
+            />
             
-            <div className="group">
-              <Label htmlFor="email" className="block text-sm font-medium text-robin-dark/80 mb-2 group-hover:text-robin-orange transition-colors">
-                Email Address
-              </Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="your.email@example.com"
-                required
-                className="w-full border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/10 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow"
-              />
-            </div>
+            <FormField
+              id="email"
+              label="Email Address"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="your.email@example.com"
+              required
+            />
             
-            <div className="group">
-              <Label htmlFor="organization" className="block text-sm font-medium text-robin-dark/80 mb-2 group-hover:text-robin-orange transition-colors">
-                Organization
-              </Label>
-              <Input
-                id="organization"
-                name="organization"
-                value={formData.organization}
-                onChange={handleChange}
-                placeholder="Your organization name"
-                className="w-full border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/10 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow"
-              />
-            </div>
+            <FormField
+              id="organization"
+              label="Organization"
+              value={formData.organization}
+              onChange={handleChange}
+              placeholder="Your organization name"
+            />
             
-            <div className="group">
-              <Label htmlFor="message" className="block text-sm font-medium text-robin-dark/80 mb-2 group-hover:text-robin-orange transition-colors">
-                Message
-              </Label>
-              <Textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell us about your project or inquiry"
-                required
-                className="w-full min-h-[120px] border-robin-dark/10 focus:border-robin-orange focus:ring-robin-orange/10 transition-all duration-300 bg-white/70 backdrop-blur-sm shadow-sm hover:shadow"
-              />
-            </div>
+            <FormField
+              id="message"
+              label="Message"
+              type="textarea"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Tell us about your project or inquiry"
+              required
+            />
             
-            <div className="flex items-center space-x-2 pt-2">
-              <Checkbox 
-                id="newsletter" 
-                name="newsletter"
-                checked={formData.newsletter}
-                onCheckedChange={handleCheckboxChange}
-                className="data-[state=checked]:bg-robin-orange data-[state=checked]:border-robin-orange"
-              />
-              <Label 
-                htmlFor="newsletter" 
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
-              >
-                Keep me updated with industry news and insights
-              </Label>
-            </div>
+            <NewsletterCheckbox
+              checked={formData.newsletter}
+              onCheckedChange={handleCheckboxChange}
+            />
           </div>
           
-          <Button 
-            type="submit" 
-            className="w-full bg-robin-orange hover:bg-robin-dark text-white font-medium transition-colors flex items-center justify-center gap-2 py-6 h-auto text-md rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-            disabled={isSubmitting}
-          >
-            {isSubmitting ? "Sending..." : "Send Message"}
-            <Send size={18} className={isSubmitting ? "" : "animate-pulse"} />
-          </Button>
+          <FormActions isSubmitting={isSubmitting} />
         </form>
       </div>
     </Card>
