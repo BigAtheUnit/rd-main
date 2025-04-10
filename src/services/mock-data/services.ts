@@ -7,29 +7,29 @@ import { Service } from '../models/content-types';
 export const mockServices: Service[] = [
   {
     id: 1,
-    title: "WordPress Development",
-    content: "<p>Custom WordPress themes and plugins tailored to your specific needs.</p>",
-    excerpt: "Custom WordPress themes and plugins tailored to your specific needs.",
+    title: "Web Development",
+    content: "<p>Custom web development with solutions tailored to your specific business needs and objectives.</p>",
+    excerpt: "Custom web development with solutions tailored to your specific business needs and objectives.",
     permalink: "#",
     icon: "code",
     featured_image: ""
   },
   {
     id: 2,
-    title: "Web Applications",
-    content: "<p>Scalable and responsive web applications built with modern frameworks.</p>",
-    excerpt: "Scalable and responsive web applications built with modern frameworks.",
+    title: "AI Consulting & Implementation",
+    content: "<p>Leverage the power of AI to solve complex problems and enhance your digital capabilities.</p>",
+    excerpt: "Leverage the power of AI to solve complex problems and enhance your digital capabilities.",
     permalink: "#",
-    icon: "app-window",
+    icon: "bot",
     featured_image: ""
   },
   {
     id: 3,
-    title: "Digital Transformation",
-    content: "<p>End-to-end digital solutions to transform your organization.</p>",
-    excerpt: "End-to-end digital solutions to transform your organization.",
+    title: "CMS Development",
+    content: "<p>Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.</p>",
+    excerpt: "Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.",
     permalink: "#",
-    icon: "rocket",
+    icon: "globe",
     featured_image: ""
   }
 ];

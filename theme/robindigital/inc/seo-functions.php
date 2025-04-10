@@ -22,6 +22,7 @@ function robindigital_add_meta_tags() {
     $title = get_bloginfo('name');
     $description = get_bloginfo('description');
     $image = get_theme_mod('robindigital_default_og_image', '');
+    $domain = 'https://www.robindigital.io';
     
     // If we're on a singular post/page, get specific meta data
     if (is_singular()) {
@@ -48,7 +49,8 @@ function robindigital_add_meta_tags() {
     echo '<meta property="og:title" content="' . esc_attr($title) . '" />' . "\n";
     echo '<meta property="og:description" content="' . esc_attr($description) . '" />' . "\n";
     echo '<meta property="og:type" content="' . (is_single() ? 'article' : 'website') . '" />' . "\n";
-    echo '<meta property="og:url" content="' . esc_url(get_permalink()) . '" />' . "\n";
+    echo '<meta property="og:url" content="' . esc_url($domain . $_SERVER['REQUEST_URI']) . '" />' . "\n";
+    echo '<meta property="og:site_name" content="Robin Digital" />' . "\n";
     
     if ($image) {
         echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
@@ -64,7 +66,7 @@ function robindigital_add_meta_tags() {
     }
     
     // Canonical URL
-    echo '<link rel="canonical" href="' . esc_url(get_permalink()) . '" />' . "\n";
+    echo '<link rel="canonical" href="' . esc_url($domain . $_SERVER['REQUEST_URI']) . '" />' . "\n";
 }
 add_action('wp_head', 'robindigital_add_meta_tags', 1);
 
@@ -95,3 +97,24 @@ function robindigital_responsive_image_support() {
     add_theme_support('responsive-embeds');
 }
 add_action('after_setup_theme', 'robindigital_responsive_image_support');
+
+/**
+ * Add structured data for Robin Digital
+ */
+function robindigital_structured_data() {
+    $schema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Organization',
+        'name' => 'Robin Digital',
+        'url' => 'https://www.robindigital.io',
+        'logo' => get_template_directory_uri() . '/assets/images/logo.png',
+        'description' => get_bloginfo('description'),
+        'address' => [
+            '@type' => 'PostalAddress',
+            'addressCountry' => 'UK'
+        ]
+    ];
+    
+    echo '<script type="application/ld+json">' . wp_json_encode($schema) . '</script>' . "\n";
+}
+add_action('wp_head', 'robindigital_structured_data');

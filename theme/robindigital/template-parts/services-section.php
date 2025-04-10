@@ -33,19 +33,19 @@ if ($services_query->have_posts()) {
     // Use default service data if no posts
     $services = [
         [
-            'title' => 'WordPress Development',
-            'description' => 'Expert WordPress website development with custom themes, plugins and integrations tailored to your specific business needs.',
-            'icon' => 'globe',
-        ],
-        [
-            'title' => 'Custom Web Development',
-            'description' => 'Fully bespoke websites built with modern frameworks like React, Vue, and Next.js that deliver unique user experiences and functionality.',
+            'title' => 'Web Development',
+            'description' => 'Custom web development with solutions tailored to your specific business needs and objectives.',
             'icon' => 'code',
         ],
         [
-            'title' => 'Bespoke Digital Tools',
-            'description' => 'Custom tools tailored to your unique requirements, automating processes and improving efficiency.',
-            'icon' => 'wrench',
+            'title' => 'AI Consulting & Implementation',
+            'description' => 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.',
+            'icon' => 'bot',
+        ],
+        [
+            'title' => 'CMS Development',
+            'description' => 'Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.',
+            'icon' => 'globe',
         ],
         [
             'title' => 'UX and UI Design',
@@ -53,9 +53,9 @@ if ($services_query->have_posts()) {
             'icon' => 'layout',
         ],
         [
-            'title' => 'AI Consulting & Implementation',
-            'description' => 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.',
-            'icon' => 'bot',
+            'title' => 'Bespoke Digital Tools',
+            'description' => 'Custom tools tailored to your unique requirements, automating processes and improving efficiency.',
+            'icon' => 'wrench',
         ],
         [
             'title' => 'Donor-Centric Charity Websites',
@@ -68,9 +68,9 @@ if ($services_query->have_posts()) {
             'icon' => 'lightbulb',
         ],
         [
-            'title' => 'Data Analytics & Insights',
-            'description' => 'Unlock the value in your data with advanced analytics and actionable insights.',
-            'icon' => 'line-chart',
+            'title' => 'Cyber Security',
+            'description' => 'Protect your digital assets and data with comprehensive security solutions and best practices.',
+            'icon' => 'shield',
         ]
     ];
 }
@@ -136,6 +136,8 @@ function get_icon_svg($icon_name) {
             return '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path></svg>';
         case 'line-chart':
             return '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>';
+        case 'shield':
+            return '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>';
         default:
             return '<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>';
     }

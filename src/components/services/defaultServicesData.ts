@@ -2,33 +2,15 @@
 export const defaultServices = [
   {
     id: 1,
-    title: 'WordPress & Web Development',
-    excerpt: 'Expert WordPress and custom web development with tailored solutions for your specific business needs.',
+    title: 'Web Development',
+    excerpt: 'Custom web development with solutions tailored to your specific business needs and objectives.',
     icon: 'code',
-    content: 'Our development services deliver bespoke, high-performance websites that are secure, scalable and easy to manage. We build custom themes and plugins that perfectly match your brand and business requirements, with a focus on optimised user experiences and conversion-focused designs.',
+    content: 'Our development services deliver bespoke, high-performance websites that are secure, scalable and easy to manage. We build using modern frameworks and technologies to create solutions that perfectly match your brand and business requirements, with a focus on optimised user experiences and conversion-focused designs.',
     permalink: '#',
     featured_image: ''
   },
   {
     id: 2,
-    title: 'Bespoke Digital Tools',
-    excerpt: 'Custom tools tailored to your unique requirements, automating processes and improving efficiency.',
-    icon: 'wrench',
-    content: 'We create bespoke digital tools that automate complex processes, streamline operations and solve specific business challenges. From custom dashboards and reporting tools to process automation systems, we design and build solutions that save time, reduce costs and drive efficiency throughout your organisation.',
-    permalink: '#',
-    featured_image: ''
-  },
-  {
-    id: 3,
-    title: 'UX and UI Design',
-    excerpt: 'User-centred design that creates intuitive, engaging experiences that keep users coming back.',
-    icon: 'layout',
-    content: 'Our design approach puts users at the heart of everything we create. We conduct thorough research to understand your users\' needs, behaviours and preferences, before designing intuitive interfaces that delight users and drive engagement. Our designs are beautiful, functional and optimised for conversion.',
-    permalink: '#',
-    featured_image: ''
-  },
-  {
-    id: 4,
     title: 'AI Consulting & Implementation',
     excerpt: 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.',
     icon: 'bot',
@@ -37,7 +19,34 @@ export const defaultServices = [
     featured_image: ''
   },
   {
+    id: 3,
+    title: 'CMS Development',
+    excerpt: 'Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.',
+    icon: 'globe',
+    content: 'We specialize in developing with popular content management systems including WordPress, Drupal, Joomla, and Shopify. Our team creates custom themes, plugins, and modules that make your content management seamless and efficient. We build secure, scalable CMS solutions that are both powerful for administrators and engaging for users.',
+    permalink: '#',
+    featured_image: ''
+  },
+  {
+    id: 4,
+    title: 'UX and UI Design',
+    excerpt: 'User-centred design that creates intuitive, engaging experiences that keep users coming back.',
+    icon: 'layout',
+    content: 'Our design approach puts users at the heart of everything we create. We conduct thorough research to understand your users\' needs, behaviours and preferences, before designing intuitive interfaces that delight users and drive engagement. Our designs are beautiful, functional and optimised for conversion.',
+    permalink: '#',
+    featured_image: ''
+  },
+  {
     id: 5,
+    title: 'Bespoke Digital Tools',
+    excerpt: 'Custom tools tailored to your unique requirements, automating processes and improving efficiency.',
+    icon: 'wrench',
+    content: 'We create bespoke digital tools that automate complex processes, streamline operations and solve specific business challenges. From custom dashboards and reporting tools to process automation systems, we design and build solutions that save time, reduce costs and drive efficiency throughout your organisation.',
+    permalink: '#',
+    featured_image: ''
+  },
+  {
+    id: 6,
     title: 'Charity & Non-Profit Solutions',
     excerpt: 'Specialised websites and digital tools for charities that connect with donors and maximise fundraising potential.',
     icon: 'heart',
@@ -46,7 +55,7 @@ export const defaultServices = [
     featured_image: ''
   },
   {
-    id: 6,
+    id: 7,
     title: 'Digital Strategy & Analytics',
     excerpt: 'Strategic planning and data analytics to align your digital initiatives with organisational goals.',
     icon: 'lightbulb',
@@ -55,7 +64,7 @@ export const defaultServices = [
     featured_image: ''
   },
   {
-    id: 7,
+    id: 8,
     title: 'Cyber Security',
     excerpt: 'Protect your digital assets and data with comprehensive security solutions and best practices.',
     icon: 'shield',

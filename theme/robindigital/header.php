@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="canonical" href="https://www.robindigital.io<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" />
     <?php wp_head(); ?>
 </head>
 
@@ -26,9 +27,9 @@
             if (has_custom_logo()) {
                 $custom_logo_id = get_theme_mod('custom_logo');
                 $logo = wp_get_attachment_image_src($custom_logo_id, 'full');
-                echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . ' Logo" class="h-14 md:h-20 w-auto">'; 
+                echo '<img src="' . esc_url($logo[0]) . '" alt="' . get_bloginfo('name') . ' Logo" class="h-14 md:h-24 w-auto">'; 
             } else {
-                echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-14 md:h-20 w-auto">';
+                echo '<img src="' . get_template_directory_uri() . '/assets/images/logo.png" alt="Robin Digital Logo" class="h-14 md:h-24 w-auto">';
             }
             ?>
         </a>
