@@ -1,7 +1,29 @@
+
+# Allow all search engines to index the site
+User-agent: *
+Allow: /
+
+# Block specific search engines if needed
+# User-agent: BadBot
+# Disallow: /
+
+# Allow specific bots
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Yandex
 Allow: /
 
 User-agent: Twitterbot
@@ -10,5 +32,8 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
+User-agent: LinkedInBot
 Allow: /
+
+# Sitemap location
+Sitemap: https://robindigital.com/sitemap.xml
