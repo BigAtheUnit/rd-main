@@ -7,6 +7,8 @@ import ServiceCard from '@/components/services/ServiceCard';
 import ServiceDialog from '@/components/services/ServiceDialog';
 import ServiceIcon from '@/components/services/ServiceIcon';
 import { defaultServices } from '@/components/services/defaultServicesData';
+import { ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const ServicesSection = () => {
   const [openDialog, setOpenDialog] = useState<number | null>(null);
@@ -19,16 +21,16 @@ const ServicesSection = () => {
   // Determine which services to display:
   const displayServices = React.useMemo(() => {
     if (services && services.length > 0) {
-      if (services.length >= 7) {
-        // If we have 7 or more services from API, take the first 7
-        return services.slice(0, 7);
+      if (services.length >= 6) {
+        // If we have 6 or more services from API, take the first 6
+        return services.slice(0, 6);
       } else {
-        // If we have less than 7 services from API, combine with defaults
-        const remainingCount = 7 - services.length;
+        // If we have less than 6 services from API, combine with defaults
+        const remainingCount = 6 - services.length;
         return [...services, ...defaultServices.slice(0, remainingCount)];
       }
     }
-    // If no services from API, use all default services
+    // If no services from API, use default services
     return defaultServices;
   }, [services]);
 
@@ -39,6 +41,14 @@ const ServicesSection = () => {
 
   // Get the currently selected service
   const currentService = displayServices.find(service => service.id === openDialog);
+
+  // Navigate to contact section
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section id="solutions" className="py-24 bg-gradient-to-b from-white to-robin-cream/30">
@@ -65,7 +75,7 @@ const ServicesSection = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
           {displayServices.map((service: Service, index: number) => (
             <Dialog 
               key={`service-${service.id}-${index}`}
@@ -86,6 +96,23 @@ const ServicesSection = () => {
               )}
             </Dialog>
           ))}
+        </div>
+        
+        {/* Looking for something else section */}
+        <div className="mt-20">
+          <div className="bg-white rounded-xl p-8 md:p-12 shadow-lg border-2 border-robin-orange/10 max-w-4xl mx-auto text-center transform transition-all duration-300 hover:shadow-xl hover:border-robin-orange/20 hover:-translate-y-1">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 text-robin-dark">Looking for something else?</h3>
+            <p className="text-lg text-robin-dark/70 mb-8 max-w-2xl mx-auto">
+              We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it.
+            </p>
+            <Button 
+              onClick={handleContactClick}
+              className="bg-robin-orange hover:bg-robin-dark text-white px-6 py-6 h-auto text-lg rounded-lg transition-colors group"
+            >
+              Get in Touch
+              <ArrowRight className="ml-2 h-5 w-5 transform transition-transform group-hover:translate-x-1" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>

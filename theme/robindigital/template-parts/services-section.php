@@ -7,7 +7,7 @@
 // Get services from custom post type if available, otherwise use default data
 $services_query = new WP_Query([
     'post_type' => 'services',
-    'posts_per_page' => 8,
+    'posts_per_page' => 6,
     'orderby' => 'menu_order',
     'order' => 'ASC'
 ]);
@@ -49,17 +49,17 @@ if ($services_query->have_posts()) {
         ],
         [
             'title' => 'UX & UI Design',
-            'description' => 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty.',
+            'description' => 'Delight your users with beautiful, accessible design that is as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty.',
             'icon' => 'layout',
         ],
         [
             'title' => 'Ongoing Support & Maintenance',
-            'description' => 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve.',
+            'description' => 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you will always stay ahead of the digital curve.',
             'icon' => 'wrench',
         ],
         [
             'title' => 'Digital Strategy & Consultancy',
-            'description' => 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI.',
+            'description' => 'Whether you are launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI.',
             'icon' => 'lightbulb',
         ]
     ];
@@ -102,6 +102,7 @@ if ($services_query->have_posts()) {
             <?php endforeach; ?>
         </div>
         
+        <!-- Looking for something else section -->
         <div class="mt-16 text-center">
             <div class="bg-white rounded-xl p-8 shadow-lg border-2 border-robin-orange/10 max-w-3xl mx-auto">
                 <h3 class="text-2xl font-semibold mb-4 text-robin-dark">Looking for something else?</h3>
