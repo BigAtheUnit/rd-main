@@ -92,7 +92,7 @@ const ContactInfoCard = () => {
         <div className="mt-auto pt-8 relative">
           <h4 className="text-lg font-medium text-robin-dark mb-4">Connect With Us</h4>
           <div className="flex flex-wrap gap-3">
-            <a href="#" className="bg-gray-100 hover:bg-robin-orange/10 p-3 rounded-full text-robin-dark hover:text-robin-orange transition-colors">
+            <a href="https://www.facebook.com/people/Robin-Digital/61574889628502/" className="bg-gray-100 hover:bg-robin-orange/10 p-3 rounded-full text-robin-dark hover:text-robin-orange transition-colors" target="_blank" rel="noopener noreferrer">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
             </a>
             <a href="#" className="bg-gray-100 hover:bg-robin-orange/10 p-3 rounded-full text-robin-dark hover:text-robin-orange transition-colors">
