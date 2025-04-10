@@ -1,3 +1,4 @@
+
 /**
  * Performance optimization utilities
  */
@@ -25,6 +26,13 @@ export const getOptimizedImageUrl = (url: string, width: number = 800, quality: 
 export const lazyLoadImage = (element: HTMLImageElement): void => {
   if ('loading' in HTMLImageElement.prototype) {
     element.loading = 'lazy';
+    // Add security attributes to prevent potential CORS issues
+    element.crossOrigin = 'anonymous';
+    // Add onError handler to manage broken images gracefully
+    element.onerror = () => {
+      element.src = '/placeholder.svg';
+      element.alt = 'Image unavailable';
+    };
   } else {
     // Fallback lazy loading for browsers that don't support the loading attribute
     const observer = new IntersectionObserver((entries) => {
@@ -40,12 +48,30 @@ export const lazyLoadImage = (element: HTMLImageElement): void => {
   }
 };
 
-// Prefetch helper for faster page loads
+// Prefetch helper for faster page loads with security considerations
 export const prefetchPage = (url: string): void => {
-  const link = document.createElement('link');
-  link.rel = 'prefetch';
-  link.href = url;
-  document.head.appendChild(link);
+  // Only prefetch same-origin URLs to prevent potential security issues
+  try {
+    const urlObj = new URL(url, window.location.origin);
+    if (urlObj.origin === window.location.origin) {
+      const link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+  } catch (e) {
+    console.error('Invalid URL for prefetching:', e);
+  }
+};
+
+// Secure URL validator
+export const isSecureUrl = (url: string): boolean => {
+  try {
+    const urlObj = new URL(url, window.location.origin);
+    return urlObj.protocol === 'https:';
+  } catch (e) {
+    return false;
+  }
 };
 
 // Core Web Vitals optimization
@@ -57,6 +83,8 @@ export const optimizeCWV = (): void => {
     heroImages.forEach(img => {
       if (img instanceof HTMLImageElement) {
         img.fetchPriority = 'high';
+        // Add security attributes
+        img.crossOrigin = 'anonymous';
       }
     });
   });
@@ -73,17 +101,49 @@ export const optimizeCWV = (): void => {
   } else {
     window.addEventListener('load', deferNonCritical);
   }
+  
+  // Add Content Security Policy violation reporting
+  document.addEventListener('securitypolicyviolation', (e) => {
+    console.error('CSP violation:', {
+      violatedDirective: e.violatedDirective,
+      effectiveDirective: e.effectiveDirective,
+      blockedURI: e.blockedURI
+    });
+  });
 };
 
-// Initialize performance optimizations
+// Initialize performance optimizations with security enhancements
 export const initPerformanceOptimizations = (): void => {
   optimizeCWV();
   
-  // Add event listeners for link prefetching on hover
+  // Add event listeners for link prefetching on hover with security checks
   document.addEventListener('mouseover', (e) => {
     const target = e.target as HTMLElement;
-    if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('/')) {
+    if (
+      target.tagName === 'A' && 
+      target.getAttribute('href') && 
+      !target.getAttribute('href')?.startsWith('javascript:') && // Prevent javascript: URLs
+      (target.getAttribute('href')?.startsWith('/') || isSecureUrl(target.getAttribute('href') || ''))
+    ) {
       prefetchPage(target.getAttribute('href') || '');
     }
   });
+  
+  // Add security for dynamically created links
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    // Check if the clicked element is an anchor tag or has an anchor parent
+    const anchor = target.tagName === 'A' ? target : target.closest('a');
+    
+    if (anchor instanceof HTMLAnchorElement) {
+      const href = anchor.getAttribute('href');
+      
+      // Prevent potentially malicious links
+      if (href?.startsWith('javascript:') || 
+          (href?.startsWith('http') && !isSecureUrl(href))) {
+        e.preventDefault();
+        console.warn('Potentially unsafe link blocked:', href);
+      }
+    }
+  }, { capture: true });
 };

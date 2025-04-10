@@ -3,8 +3,16 @@
 User-agent: *
 Allow: /
 
-# Block access to specific areas if needed
-# Disallow: /private/
+# Block access to sensitive areas
+Disallow: /admin/
+Disallow: /wp-admin/
+Disallow: /wp-login/
+Disallow: /wp-content/plugins/
+Disallow: /*.php$
+Disallow: /*?*
+Disallow: /*?s=*
+Disallow: /search/
+Disallow: /private/
 
 # Allow specific bots
 User-agent: Googlebot
@@ -37,6 +45,6 @@ Allow: /
 # Performance hints for crawlers
 Crawl-delay: 1
 
-# Sitemap location - ensure this is configured
+# Sitemap location
 Sitemap: https://robindigital.com/sitemap.xml
 
