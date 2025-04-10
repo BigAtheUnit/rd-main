@@ -107,15 +107,15 @@ export function useContactForm() {
       }
       
       console.log("Sending email with EmailJS using:", {
-        serviceId: "service_3j234du",
+        serviceId: "service_0ifrai8", // Updated to new service ID
         templateId: "template_833msmm",
         formElement: formRef.current,
         publicKey: "2e9rybcQIWSRcCfQ9"
       });
       
-      // Send email using EmailJS with updated service and template IDs
+      // Send email using EmailJS with updated service ID
       const result = await emailjs.sendForm(
-        "service_3j234du", // Service ID
+        "service_0ifrai8", // Updated service ID
         "template_833msmm", // Template ID
         formRef.current, 
         "2e9rybcQIWSRcCfQ9" // Public key
