@@ -21,6 +21,12 @@ const ServiceDialog: React.FC<ServiceDialogProps> = ({ service, getIcon, onClose
     service.content.replace(/<\/?[^>]+(>|$)/g, '') : 
     `Our ${service.title} services are designed to help your organisation thrive in the digital landscape. We combine technical expertise with strategic thinking to deliver solutions that create real impact.`;
 
+  const handleGetInTouch = () => {
+    onClose(); // Close the dialog first
+    // Navigate to the contact section on home page
+    window.location.href = "/#contact";
+  };
+
   return (
     <DialogContent className="sm:max-w-[550px] bg-white border-none shadow-lg">
       <DialogHeader>
@@ -35,7 +41,7 @@ const ServiceDialog: React.FC<ServiceDialogProps> = ({ service, getIcon, onClose
       <div className="mt-6">
         <Button 
           className="w-full bg-robin-orange hover:bg-robin-orange/90 text-white"
-          onClick={onClose}
+          onClick={handleGetInTouch}
         >
           Get in Touch
         </Button>
