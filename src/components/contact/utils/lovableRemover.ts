@@ -24,14 +24,6 @@ export const removeLovableReferences = (): void => {
       link.remove();
     });
 
-    // Find and remove any meta tags with lovable in the content
-    document.querySelectorAll('meta').forEach(meta => {
-      const content = meta.getAttribute('content') || '';
-      if (content.includes('lovable') && !meta.getAttribute('name')?.includes('description')) {
-        meta.remove();
-      }
-    });
-
     // Add specific CSS to ensure editor is not shown in screenshots
     // But allow the required gptengineer.js script
     const style = document.createElement('style');
@@ -77,21 +69,6 @@ export const removeLovableReferences = (): void => {
         scriptTag.remove();
       }
     });
-    
-    // Verify that OG and Twitter images are set correctly
-    const correctImageUrl = 'https://www.robindigital.io/lovable-uploads/a66dd7fe-3331-45db-a03b-de02400f9e5b.png';
-    
-    // Update OG image if needed
-    const ogImage = document.querySelector('meta[property="og:image"]');
-    if (ogImage) {
-      ogImage.setAttribute('content', correctImageUrl);
-    }
-    
-    // Update Twitter image if needed
-    const twitterImage = document.querySelector('meta[name="twitter:image"]');
-    if (twitterImage) {
-      twitterImage.setAttribute('content', correctImageUrl);
-    }
   });
   
   // Listen for any new elements being added to the DOM that might be from Lovable
