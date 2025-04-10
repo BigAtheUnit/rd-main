@@ -1,0 +1,74 @@
+
+/**
+ * Utility to ensure lovable editor is not visible in share previews and social cards
+ */
+
+/**
+ * Remove any Lovable editor references that might appear in social media previews or cards
+ */
+export const removeLovableReferences = (): void => {
+  // Execute once DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    // Find and remove any elements with lovable or editor related classnames/ids
+    const potentialEditorElements = document.querySelectorAll(
+      '[id*="lovable-editor"], [class*="lovable-editor"], [id*="lovable-badge"], [class*="lovable-badge"]'
+    );
+
+    potentialEditorElements.forEach(element => {
+      element.remove();
+    });
+
+    // Add specific CSS to ensure editor is not shown in screenshots
+    const style = document.createElement('style');
+    style.textContent = `
+      [id*="lovable"], [class*="lovable"], [id*="lovable-editor"], [id*="lovable-badge"], 
+      [id*="gpt-engineer"], [class*="gpt-engineer"], [id*="gpteng"], [class*="gpteng"] {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+        height: 0 !important;
+        width: 0 !important;
+        position: absolute !important;
+        z-index: -9999 !important;
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Set localStorage indicators 
+    localStorage.setItem('hideLovableEditor', 'true');
+    localStorage.setItem('hideEditor', 'true');
+  });
+  
+  // Listen for any new elements being added to the DOM that might be from Lovable
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.addedNodes.length) {
+        mutation.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) {
+            if (
+              node.id?.includes('lovable') || 
+              node.className?.includes('lovable') ||
+              node.id?.includes('gpteng') || 
+              node.className?.includes('gpteng')
+            ) {
+              node.remove();
+            }
+          }
+        });
+      }
+    });
+  });
+  
+  // Start observing the document
+  observer.observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+};
+
+// Call this function immediately to ensure it runs
+removeLovableReferences();
+
+// Export for direct importing
+export default removeLovableReferences;
