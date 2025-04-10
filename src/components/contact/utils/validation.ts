@@ -24,6 +24,62 @@ export const sanitizeInput = (input: string): string => {
 };
 
 /**
+ * Spam detection using multiple techniques
+ * @param formData The form data to check
+ * @returns Boolean indicating if submission is spam
+ */
+export const checkForSpam = (formData: {
+  name: string;
+  email: string;
+  message: string;
+  contact_me_by_fax?: string;
+}): boolean => {
+  // Check honeypot field - if filled, it's definitely a bot
+  if (formData.contact_me_by_fax && formData.contact_me_by_fax.length > 0) {
+    console.log("Honeypot field was filled - blocking as spam");
+    return true;
+  }
+  
+  // Check for submission time - if too fast (< 3 seconds), likely a bot
+  const formStartTime = window.sessionStorage.getItem('formStartTime');
+  if (formStartTime) {
+    const timeSpent = Date.now() - parseInt(formStartTime);
+    if (timeSpent < 3000) { // Less than 3 seconds
+      console.log("Form filled too quickly - blocking as spam");
+      return true;
+    }
+  }
+  
+  // Check for common spam keywords
+  const spamKeywords = [
+    'viagra', 'cialis', 'casino', 'lottery', 'prize', 'winner', 
+    'buy followers', 'buy likes', 'cheap seo', 'make money fast'
+  ];
+  
+  const combinedText = (
+    (formData.name || '') +
+    (formData.message || '')
+  ).toLowerCase();
+  
+  for (const keyword of spamKeywords) {
+    if (combinedText.includes(keyword)) {
+      console.log(`Spam keyword detected: ${keyword}`);
+      return true;
+    }
+  }
+  
+  // Check for excessive URLs in message (likely spam)
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  const urlMatches = formData.message?.match(urlRegex) || [];
+  if (urlMatches.length > 2) {
+    console.log("Too many URLs in message - blocking as spam");
+    return true;
+  }
+  
+  return false;
+};
+
+/**
  * Form validation
  * @param formData Form data object
  */

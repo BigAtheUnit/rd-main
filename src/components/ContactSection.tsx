@@ -1,10 +1,16 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ContactInfoCard from './contact/ContactInfoCard';
 import ContactForm from './contact/ContactForm';
+import { trackFormInteraction } from './contact/utils/rateLimiting';
 
 const ContactSection = () => {
+  // Track when the form section is viewed
+  useEffect(() => {
+    trackFormInteraction();
+  }, []);
+
   return (
     <section id="contact" className="py-12 md:py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">

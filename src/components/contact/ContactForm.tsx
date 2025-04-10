@@ -110,6 +110,19 @@ const ContactForm = () => {
               required
             />
             
+            {/* Honeypot field - hidden from real users but bots will fill it */}
+            <div className="hidden" aria-hidden="true" style={{ display: 'none' }}>
+              <input
+                type="text"
+                id="contact_me_by_fax"
+                name="contact_me_by_fax"
+                value={formData.contact_me_by_fax || ""}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
+            
             <NewsletterCheckbox
               checked={formData.newsletter}
               onCheckedChange={handleCheckboxChange}
