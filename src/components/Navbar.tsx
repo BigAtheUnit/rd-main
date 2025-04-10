@@ -57,9 +57,9 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-14 md:h-14" 
-            width="125"
-            height="56"
+            className="h-10 md:h-16" 
+            width="143"
+            height="64"
             fetchPriority="high"
           />
         </Link>
