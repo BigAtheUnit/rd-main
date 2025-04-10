@@ -11,7 +11,7 @@ export const removeLovableReferences = (): void => {
   document.addEventListener('DOMContentLoaded', () => {
     // Find and remove any elements with lovable or editor related classnames/ids
     const potentialEditorElements = document.querySelectorAll(
-      '[id*="lovable-editor"], [class*="lovable-editor"], [id*="lovable-badge"], [class*="lovable-badge"], [id*="lovable-preview"], [class*="lovable-preview"], [id*="splash-screen"], [class*="splash-screen"]'
+      '[id*="lovable-editor"], [class*="lovable-editor"], [id*="lovable-badge"], [class*="lovable-badge"], [id*="lovable-preview"], [class*="lovable-preview"], [id*="splash-screen"], [class*="splash-screen"], [href*="lovable.dev"]'
     );
 
     potentialEditorElements.forEach(element => {
@@ -23,7 +23,8 @@ export const removeLovableReferences = (): void => {
     style.textContent = `
       [id*="lovable"], [class*="lovable"], [id*="lovable-editor"], [id*="lovable-badge"], 
       [id*="gpt-engineer"], [class*="gpt-engineer"], [id*="gpteng"], [class*="gpteng"],
-      [id*="splash-screen"], [class*="splash-screen"], [id*="lovable-preview"], [class*="lovable-preview"] {
+      [id*="splash-screen"], [class*="splash-screen"], [id*="lovable-preview"], [class*="lovable-preview"],
+      [href*="lovable.dev"], [href*="gpteng.co"] {
         display: none !important;
         opacity: 0 !important;
         visibility: hidden !important;
@@ -55,7 +56,8 @@ export const removeLovableReferences = (): void => {
               node.id?.includes('gpteng') || 
               node.className?.includes('gpteng') ||
               node.id?.includes('splash-screen') || 
-              node.className?.includes('splash-screen')
+              node.className?.includes('splash-screen') ||
+              (node.hasAttribute('href') && node.getAttribute('href')?.includes('lovable.dev'))
             ) {
               node.remove();
             }
