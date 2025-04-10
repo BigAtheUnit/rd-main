@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from '@/components/ui/card';
 import FormField from './FormField';
 import FormActions from './FormActions';
@@ -15,6 +15,16 @@ const ContactForm = () => {
     handleCheckboxChange,
     handleSubmit
   } = useContactForm();
+
+  // Log platform info for debugging
+  useEffect(() => {
+    console.log("Form mounted - Platform info:", {
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+             (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+    });
+  }, []);
 
   return (
     <Card className="bg-gradient-to-br from-white to-robin-cream/70 shadow-lg rounded-xl border-t-4 border-robin-orange overflow-hidden transform transition-all duration-300 hover:shadow-xl">
@@ -49,9 +59,9 @@ const ContactForm = () => {
             />
             
             <FormField
-              id="Organisation" // Changed to match EmailJS template capitalization 
+              id="Organisation" // Matches EmailJS template capitalization
               label="Organisation"
-              value={formData.Organisation} // Updated to match capitalization
+              value={formData.Organisation}
               onChange={handleChange}
               placeholder="Your organisation name"
             />

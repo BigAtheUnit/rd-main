@@ -4,12 +4,12 @@ import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS
-emailjs.init("2e9rybcQIWSRcCfQ9"); // Updated public key for EmailJS
+emailjs.init("2e9rybcQIWSRcCfQ9"); // Public key for EmailJS
 
 export interface ContactFormData {
   name: string;
   email: string;
-  Organisation: string; // Changed to match EmailJS template capitalization
+  Organisation: string; // Matches EmailJS template capitalization
   message: string;
   newsletter: boolean;
 }
@@ -21,7 +21,7 @@ export function useContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
-    Organisation: '', // Changed to match EmailJS template capitalization
+    Organisation: '', // Matches EmailJS template capitalization
     message: '',
     newsletter: false
   });
@@ -86,7 +86,7 @@ export function useContactForm() {
       const sanitizedData = {
         name: sanitizeInput(formData.name),
         email: formData.email, // Email doesn't need sanitization for EmailJS
-        Organisation: sanitizeInput(formData.Organisation), // Changed to match EmailJS template capitalization
+        Organisation: sanitizeInput(formData.Organisation), // Matches EmailJS template capitalization
         message: sanitizeInput(formData.message),
         newsletter: formData.newsletter
       };
@@ -99,29 +99,30 @@ export function useContactForm() {
       }
       
       // Log submission attempt for tracking
-      if (window.gtag) {
-        window.gtag('event', 'form_submission_attempt', {
-          event_category: 'Contact',
-          event_label: 'Contact Form'
-        });
-      }
+      console.log("Attempting to send form with EmailJS...");
+      console.log("Form data:", sanitizedData);
       
-      console.log("Sending email with EmailJS using:", {
-        serviceId: "service_0ifrai8", // Updated to new service ID
-        templateId: "template_833msmm",
-        formElement: formRef.current,
-        publicKey: "2e9rybcQIWSRcCfQ9"
-      });
+      // iOS compatibility fix: Instead of using the form element directly,
+      // prepare the template parameters manually for iOS
+      const templateParams = {
+        name: sanitizedData.name,
+        email: sanitizedData.email,
+        Organisation: sanitizedData.Organisation,
+        message: sanitizedData.message,
+        newsletter: sanitizedData.newsletter ? "Yes" : "No"
+      };
       
-      // Send email using EmailJS with updated service ID
-      const result = await emailjs.sendForm(
-        "service_0ifrai8", // Updated service ID
+      console.log("Template params for EmailJS:", templateParams);
+      
+      // Try the direct send method first (better for iOS)
+      const result = await emailjs.send(
+        "service_0ifrai8", // Service ID
         "template_833msmm", // Template ID
-        formRef.current, 
+        templateParams,
         "2e9rybcQIWSRcCfQ9" // Public key
       );
       
-      console.log("EmailJS result:", result.text);
+      console.log("EmailJS direct send result:", result.text);
       
       // Record successful submission time for rate limiting
       localStorage.setItem('lastFormSubmission', Date.now().toString());
@@ -134,7 +135,7 @@ export function useContactForm() {
         });
       }
       
-      // Updated more exciting success message
+      // Updated success message
       toast({
         title: "🎉 Message sent successfully! 🎉",
         description: "Fantastic! Your message is on its way to our team. We're thrilled to hear from you and will be in touch very soon!",
@@ -146,12 +147,19 @@ export function useContactForm() {
       setFormData({
         name: '',
         email: '',
-        Organisation: '', // Changed to match EmailJS template capitalization
+        Organisation: '',
         message: '',
         newsletter: false
       });
     } catch (error) {
       console.error("Error sending message:", error);
+      
+      // Detailed error logging for debugging iOS issues
+      console.log("Form submission error details:", {
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
+        formRef: formRef.current ? "Form ref exists" : "Form ref is null",
+        browserInfo: navigator.userAgent
+      });
       
       // Track form submission error
       if (window.gtag) {
