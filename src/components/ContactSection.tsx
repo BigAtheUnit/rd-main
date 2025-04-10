@@ -26,12 +26,12 @@ const ContactSection = () => {
         </motion.div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch max-w-7xl mx-auto">
-          {/* Left Column - Contact Form */}
+          {/* Left Column - Contact Form (Now first) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="order-2 lg:order-1"
+            className="order-1"
           >
             <ContactForm />
           </motion.div>
@@ -41,7 +41,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="order-1 lg:order-2"
+            className="order-2"
           >
             <ContactInfoCard />
           </motion.div>

@@ -44,11 +44,17 @@ const ContactForm = () => {
   return (
     <Card className="h-full bg-white shadow-xl rounded-2xl border-t-4 border-robin-orange overflow-hidden transition-all duration-300 hover:shadow-2xl">
       <div className="p-6 md:p-8 relative h-full">
-        {/* Background gradient effect */}
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white to-white pointer-events-none"></div>
+        {/* Background gradient effect with improved visual appeal */}
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white to-robin-cream/20 pointer-events-none"></div>
         
-        <h3 className="text-2xl font-bold text-robin-dark mb-2 relative">Get in Touch</h3>
-        <p className="text-robin-dark mb-6">We'd love to hear from you. Fill out the form below.</p>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <h3 className="text-2xl font-bold text-robin-dark mb-2 relative">Send Us a Message</h3>
+          <p className="text-robin-dark mb-6">We're excited to hear about your project! Fill out the form below and we'll get back to you shortly.</p>
+        </motion.div>
         
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" id="contact-form">
           <div className="space-y-4">
