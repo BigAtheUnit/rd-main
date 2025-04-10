@@ -23,8 +23,27 @@ const ServiceDialog: React.FC<ServiceDialogProps> = ({ service, getIcon, onClose
 
   const handleGetInTouch = () => {
     onClose(); // Close the dialog first
-    // Navigate to the contact section on home page
-    window.location.href = "/#contact";
+    
+    // Navigate to home page and then scroll to contact section
+    if (window.location.pathname === '/') {
+      // If already on home page, just scroll to contact section
+      const contactSection = document.getElementById('contact');
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If on another page, navigate to home page with #contact hash
+      window.location.href = '/#contact';
+      
+      // Add a fallback to ensure scrolling happens after page load
+      // This helps when the browser doesn't automatically scroll to the anchor
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+          contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
+    }
   };
 
   return (
