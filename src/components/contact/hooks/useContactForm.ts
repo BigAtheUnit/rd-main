@@ -4,7 +4,7 @@ import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 
 // Initialize EmailJS
-emailjs.init("KZfkn5WO-xbVxXR1L"); // Public key for EmailJS
+emailjs.init("2e9rybcQIWSRcCfQ9"); // Updated public key for EmailJS
 
 export interface ContactFormData {
   name: string;
@@ -98,10 +98,18 @@ export function useContactForm() {
         throw new Error("Please wait a moment before submitting again");
       }
       
-      // Send email using EmailJS
+      // Log submission attempt for tracking
+      if (window.gtag) {
+        window.gtag('event', 'form_submission_attempt', {
+          event_category: 'Contact',
+          event_label: 'Contact Form'
+        });
+      }
+      
+      // Send email using EmailJS with updated service and template IDs
       const result = await emailjs.sendForm(
-        "service_eqp32du", // Updated Service ID
-        "template_5u9aebc", // Template ID
+        "service_3j234du", // Updated Service ID
+        "template_833msmm", // Updated Template ID
         formRef.current
       );
       
@@ -109,6 +117,14 @@ export function useContactForm() {
       
       // Record successful submission time for rate limiting
       localStorage.setItem('lastFormSubmission', Date.now().toString());
+      
+      // Track successful submission
+      if (window.gtag) {
+        window.gtag('event', 'form_submission_success', {
+          event_category: 'Contact',
+          event_label: 'Contact Form'
+        });
+      }
       
       toast({
         title: "Message sent successfully",
@@ -126,6 +142,15 @@ export function useContactForm() {
       });
     } catch (error) {
       console.error("Error sending message:", error);
+      
+      // Track form submission error
+      if (window.gtag) {
+        window.gtag('event', 'form_submission_error', {
+          event_category: 'Contact',
+          event_label: error instanceof Error ? error.message : 'Unknown error',
+        });
+      }
+      
       toast({
         title: "Error sending message",
         description: error instanceof Error ? error.message : "Please try again later.",
