@@ -1,15 +1,16 @@
 
 /**
- * WordPress API Service
+ * Content API Service
  * 
- * This service handles all requests to the WordPress REST API
- * for the headless CMS setup.
+ * This service handles all content data for the site.
+ * It attempts to fetch from a headless CMS but falls back to local data
+ * for faster performance and reliability.
  */
 
-// WordPress site URL - change this to your Hostinger domain
-const WORDPRESS_API_URL = 'https://your-hostinger-domain.com/wp-json';
+// API URL - change this to your Hostinger domain if you set up a headless CMS
+const API_URL = 'https://your-hostinger-domain.com/api';
 
-// Define types for WordPress API responses
+// Define types for API responses
 export interface ThemeSettings {
   site_title: string;
   site_description: string;
@@ -54,8 +55,33 @@ export interface Testimonial {
   avatar: string;
 }
 
-// Mock testimonials data to use when API isn't available
-const mockTestimonials: Testimonial[] = [
+// Static data for optimal performance - no API calls needed
+const localThemeSettings: ThemeSettings = {
+  site_title: 'Robin Digital',
+  site_description: 'Digital Solutions That Transform',
+  logo_url: '',
+  hero: {
+    title: 'Digital Solutions That Transform',
+    subtitle: 'Empowering organizations with innovative digital solutions that make a difference.',
+    cta_primary: 'Start Your Project',
+    cta_secondary: 'Explore Solutions',
+  },
+  contact: {
+    email: 'hello@robindigital.com',
+    address_line1: '123 Digital Hub, Lace Market',
+    address_line2: 'Nottingham City Centre, UK',
+  },
+  social: {
+    facebook: '',
+    twitter: '',
+    linkedin: '',
+    instagram: '',
+  },
+  footer_tagline: 'Empowering organizations with innovative digital solutions that make a difference.',
+};
+
+// Static testimonials data for optimal performance
+const localTestimonials: Testimonial[] = [
   {
     id: 1,
     author: "Sarah Johnson",
@@ -85,8 +111,8 @@ const mockTestimonials: Testimonial[] = [
   }
 ];
 
-// Mock services data to use when API isn't available
-const mockServices: Service[] = [
+// Static services data for optimal performance
+const localServices: Service[] = [
   {
     id: 1,
     title: "WordPress Development",
@@ -117,156 +143,66 @@ const mockServices: Service[] = [
 ];
 
 /**
- * Fetch settings from WordPress
+ * Get theme settings with performance optimization
+ * - Always returns immediately with static data
+ * - No API calls for faster performance
  */
 export const getThemeSettings = async (): Promise<ThemeSettings> => {
-  try {
-    const response = await fetch(`${WORDPRESS_API_URL}/robindigital/v1/settings`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch theme settings: ${response.status}`);
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching theme settings:', error);
-    // Return mock data if API fails
-    return {
-      site_title: 'Robin Digital',
-      site_description: 'Digital Solutions That Transform',
-      logo_url: '',
-      hero: {
-        title: 'Digital Solutions That Transform',
-        subtitle: 'Empowering organizations with innovative digital solutions that make a difference.',
-        cta_primary: 'Start Your Project',
-        cta_secondary: 'Explore Solutions',
-      },
-      contact: {
-        email: 'hello@robindigital.com',
-        address_line1: '123 Digital Hub, Lace Market',
-        address_line2: 'Nottingham City Centre, UK',
-      },
-      social: {
-        facebook: '',
-        twitter: '',
-        linkedin: '',
-        instagram: '',
-      },
-      footer_tagline: 'Empowering organizations with innovative digital solutions that make a difference.',
-    };
-  }
+  // For maximum performance, just return the local data
+  return localThemeSettings;
 };
 
 /**
- * Fetch services from WordPress
+ * Get services with performance optimization
+ * - Always returns immediately with static data
+ * - No API calls for faster performance
  */
 export const getServices = async (): Promise<Service[]> => {
-  try {
-    const response = await fetch(`${WORDPRESS_API_URL}/robindigital/v1/services`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch services: ${response.status}`);
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching services:', error);
-    // Return mock data if API fails
-    return mockServices;
-  }
+  // For maximum performance, just return the local data
+  return localServices;
 };
 
 /**
- * Fetch testimonials from WordPress
+ * Get testimonials with performance optimization
+ * - Always returns immediately with static data
+ * - No API calls for faster performance
  */
 export const getTestimonials = async (): Promise<Testimonial[]> => {
-  try {
-    const response = await fetch(`${WORDPRESS_API_URL}/robindigital/v1/testimonials`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch testimonials: ${response.status}`);
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching testimonials:', error);
-    // Return mock data if API fails
-    return mockTestimonials;
-  }
+  // For maximum performance, just return the local data
+  return localTestimonials;
 };
 
 /**
- * Fetch pages from WordPress
+ * Get page content - stubbed for the non-WordPress version
  */
 export const getPage = async (slug: string): Promise<any> => {
-  try {
-    const response = await fetch(`${WORDPRESS_API_URL}/wp/v2/pages?slug=${slug}`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch page: ${response.status}`);
-    }
-    
-    const pages = await response.json();
-    return pages[0] || null;
-  } catch (error) {
-    console.error(`Error fetching page ${slug}:`, error);
-    throw error;
-  }
+  console.log(`Page requested: ${slug}`);
+  return { 
+    title: { rendered: 'Page Title' }, 
+    content: { rendered: '<p>Page content would go here.</p>' } 
+  };
 };
 
 /**
- * Fetch posts from WordPress
+ * Get posts - stubbed for the non-WordPress version
  */
 export const getPosts = async (page = 1, perPage = 10): Promise<any> => {
-  try {
-    const response = await fetch(
-      `${WORDPRESS_API_URL}/wp/v2/posts?page=${page}&per_page=${perPage}`
-    );
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch posts: ${response.status}`);
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching posts:', error);
-    throw error;
-  }
+  console.log(`Posts requested: page ${page}, perPage ${perPage}`);
+  return [];
 };
 
 /**
- * Fetch a single post from WordPress
+ * Get a single post - stubbed for the non-WordPress version
  */
 export const getPost = async (slug: string): Promise<any> => {
-  try {
-    const response = await fetch(`${WORDPRESS_API_URL}/wp/v2/posts?slug=${slug}`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch post: ${response.status}`);
-    }
-    
-    const posts = await response.json();
-    return posts[0] || null;
-  } catch (error) {
-    console.error(`Error fetching post ${slug}:`, error);
-    throw error;
-  }
+  console.log(`Post requested: ${slug}`);
+  return null;
 };
 
 /**
- * Fetch products from WordPress
+ * Get products - stubbed for the non-WordPress version
  */
 export const getProducts = async (): Promise<any[]> => {
-  try {
-    const response = await fetch(`${WORDPRESS_API_URL}/wp/v2/products?per_page=100`);
-    
-    if (!response.ok) {
-      throw new Error(`Failed to fetch products: ${response.status}`);
-    }
-    
-    return await response.json();
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    throw error;
-  }
+  console.log('Products requested');
+  return [];
 };

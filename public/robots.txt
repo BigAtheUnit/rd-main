@@ -3,9 +3,8 @@
 User-agent: *
 Allow: /
 
-# Block specific search engines if needed
-# User-agent: BadBot
-# Disallow: /
+# Block access to specific areas if needed
+# Disallow: /private/
 
 # Allow specific bots
 User-agent: Googlebot
@@ -35,5 +34,9 @@ Allow: /
 User-agent: LinkedInBot
 Allow: /
 
-# Sitemap location
+# Performance hints for crawlers
+Crawl-delay: 1
+
+# Sitemap location - ensure this is configured
 Sitemap: https://robindigital.com/sitemap.xml
+

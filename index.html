@@ -9,7 +9,7 @@
     <meta name="author" content="Robin Digital" />
     <meta name="keywords" content="digital solutions, web development, charity websites, digital transformation, public sector, education, innovative technology" />
     
-    <!-- Preconnect to external domains -->
+    <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,6 +38,24 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://robindigital.com/" />
+    
+    <!-- Performance optimization meta tags -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Security headers -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/main.tsx" as="script">
+    
+    <!-- Core Web Vitals optimization hints -->
+    <link rel="preload" as="image" href="/lovable-uploads/fa1b2a6e-51e3-4d19-aa05-d6ef0903d74b.png" fetchpriority="high">
     
     <!-- Structured data for SEO -->
     <script type="application/ld+json">
