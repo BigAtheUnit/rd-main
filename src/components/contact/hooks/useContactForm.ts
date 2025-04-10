@@ -1,10 +1,11 @@
 
 import { useState, useRef, FormEvent } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import emailjs from '@emailjs/browser';
-
-// Initialize EmailJS
-emailjs.init("2e9rybcQIWSRcCfQ9"); // Public key for EmailJS
+import { isValidEmail, sanitizeInput, validateForm } from '../utils/validation';
+import { isIOSDevice, isSafariBrowser, applyIOSFixes } from '../utils/browserDetection';
+import { sendEmail, EmailParams } from '../utils/emailService';
+import { isWithinRateLimit, recordSubmission } from '../utils/rateLimiting';
+import { trackFormSuccess, trackFormError } from '../utils/analytics';
 
 export interface ContactFormData {
   name: string;
@@ -26,22 +27,6 @@ export function useContactForm() {
     newsletter: false
   });
 
-  // Validate email format
-  const isValidEmail = (email: string): boolean => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
-  };
-
-  // Sanitize input to prevent XSS
-  const sanitizeInput = (input: string): string => {
-    return input
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#x27;')
-      .replace(/\//g, '&#x2F;');
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -56,30 +41,16 @@ export function useContactForm() {
     setIsSubmitting(true);
     
     try {
-      // Form validation with improved error messages
-      if (!formData.name.trim()) {
-        throw new Error("Please enter your name");
-      }
+      // Validate form
+      validateForm(formData);
       
-      if (!formData.email.trim()) {
-        throw new Error("Please enter your email address");
-      }
-      
-      if (!isValidEmail(formData.email)) {
-        throw new Error("Please enter a valid email address");
-      }
-      
-      if (!formData.message.trim()) {
-        throw new Error("Please enter your message");
-      }
-      
-      // Limit message length to prevent abuse
-      if (formData.message.length > 2000) {
-        throw new Error("Message is too long. Please limit to 2000 characters.");
+      // Check rate limiting
+      if (!isWithinRateLimit()) {
+        throw new Error("Please wait a moment before submitting again");
       }
       
       // Create sanitized data to send
-      const sanitizedData = {
+      const sanitizedData: EmailParams = {
         name: sanitizeInput(formData.name),
         email: formData.email, // Email doesn't need sanitization for EmailJS
         Organisation: sanitizeInput(formData.Organisation), // Matches EmailJS template capitalization
@@ -87,74 +58,24 @@ export function useContactForm() {
         newsletter: formData.newsletter
       };
       
-      // Apply rate limiting
-      const lastSubmission = localStorage.getItem('lastFormSubmission');
-      const now = Date.now();
-      if (lastSubmission && now - parseInt(lastSubmission) < 60000) { // 1 minute cooldown
-        throw new Error("Please wait a moment before submitting again");
-      }
-      
-      // Log submission attempt for tracking
-      console.log("Attempting to send form with EmailJS...");
-      console.log("Form data:", sanitizedData);
-      
       // Detect if the user is on Safari/iOS
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      const isIOS = isIOSDevice();
+      const isSafari = isSafariBrowser();
       
       console.log("Browser detection:", { isIOS, isSafari, userAgent: navigator.userAgent });
       
-      // Always use the direct send method for all browsers to ensure consistency
-      const templateParams = {
-        name: sanitizedData.name,
-        email: sanitizedData.email,
-        Organisation: sanitizedData.Organisation,
-        message: sanitizedData.message,
-        newsletter: sanitizedData.newsletter ? "Yes" : "No"
-      };
-      
-      console.log("Template params for EmailJS:", templateParams);
-      
-      try {
-        // Direct send method (better compatibility with Safari/iOS)
-        const result = await emailjs.send(
-          "service_0ifrai8", // Service ID
-          "template_833msmm", // Template ID
-          templateParams,
-          "2e9rybcQIWSRcCfQ9" // Public key
-        );
-        
-        console.log("EmailJS direct send result:", result);
-      } catch (emailError) {
-        console.error("EmailJS direct send error:", emailError);
-        throw new Error("There was a problem sending your message. Please try again later.");
-      }
+      // Send the email
+      await sendEmail(sanitizedData);
       
       // Record successful submission time for rate limiting
-      localStorage.setItem('lastFormSubmission', Date.now().toString());
+      recordSubmission();
       
       // Track successful submission
-      if (window.gtag) {
-        window.gtag('event', 'form_submission_success', {
-          event_category: 'Contact',
-          event_label: 'Contact Form'
-        });
-      }
+      trackFormSuccess();
       
-      // Hide Lovable edit button on iOS by adding a specific URL parameter
+      // Hide Lovable edit button on iOS
       if (isIOS || isSafari) {
-        // Set a flag to hide the Lovable edit button in localStorage
-        localStorage.setItem('hideLovableEditor', 'true');
-        
-        // If on iOS, append a URL parameter to hide the Lovable button
-        if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-          const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-          const newUrl = window.location.href + separator + 'forceHideBadge=true';
-          
-          // Use history API to avoid page reload
-          window.history.replaceState({}, document.title, newUrl);
-        }
+        applyIOSFixes();
       }
       
       // Updated success message
@@ -184,12 +105,7 @@ export function useContactForm() {
       });
       
       // Track form submission error
-      if (window.gtag) {
-        window.gtag('event', 'form_submission_error', {
-          event_category: 'Contact',
-          event_label: error instanceof Error ? error.message : 'Unknown error',
-        });
-      }
+      trackFormError(error instanceof Error ? error.message : 'Unknown error');
       
       toast({
         title: "Error sending message",
