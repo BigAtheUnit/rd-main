@@ -51,7 +51,7 @@ export function useContactForm() {
       
       // Send email using EmailJS
       const result = await emailjs.sendForm(
-        "service_6xvofva", // Service ID
+        "service_eqp32du", // Updated Service ID
         "template_5u9aebc", // Template ID
         formRef.current
       );
