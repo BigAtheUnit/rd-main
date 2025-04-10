@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, Shield, FileEdit, Store, Clock, Tag } from 'lucide-react';
+import { ArrowRight, Shield, FileEdit, Store, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -54,6 +54,7 @@ const ProductCard = ({ title, description, icon, price, isNew, isFeatured, image
           </div>
           <Button 
             className="bg-robin-orange hover:bg-robin-dark transition-colors"
+            onClick={() => window.location.href = "/products"}
           >
             View Details
           </Button>
@@ -64,6 +65,11 @@ const ProductCard = ({ title, description, icon, price, isNew, isFeatured, image
 };
 
 const ToolsSection = () => {
+  const handleScrollToContact = () => {
+    // Navigate to contact section
+    window.location.href = "/#contact";
+  };
+
   const products = [
     {
       title: "RobinShield",
