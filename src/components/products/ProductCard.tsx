@@ -1,11 +1,12 @@
 
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { LucideIcon } from 'lucide-react';
 
 type ProductCardProps = {
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: LucideIcon;
   isNew?: boolean;
   isFeatured?: boolean;
   imageSrc: string;
@@ -16,7 +17,7 @@ type ProductCardProps = {
 const ProductCard = ({ 
   title, 
   description, 
-  icon, 
+  icon: Icon, 
   isNew, 
   isFeatured, 
   imageSrc, 
@@ -46,7 +47,7 @@ const ProductCard = ({
       <div className="p-6 flex-grow">
         <div className="flex items-center gap-3 mb-4">
           <div className="w-10 h-10 bg-robin-orange/10 rounded-lg flex items-center justify-center shrink-0 text-robin-orange">
-            {icon}
+            <Icon size={24} />
           </div>
           <h3 className="text-xl font-semibold text-robin-dark">{title}</h3>
         </div>

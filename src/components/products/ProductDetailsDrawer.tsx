@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, X } from 'lucide-react';
+import { ArrowRight, X, LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle, DrawerDescription, DrawerClose } from '@/components/ui/drawer';
 
@@ -10,12 +10,14 @@ type ProductDetailsDrawerProps = {
   product: {
     title: string;
     fullDescription: string;
-    icon: React.ReactNode;
+    icon: LucideIcon;
   } | null;
 };
 
 const ProductDetailsDrawer = ({ open, onClose, product }: ProductDetailsDrawerProps) => {
   if (!product) return null;
+  
+  const { title, fullDescription, icon: Icon } = product;
   
   const handleContactClick = () => {
     onClose();
@@ -33,16 +35,16 @@ const ProductDetailsDrawer = ({ open, onClose, product }: ProductDetailsDrawerPr
         <DrawerHeader>
           <div className="flex items-center gap-3 mb-2">
             <div className="w-10 h-10 bg-robin-orange/10 rounded-lg flex items-center justify-center text-robin-orange">
-              {product.icon}
+              <Icon size={24} />
             </div>
-            <DrawerTitle className="text-xl font-bold text-robin-dark">{product.title}</DrawerTitle>
+            <DrawerTitle className="text-xl font-bold text-robin-dark">{title}</DrawerTitle>
           </div>
           <DrawerDescription className="text-robin-dark/70">
             Coming Soon
           </DrawerDescription>
         </DrawerHeader>
         <div className="p-4 pb-0">
-          <p className="text-robin-dark/80 mb-6">{product.fullDescription}</p>
+          <p className="text-robin-dark/80 mb-6">{fullDescription}</p>
           <div className="mt-4 bg-robin-cream/50 p-4 rounded-lg border border-robin-orange/20">
             <h4 className="font-semibold text-robin-dark mb-2">Need this solution now?</h4>
             <p className="text-robin-dark/70 mb-4">While this product is still in development, we can create a custom solution tailored to your specific needs.</p>
