@@ -35,8 +35,8 @@ export const mockServices: Service[] = [
   {
     id: 4,
     title: "UX & UI Design",
-    content: "<p>Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty.</p>",
-    excerpt: "Delight your users with beautiful, accessible design that's as practical as it is eye-catching.",
+    content: "<p>Delight your users with beautiful, accessible design that is as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty.</p>",
+    excerpt: "Delight your users with beautiful, accessible design that is as practical as it is eye-catching.",
     permalink: "#",
     icon: "layout",
     featured_image: ""
@@ -44,7 +44,7 @@ export const mockServices: Service[] = [
   {
     id: 5,
     title: "Ongoing Support & Maintenance",
-    content: "<p>Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve.</p>",
+    content: "<p>Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you will always stay ahead of the digital curve.</p>",
     excerpt: "Rely on our dedicated team to keep your site secure, optimised, and ready for growth.",
     permalink: "#",
     icon: "wrench",
@@ -53,8 +53,8 @@ export const mockServices: Service[] = [
   {
     id: 6,
     title: "Digital Strategy & Consultancy",
-    content: "<p>Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI.</p>",
-    excerpt: "Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success.",
+    content: "<p>Whether you are launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI.</p>",
+    excerpt: "Whether you are launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success.",
     permalink: "#",
     icon: "lightbulb",
     featured_image: ""

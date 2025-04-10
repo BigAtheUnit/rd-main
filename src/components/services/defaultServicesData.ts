@@ -30,9 +30,9 @@ export const defaultServices = [
   {
     id: 4,
     title: 'UX & UI Design',
-    excerpt: 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching.',
+    excerpt: "Delight your users with beautiful, accessible design that's as practical as it is eye-catching.",
     icon: 'layout',
-    content: 'Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty. Our design team combines aesthetics with functionality to create interfaces that users love to interact with.',
+    content: "Delight your users with beautiful, accessible design that's as practical as it is eye-catching. We create frictionless journeys that boost user satisfaction, conversions, and brand loyalty. Our design team combines aesthetics with functionality to create interfaces that users love to interact with.",
     permalink: '#',
     featured_image: ''
   },
@@ -41,25 +41,25 @@ export const defaultServices = [
     title: 'Ongoing Support & Maintenance',
     excerpt: 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth.',
     icon: 'wrench',
-    content: 'Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve. We offer comprehensive maintenance packages to ensure your digital presence remains robust and effective.',
+    content: "Rely on our dedicated team to keep your site secure, optimised, and ready for growth. With regular performance checks and updates, you'll always stay ahead of the digital curve. We offer comprehensive maintenance packages to ensure your digital presence remains robust and effective.",
     permalink: '#',
     featured_image: ''
   },
   {
     id: 6,
     title: 'Digital Strategy & Consultancy',
-    excerpt: 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success.',
+    excerpt: "Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success.",
     icon: 'lightbulb',
-    content: 'Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI. Our consultancy services help you navigate the complex digital landscape with confidence.',
+    content: "Whether you're launching a new venture or reinventing an existing platform, our strategic insights help you plan for long-term success. We identify the best tech solutions, outline realistic roadmaps, and ensure measurable ROI. Our consultancy services help you navigate the complex digital landscape with confidence.",
     permalink: '#',
     featured_image: ''
   },
   {
     id: 7,
     title: 'Custom Digital Solutions',
-    excerpt: 'We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it.',
+    excerpt: "We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it.",
     icon: 'briefcase',
-    content: 'We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it. Our team has experience with a wide range of technologies and industries, allowing us to create bespoke solutions for unique challenges.',
+    content: "We thrive on challenging, custom projects—if you don't see what you need here, just ask. Chances are we can do it. Our team has experience with a wide range of technologies and industries, allowing us to create bespoke solutions for unique challenges.",
     permalink: '#',
     featured_image: ''
   }
