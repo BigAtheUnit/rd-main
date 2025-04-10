@@ -10,7 +10,7 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Robin Digital | Digital Solutions That Transform";
+    document.title = "Robin Digital | Powerful Digital Solutions for Modern Organisations";
   }, []);
 
   return (
