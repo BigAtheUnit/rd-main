@@ -21,9 +21,9 @@ function robindigital_add_meta_tags() {
     // Default values
     $title = get_bloginfo('name');
     $description = get_bloginfo('description');
-    $default_image = '/lovable-uploads/b0eb51f1-73b2-41c3-a1db-c5c31d33b7d7.png';
+    $default_image = '/lovable-uploads/103a39e1-9bd6-489e-b437-2fb0efc3735b.png';
     $image = get_theme_mod('robindigital_default_og_image', $default_image);
-    $domain = 'https://www.robindigital.io';
+    $domain = 'https://robindigital.io';
     
     // Ensure image has absolute URL
     if (strpos($image, 'http') !== 0) {
@@ -125,9 +125,9 @@ add_action('after_setup_theme', 'robindigital_responsive_image_support');
  * Add structured data for Robin Digital
  */
 function robindigital_structured_data() {
-    $domain = 'https://www.robindigital.io';
+    $domain = 'https://robindigital.io';
     $logo = get_template_directory_uri() . '/assets/images/logo.png';
-    $image = $domain . '/lovable-uploads/b0eb51f1-73b2-41c3-a1db-c5c31d33b7d7.png';
+    $image = $domain . '/lovable-uploads/103a39e1-9bd6-489e-b437-2fb0efc3735b.png';
     
     $schema = [
         '@context' => 'https://schema.org',
