@@ -20,5 +20,12 @@ export const API_CONFIG = {
     TESTIMONIALS: 12 * 60 * 60 * 1000,   // 12 hours
     PAGES: 6 * 60 * 60 * 1000,           // 6 hours
     POSTS: 1 * 60 * 60 * 1000,           // 1 hour
+  },
+  
+  // Performance flags
+  PERFORMANCE: {
+    USE_IMAGE_OPTIMIZATION: true,
+    PRELOAD_CRITICAL_ASSETS: true,
+    LAZY_LOAD_BELOW_FOLD: true
   }
 };

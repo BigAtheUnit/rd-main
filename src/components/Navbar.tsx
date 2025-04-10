@@ -53,11 +53,14 @@ const Navbar = () => {
       isScrolled ? "bg-white/95 backdrop-blur-sm shadow-md py-3" : "bg-transparent py-5"
     )}>
       <div className="container mx-auto px-4 md:px-6 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center" aria-label="Robin Digital Home">
           <img 
             src="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" 
             alt="Robin Digital Logo" 
-            className="h-40 md:h-40" // Increased logo size
+            className="h-14 md:h-14" 
+            width="125"
+            height="56"
+            fetchPriority="high"
           />
         </Link>
 

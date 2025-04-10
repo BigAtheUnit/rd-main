@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +7,11 @@
     <meta name="description" content="Robin Digital helps charities, public sector, education, and businesses with innovative digital solutions that make a meaningful impact." />
     <meta name="author" content="Robin Digital" />
     <meta name="keywords" content="digital solutions, web development, charity websites, digital transformation, public sector, education, innovative technology" />
+    
+    <!-- Preload critical assets, including the logo -->
+    <link rel="preload" href="/lovable-uploads/f3c26032-bae8-4fff-bd85-e3c865fc45a3.png" as="image" fetchpriority="high" />
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/main.tsx" as="script">
     
     <!-- Preconnect to external domains for faster loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,10 +53,6 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), interest-cohort=()">
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="/src/index.css" as="style">
-    <link rel="preload" href="/src/main.tsx" as="script">
     
     <!-- Core Web Vitals optimization hints -->
     <link rel="preload" as="image" href="/lovable-uploads/fa1b2a6e-51e3-4d19-aa05-d6ef0903d74b.png" fetchpriority="high">
