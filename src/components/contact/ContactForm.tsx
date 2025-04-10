@@ -49,11 +49,11 @@ const ContactForm = () => {
             />
             
             <FormField
-              id="organization"
-              label="Organization"
-              value={formData.organization}
+              id="organisation" // Changed from "organization" to "organisation"
+              label="Organisation" // Changed label to match
+              value={formData.organisation} // Changed from "organization" to "organisation"
               onChange={handleChange}
-              placeholder="Your organization name"
+              placeholder="Your organisation name" // Changed from "organization" to "organisation"
             />
             
             <FormField

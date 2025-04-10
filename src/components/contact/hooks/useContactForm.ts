@@ -9,7 +9,7 @@ emailjs.init("2e9rybcQIWSRcCfQ9"); // Updated public key for EmailJS
 export interface ContactFormData {
   name: string;
   email: string;
-  organization: string;
+  organisation: string; // Changed from "organization" to "organisation" to match template
   message: string;
   newsletter: boolean;
 }
@@ -21,7 +21,7 @@ export function useContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
-    organization: '',
+    organisation: '', // Changed from "organization" to "organisation"
     message: '',
     newsletter: false
   });
@@ -86,7 +86,7 @@ export function useContactForm() {
       const sanitizedData = {
         name: sanitizeInput(formData.name),
         email: formData.email, // Email doesn't need sanitization for EmailJS
-        organization: sanitizeInput(formData.organization),
+        organisation: sanitizeInput(formData.organisation), // Changed from "organization" to "organisation"
         message: sanitizeInput(formData.message),
         newsletter: formData.newsletter
       };
@@ -136,7 +136,7 @@ export function useContactForm() {
       setFormData({
         name: '',
         email: '',
-        organization: '',
+        organisation: '', // Changed from "organization" to "organisation"
         message: '',
         newsletter: false
       });
