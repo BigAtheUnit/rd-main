@@ -23,26 +23,19 @@ export const isSafariBrowser = (): boolean => {
  * Works for all browsers, not just iOS/Safari
  */
 export const applyIOSFixes = (): void => {
-  // Apply multiple methods to hide the Lovable editor
+  // Apply multiple methods to hide the Lovable editor without modifying URL
   
-  // Method 1: URL parameter
-  if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-    const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-    const newUrl = window.location.href + separator + 'forceHideBadge=true';
-    window.history.replaceState({}, document.title, newUrl);
-  }
-  
-  // Method 2: Local storage
+  // Method 1: Local storage - primary method
   localStorage.setItem('hideLovableEditor', 'true');
   localStorage.setItem('lovable_hideEditor', 'true');
   
-  // Method 3: Meta viewport tag
+  // Method 2: Meta viewport tag
   const viewportMeta = document.querySelector('meta[name="viewport"]');
   if (viewportMeta) {
     viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
   }
   
-  // Method 4: Additional CSS to hide any potential overlays
+  // Method 3: Additional CSS to hide any potential overlays
   const style = document.createElement('style');
   style.textContent = `
     [id*="lovable"], [class*="lovable"], [id*="lovable-editor"], [id*="lovable-badge"], [id*="lovable-button"], [class*="lovable-editor"] {
@@ -50,9 +43,13 @@ export const applyIOSFixes = (): void => {
       opacity: 0 !important;
       visibility: hidden !important;
       pointer-events: none !important;
+      height: 0 !important;
+      width: 0 !important;
+      position: absolute !important;
+      z-index: -9999 !important;
     }
   `;
   document.head.appendChild(style);
   
-  console.log("Applied comprehensive badge hiding fixes");
+  console.log("Applied comprehensive badge hiding fixes without URL modification");
 };

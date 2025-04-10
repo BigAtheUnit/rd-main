@@ -12,7 +12,7 @@ const ContactSection = () => {
         <div className="absolute -right-20 top-1/3 w-60 h-60 bg-robin-orange/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute -left-20 bottom-1/3 w-60 h-60 bg-robin-orange/5 rounded-full blur-3xl pointer-events-none" />
         
-        {/* Optional section title for consistency */}
+        {/* Section title for consistency */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -25,13 +25,13 @@ const ContactSection = () => {
           <div className="w-20 h-1 bg-robin-orange mx-auto mt-3 rounded-full"></div>
         </motion.div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-stretch max-w-7xl mx-auto">
-          {/* Left Column - Contact Form (Now first) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-stretch max-w-7xl mx-auto">
+          {/* Left Column - Contact Form (Now first and wider) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="order-1"
+            className="lg:col-span-7 h-full"
           >
             <ContactForm />
           </motion.div>
@@ -41,7 +41,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="order-2"
+            className="lg:col-span-5 h-full"
           >
             <ContactInfoCard />
           </motion.div>

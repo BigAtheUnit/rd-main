@@ -7,6 +7,7 @@ import FormActions from './FormActions';
 import NewsletterCheckbox from './NewsletterCheckbox';
 import { useContactForm } from './hooks/useContactForm';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { isIOSDevice, isSafariBrowser } from './utils/browserDetection';
 
 const ContactForm = () => {
   const {
@@ -19,31 +20,36 @@ const ContactForm = () => {
   } = useContactForm();
   
   const isMobile = useIsMobile();
+  const isIOS = isIOSDevice();
+  const isSafari = isSafariBrowser();
 
-  // Apply hiding for Lovable editor on component mount
+  // Apply special handling for iOS/Safari devices to ensure form works
   useEffect(() => {
-    // Hide the Lovable editor for all browsers
-    if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-      const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-      const newUrl = window.location.href + separator + 'forceHideBadge=true';
-      window.history.replaceState({}, document.title, newUrl);
+    // Add iOS/Safari specific event listeners and form attributes
+    if (isIOS || isSafari) {
+      const form = formRef.current;
+      if (form) {
+        // Add specific attributes for iOS compatibility
+        form.setAttribute('autocomplete', 'on');
+        form.setAttribute('data-is-ios', 'true');
+        
+        // Fix for Safari focus issues
+        const inputFields = form.querySelectorAll('input, textarea');
+        inputFields.forEach(input => {
+          input.addEventListener('blur', (e) => {
+            // Prevent iOS keyboard issues
+            window.scrollTo(0, 0);
+          });
+        });
+      }
     }
     
-    // Set local storage flag to hide Lovable editor
-    localStorage.setItem('hideLovableEditor', 'true');
-    
-    // Add meta tag to prevent zooming on mobile
-    const viewportMeta = document.querySelector('meta[name="viewport"]');
-    if (viewportMeta) {
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-    }
-    
-    console.log("Form mounted - Badge hiding applied to all browsers");
-  }, []);
+    console.log("Form mounted - Applied compatibility fixes for all devices");
+  }, [isIOS, isSafari]);
 
   return (
     <Card className="h-full bg-white shadow-xl rounded-2xl border-t-4 border-robin-orange overflow-hidden transition-all duration-300 hover:shadow-2xl">
-      <div className="p-6 md:p-8 relative h-full">
+      <div className="p-6 md:p-8 relative h-full flex flex-col">
         {/* Background gradient effect with improved visual appeal */}
         <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white to-robin-cream/20 pointer-events-none"></div>
         
@@ -51,13 +57,20 @@ const ContactForm = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
+          className="relative"
         >
-          <h3 className="text-2xl font-bold text-robin-dark mb-2 relative">Send Us a Message</h3>
+          <h3 className="text-2xl font-bold text-robin-dark mb-2">Send Us a Message</h3>
           <p className="text-robin-dark mb-6">We're excited to hear about your project! Fill out the form below and we'll get back to you shortly.</p>
         </motion.div>
         
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" id="contact-form">
-          <div className="space-y-4">
+        <form 
+          ref={formRef} 
+          onSubmit={handleSubmit} 
+          className="space-y-5 relative flex-grow flex flex-col" 
+          id="contact-form"
+          data-ios-compatible={isIOS || isSafari ? "true" : "false"}
+        >
+          <div className="space-y-4 flex-grow">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 id="name"
@@ -103,7 +116,9 @@ const ContactForm = () => {
             />
           </div>
           
-          <FormActions isSubmitting={isSubmitting} />
+          <div className="mt-auto">
+            <FormActions isSubmitting={isSubmitting} />
+          </div>
         </form>
       </div>
     </Card>

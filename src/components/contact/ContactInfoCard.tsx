@@ -51,7 +51,7 @@ const ContactInfoCard = () => {
   };
 
   return (
-    <Card className="bg-white shadow-xl rounded-2xl border-t-4 border-robin-orange overflow-hidden transition-all duration-300 hover:shadow-2xl">
+    <Card className="bg-white shadow-xl rounded-2xl border-t-4 border-robin-orange overflow-hidden transition-all duration-300 hover:shadow-2xl h-full">
       <div className="p-6 md:p-8 h-full flex flex-col relative">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-white to-robin-cream/30 pointer-events-none"></div>
@@ -64,7 +64,7 @@ const ContactInfoCard = () => {
         </div>
         
         <motion.div 
-          className="space-y-6 mt-2 relative"
+          className="space-y-6 mt-2 relative flex-grow"
           variants={containerVariants}
           initial="hidden"
           animate="visible"

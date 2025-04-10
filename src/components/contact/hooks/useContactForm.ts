@@ -2,7 +2,7 @@
 import { useState, useRef, FormEvent } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { isValidEmail, sanitizeInput, validateForm } from '../utils/validation';
-import { isIOSDevice, isSafariBrowser, applyIOSFixes } from '../utils/browserDetection';
+import { isIOSDevice, isSafariBrowser } from '../utils/browserDetection';
 import { sendEmail, EmailParams } from '../utils/emailService';
 import { isWithinRateLimit, recordSubmission } from '../utils/rateLimiting';
 import { trackFormSuccess, trackFormError } from '../utils/analytics';
@@ -58,19 +58,37 @@ export function useContactForm() {
         newsletter: formData.newsletter
       };
       
-      // Apply badge hiding for all browsers, not just iOS/Safari
-      // This ensures the "Edit with Lovable" badge doesn't show for any user
-      if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-        const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-        const newUrl = window.location.href + separator + 'forceHideBadge=true';
-        window.history.replaceState({}, document.title, newUrl);
+      // Special handling for iOS/Safari
+      const isIOS = isIOSDevice();
+      const isSafari = isSafariBrowser();
+      
+      if (isIOS || isSafari) {
+        // Apply additional iOS/Safari specific fixes for form submission
+        console.log("Applying iOS/Safari specific form submission fixes");
+        
+        // Force focus blur to avoid keyboard issues
+        if (document.activeElement instanceof HTMLElement) {
+          document.activeElement.blur();
+        }
+        
+        // Add small delay for Safari/iOS to properly process
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
       
-      // Set local storage flag to hide Lovable editor for everyone
-      localStorage.setItem('hideLovableEditor', 'true');
-      
-      // Send the email
-      await sendEmail(sanitizedData);
+      // Send the email with improved error handling for iOS
+      try {
+        await sendEmail(sanitizedData);
+      } catch (emailError) {
+        console.error("Initial email send failed, retrying with timeout:", emailError);
+        
+        // Add additional delay and retry for iOS/Safari devices
+        if (isIOS || isSafari) {
+          await new Promise(resolve => setTimeout(resolve, 500));
+          await sendEmail(sanitizedData);
+        } else {
+          throw emailError; // Re-throw if not iOS/Safari
+        }
+      }
       
       // Record successful submission time for rate limiting
       recordSubmission();

@@ -11,14 +11,8 @@ const Contact = () => {
     document.title = "Robin Digital | Contact Us";
     window.scrollTo(0, 0);
     
-    // Hide the Lovable editor badge for all browsers, not just iOS
-    if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-      const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-      const newUrl = window.location.href + separator + 'forceHideBadge=true';
-      
-      // Use history API to avoid page reload
-      window.history.replaceState({}, document.title, newUrl);
-    }
+    // Apply badge hiding fixes without URL modification
+    applyIOSFixes();
     
     // Set local storage flag to hide Lovable editor
     localStorage.setItem('hideLovableEditor', 'true');
@@ -28,8 +22,6 @@ const Contact = () => {
     if (viewportMeta) {
       viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
     }
-    
-    applyIOSFixes();
   }, []);
 
   return (
