@@ -16,7 +16,7 @@ import './components/contact/utils/lovableRemover.ts'
 const applyCSPMetaTag = () => {
   const meta = document.createElement('meta');
   meta.httpEquiv = 'Content-Security-Policy';
-  meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com https://cdn.gpteng.co https://fonts.googleapis.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.robindigital.io https://www.google-analytics.com; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; block-all-mixed-content;";
+  meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.robindigital.io https://www.google-analytics.com; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; block-all-mixed-content;";
   document.head.appendChild(meta);
 };
 
@@ -28,9 +28,26 @@ if (!document.querySelector('meta[http-equiv="Content-Security-Policy"]')) {
 // Force HTTPS (except in development)
 if (window.location.protocol !== 'https:' && 
     window.location.hostname !== 'localhost' && 
-    !window.location.hostname.includes('lovableproject.com')) {
+    !window.location.hostname.includes('127.0.0.1')) {
   window.location.href = window.location.href.replace('http:', 'https:');
 }
+
+// Handle SPA routing for redirected 404s
+const handleSPARedirects = () => {
+  const redirectPath = sessionStorage.getItem('redirect_path');
+  if (redirectPath) {
+    sessionStorage.removeItem('redirect_path');
+    // Wait for router to be ready
+    setTimeout(() => {
+      if (window.location.pathname === '/') {
+        window.history.replaceState(null, '', redirectPath);
+      }
+    }, 100);
+  }
+};
+
+// Call the function after DOM is loaded
+document.addEventListener('DOMContentLoaded', handleSPARedirects);
 
 // Create a client
 const queryClient = new QueryClient()

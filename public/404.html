@@ -76,9 +76,19 @@
   </style>
   <script>
     // SPA Routing - Redirect to index.html for client-side routing
+    // This helps with deep linking in a SPA
     window.onload = function() {
-      if (window.location.pathname !== '/404.html') {
-        localStorage.setItem('spa_path', window.location.pathname);
+      const path = window.location.pathname;
+      
+      // Don't redirect for actual files or if we're already on the 404 page
+      if (path !== '/404.html' && 
+          !path.includes('.html') && 
+          !path.includes('.js') && 
+          !path.includes('.css') && 
+          !path.includes('.png') && 
+          !path.includes('.jpg') && 
+          !path.includes('.svg')) {
+        sessionStorage.setItem('redirect_path', path);
         window.location.href = '/';
       }
     }

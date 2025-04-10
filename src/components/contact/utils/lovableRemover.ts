@@ -11,7 +11,7 @@ export const removeLovableReferences = (): void => {
   document.addEventListener('DOMContentLoaded', () => {
     // Find and remove any elements with lovable or editor related classnames/ids
     const potentialEditorElements = document.querySelectorAll(
-      '[id*="lovable-editor"], [class*="lovable-editor"], [id*="lovable-badge"], [class*="lovable-badge"], [id*="lovable-preview"], [class*="lovable-preview"], [id*="splash-screen"], [class*="splash-screen"], [href*="lovable.dev"]'
+      '[id*="lovable-editor"], [class*="lovable-editor"], [id*="lovable-badge"], [class*="lovable-badge"], [id*="lovable-preview"], [class*="lovable-preview"], [id*="splash-screen"], [class*="splash-screen"], [href*="lovable.dev"], [href*="gpteng.co"]'
     );
 
     potentialEditorElements.forEach(element => {
@@ -42,6 +42,14 @@ export const removeLovableReferences = (): void => {
     localStorage.setItem('hideEditor', 'true');
     localStorage.setItem('hideSplashScreen', 'true');
     localStorage.setItem('hideSocialPreview', 'true');
+    
+    // Remove any script tags related to lovable or gpteng
+    document.querySelectorAll('script').forEach(scriptTag => {
+      const src = scriptTag.getAttribute('src') || '';
+      if (src.includes('lovable') || src.includes('gpteng')) {
+        scriptTag.remove();
+      }
+    });
   });
   
   // Listen for any new elements being added to the DOM that might be from Lovable
@@ -57,9 +65,19 @@ export const removeLovableReferences = (): void => {
               node.className?.includes('gpteng') ||
               node.id?.includes('splash-screen') || 
               node.className?.includes('splash-screen') ||
-              (node.hasAttribute('href') && node.getAttribute('href')?.includes('lovable.dev'))
+              (node.hasAttribute('href') && 
+               (node.getAttribute('href')?.includes('lovable.dev') ||
+                node.getAttribute('href')?.includes('gpteng.co')))
             ) {
               node.remove();
+            }
+            
+            // Check for script tags as well
+            if (node.tagName === 'SCRIPT') {
+              const src = node.getAttribute('src') || '';
+              if (src.includes('lovable') || src.includes('gpteng')) {
+                node.remove();
+              }
             }
           }
         });
@@ -77,7 +95,7 @@ export const removeLovableReferences = (): void => {
   if (window.localStorage) {
     Object.defineProperty(window.localStorage, 'getItem', {
       value: function(key: string) {
-        if (key && (key.includes('lovable') || key.includes('splash') || key.includes('editor'))) {
+        if (key && (key.includes('lovable') || key.includes('splash') || key.includes('editor') || key.includes('gpteng'))) {
           return 'false';
         }
         return Storage.prototype.getItem.apply(this, arguments);
