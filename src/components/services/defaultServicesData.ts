@@ -20,10 +20,10 @@ export const defaultServices = [
   },
   {
     id: 3,
-    title: 'CMS Development',
-    excerpt: 'Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.',
+    title: 'CMS Solutions',
+    excerpt: 'Expert development with WordPress, Drupal, Shopify, and other content management systems.',
     icon: 'globe',
-    content: 'We specialize in developing with popular content management systems including WordPress, Drupal, Joomla, and Shopify. Our team creates custom themes, plugins, and modules that make your content management seamless and efficient. We build secure, scalable CMS solutions that are both powerful for administrators and engaging for users.',
+    content: 'We specialize in developing with popular content management systems including WordPress, Drupal, Shopify, and more. Our team creates custom themes, plugins, and modules that make your content management seamless and efficient. We build secure, scalable CMS solutions that are both powerful for administrators and engaging for users.',
     permalink: '#',
     featured_image: ''
   },

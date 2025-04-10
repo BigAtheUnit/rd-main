@@ -43,8 +43,8 @@ if ($services_query->have_posts()) {
             'icon' => 'bot',
         ],
         [
-            'title' => 'CMS Development',
-            'description' => 'Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.',
+            'title' => 'CMS Solutions',
+            'description' => 'Expert development with WordPress, Drupal, Shopify, and other content management systems.',
             'icon' => 'globe',
         ],
         [

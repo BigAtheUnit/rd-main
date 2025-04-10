@@ -78,13 +78,13 @@ function robindigital_add_schema_markup() {
                 ),
                 array(
                     '@type' => 'Offer',
-                    'name' => 'CMS Development',
-                    'description' => 'Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.'
+                    'name' => 'AI Consulting & Implementation',
+                    'description' => 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.'
                 ),
                 array(
                     '@type' => 'Offer',
-                    'name' => 'AI Consulting & Implementation',
-                    'description' => 'Leverage the power of AI to solve complex problems and enhance your digital capabilities.'
+                    'name' => 'CMS Solutions',
+                    'description' => 'Expert development with WordPress, Drupal, Shopify, and other content management systems.'
                 )
             )
         )

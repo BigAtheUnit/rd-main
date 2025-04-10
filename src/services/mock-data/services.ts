@@ -25,9 +25,9 @@ export const mockServices: Service[] = [
   },
   {
     id: 3,
-    title: "CMS Development",
-    content: "<p>Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.</p>",
-    excerpt: "Expert WordPress, Drupal, and other CMS development with tailored solutions for content management.",
+    title: "CMS Solutions",
+    content: "<p>Expert development with WordPress, Drupal, Shopify, and other content management systems.</p>",
+    excerpt: "Expert development with WordPress, Drupal, Shopify, and other content management systems.",
     permalink: "#",
     icon: "globe",
     featured_image: ""
