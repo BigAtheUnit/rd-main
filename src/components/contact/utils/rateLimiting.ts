@@ -4,136 +4,146 @@
  * Used for bot detection (too fast submissions)
  */
 export const trackFormInteraction = (): void => {
-  if (!window.sessionStorage.getItem('formStartTime')) {
-    window.sessionStorage.setItem('formStartTime', Date.now().toString());
+  if (typeof window !== 'undefined') {
+    try {
+      sessionStorage.setItem('formStartTime', Date.now().toString());
+    } catch (err) {
+      console.warn("Unable to set session storage, continuing anyway:", err);
+      // Create in-memory fallback for VPN users with restricted storage
+      window.__formStartTime = Date.now();
+    }
   }
 };
 
 /**
  * Check if a submission is within the rate limit
- * Enhanced for VPN compatibility with fallback mechanisms
- * @param cooldownMs Cooldown period in milliseconds
+ * Enhanced with multiple fallbacks for VPN users
  * @returns Boolean indicating if submission is allowed
  */
-export const isWithinRateLimit = (cooldownMs: number = 120000): boolean => {
+export const isWithinRateLimit = (): boolean => {
+  // Always allow submissions for VPN users to ensure compatibility
+  if (detectVpnUsage()) {
+    console.log("VPN detected - bypassing rate limiting");
+    return true;
+  }
+  
   try {
-    // Reduced to 2 minute cooldown between submissions for VPN users
+    // For non-VPN users, apply a simple cooldown check
     const lastSubmission = localStorage.getItem('lastFormSubmission');
     const now = Date.now();
     
-    // Identify potential VPN users through storage inconsistencies
-    const isPotentialVpnUser = detectVpnUsage();
-    
-    // Apply more permissive rules for VPN users
-    if (isPotentialVpnUser) {
-      // For VPN users: shorter cooldown (1 minute) and higher daily limit
-      cooldownMs = 60000;
-      
-      if (lastSubmission && now - parseInt(lastSubmission) < cooldownMs) {
-        console.log("Rate limit reached, but VPN detected - applying special rules");
-        // For VPN users: instead of blocking completely, check if it's been at least 30 seconds
-        return now - parseInt(lastSubmission) >= 30000;
-      }
-    } else {
-      // Standard rate limit check for non-VPN users
-      if (lastSubmission && now - parseInt(lastSubmission) < cooldownMs) {
-        return false;
-      }
+    if (lastSubmission && now - parseInt(lastSubmission) < 60000) { // 1 minute cooldown
+      return false;
     }
     
-    // More permissive daily submission limit (15 per day for potential VPN users, 10 otherwise)
+    // Check daily submission limit (10 per day)
     const today = new Date().toDateString();
     const dailySubmissionKey = `submissions_${today}`;
     const dailySubmissionCount = parseInt(localStorage.getItem(dailySubmissionKey) || '0');
     
-    const maxDailySubmissions = isPotentialVpnUser ? 15 : 10;
-    
-    if (dailySubmissionCount >= maxDailySubmissions) {
-      console.log(`Daily submission limit reached (${maxDailySubmissions})`);
+    if (dailySubmissionCount >= 10) {
+      console.log("Daily submission limit reached (10)");
       return false;
     }
     
     return true;
   } catch (error) {
-    // If there's any error with localStorage, default to allowing the submission
-    // This helps with cross-origin VPN issues where localStorage might be restricted
+    // If there's any error with storage, default to allowing the submission
     console.error("Error in rate limiting, defaulting to allow:", error);
     return true;
   }
 };
 
 /**
- * Detect potential VPN usage through various signals
- * Non-invasive approach that respects privacy
+ * Enhanced VPN detection that always errs on the side of caution
+ * Uses multiple signals to detect VPN usage
  */
 const detectVpnUsage = (): boolean => {
   try {
-    // Check for inconsistent localStorage access (common with some VPNs)
-    const testKey = 'vpn_detection_test';
-    const testValue = Date.now().toString();
+    // Check for storage inconsistencies (common with VPNs)
+    let storageInconsistency = false;
     
-    // Attempt to write and immediately read from localStorage
-    localStorage.setItem(testKey, testValue);
-    const retrieved = localStorage.getItem(testKey);
+    try {
+      // Test localStorage
+      const testKey = 'vpn_detection_test';
+      localStorage.setItem(testKey, 'test');
+      const retrieved = localStorage.getItem(testKey);
+      storageInconsistency = retrieved !== 'test';
+      localStorage.removeItem(testKey);
+    } catch (storageErr) {
+      // If we can't access localStorage at all, likely a VPN with privacy features
+      storageInconsistency = true;
+    }
     
-    // Some VPNs with privacy features may block or alter localStorage
-    const storageInconsistency = retrieved !== testValue;
+    // Check for unusual user agent or navigator properties
+    const userAgent = navigator.userAgent.toLowerCase();
+    const hasVpnSignals = userAgent.includes('anonymized') || 
+                          userAgent.includes('proxy') ||
+                          typeof navigator.connection === 'undefined';
     
-    // Check for timezone inconsistencies (common VPN signal)
+    // Check for timezone inconsistencies
     const browserTime = new Date();
     const timezoneOffset = browserTime.getTimezoneOffset();
     
-    // Get timezone name if available (not supported in all browsers)
+    // Get timezone name if available
     const timezoneName = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
     
-    // Store the timezone info for consistency checking across sessions
-    const storedTimezone = localStorage.getItem('user_timezone');
     let timezoneChanged = false;
     
-    if (storedTimezone) {
-      // If timezone data exists, check if it suddenly changed
-      const [storedOffset, storedName] = storedTimezone.split('|');
-      timezoneChanged = storedOffset !== timezoneOffset.toString() || 
-                         (storedName && storedName !== timezoneName);
+    try {
+      const storedTimezone = localStorage.getItem('user_timezone');
+      
+      if (storedTimezone) {
+        const [storedOffset, storedName] = storedTimezone.split('|');
+        timezoneChanged = storedOffset !== timezoneOffset.toString() || 
+                          (storedName && storedName !== timezoneName);
+      }
+      
+      // Store current timezone info for future checks
+      localStorage.setItem('user_timezone', `${timezoneOffset}|${timezoneName}`);
+    } catch (tzErr) {
+      // If we can't check timezone, assume it might be a VPN
+      timezoneChanged = true;
     }
     
-    // Store current timezone info for future checks
-    localStorage.setItem('user_timezone', `${timezoneOffset}|${timezoneName}`);
-    
-    // Return true if any VPN indicators are detected
-    return storageInconsistency || timezoneChanged;
+    return storageInconsistency || hasVpnSignals || timezoneChanged;
   } catch (error) {
     // If any errors occur during detection, assume it might be a VPN
-    // Better to allow legitimate submissions than block them
-    console.warn("Error in VPN detection, assuming potential VPN:", error);
+    console.warn("Error in VPN detection, assuming potential VPN to ensure compatibility:", error);
     return true;
   }
 };
 
 /**
- * Record a successful submission for rate limiting
- * Enhanced with fallback mechanisms for VPN users
+ * Record a successful submission with VPN compatibility
  */
 export const recordSubmission = (): void => {
   try {
-    // Record timestamp of submission
+    // Try to record timestamp in localStorage
     localStorage.setItem('lastFormSubmission', Date.now().toString());
     
-    // Increment daily submission count
+    // Try to increment daily count
     const today = new Date().toDateString();
     const dailySubmissionKey = `submissions_${today}`;
     const dailySubmissionCount = parseInt(localStorage.getItem(dailySubmissionKey) || '0');
     localStorage.setItem(dailySubmissionKey, (dailySubmissionCount + 1).toString());
   } catch (error) {
-    // Fallback for VPN users with localStorage restrictions
-    console.error("Error recording submission, using fallback approach:", error);
-    
-    // For VPN users with localStorage issues, try sessionStorage as fallback
+    // For VPN users, try sessionStorage as fallback
     try {
       sessionStorage.setItem('lastFormSubmission', Date.now().toString());
     } catch (sessionError) {
-      // If both fail, log but don't block the submission
-      console.error("Both storage mechanisms failed, continuing anyway:", sessionError);
+      // If both fail, create in-memory fallback
+      window.__lastFormSubmission = Date.now();
+      console.log("Using in-memory fallback for submission recording");
     }
   }
 };
+
+// Attach a global property for VPN-compatible storage fallback
+declare global {
+  interface Window {
+    __formStartTime?: number;
+    __lastFormSubmission?: number;
+  }
+}
+

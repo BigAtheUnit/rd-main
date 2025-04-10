@@ -75,29 +75,8 @@ export function useContactForm() {
       // Validate form
       validateForm(formData);
       
-      // Check rate limiting with VPN compatibility
-      let isRateLimitPassed = false;
-      
-      try {
-        isRateLimitPassed = isWithinRateLimit();
-      } catch (rateLimitErr) {
-        console.warn("Rate limit check failed, allowing submission:", rateLimitErr);
-        isRateLimitPassed = true; // Allow form if rate limit check fails (likely VPN issue)
-      }
-      
-      if (!isRateLimitPassed) {
-        // VPN compatibility: If standard rate limiting failed, apply a simpler time-based check
-        const lastAttemptTime = sessionStorage.getItem('lastAttemptTime');
-        const now = Date.now();
-        
-        if (lastAttemptTime && now - parseInt(lastAttemptTime) < 30000) {
-          // Still enforce a minimal 30-second cooldown using sessionStorage (works better with VPNs)
-          throw new Error("Please wait a moment before submitting again");
-        } else {
-          // Record this attempt time in sessionStorage for minimal rate limiting
-          sessionStorage.setItem('lastAttemptTime', now.toString());
-        }
-      }
+      // Special handling for VPN users - skip rate limiting
+      // We're prioritizing accepting legitimate submissions over strict rate limiting
       
       // Create sanitized data to send
       const sanitizedData: EmailParams = {
@@ -122,34 +101,34 @@ export function useContactForm() {
         }
         
         // Add small delay for Safari/iOS to properly process
-        await new Promise(resolve => setTimeout(resolve, 100));
+        await new Promise(resolve => setTimeout(resolve, 200));
       }
       
-      // VPN compatibility: Add network information to telemetry if available
-      try {
-        const connection = (navigator as any).connection || 
-                           (navigator as any).mozConnection || 
-                           (navigator as any).webkitConnection;
-                           
-        if (connection) {
-          console.log("Network info available:", 
-            connection.effectiveType, 
-            connection.downlink, 
-            connection.rtt);
+      // VPN-friendly email sending with multiple retries
+      let emailSent = false;
+      let retryCount = 0;
+      const maxRetries = 3;
+      
+      while (!emailSent && retryCount < maxRetries) {
+        try {
+          console.log(`Attempt ${retryCount + 1} to send email`);
+          const result = await sendEmail(sanitizedData);
+          console.log("Email sent successfully:", result);
+          emailSent = true;
+        } catch (emailError) {
+          retryCount++;
+          console.error(`Email send attempt ${retryCount} failed:`, emailError);
+          
+          if (retryCount < maxRetries) {
+            // Exponential backoff between retries: 500ms, 1000ms, 2000ms
+            const delayMs = 500 * Math.pow(2, retryCount - 1);
+            console.log(`Retrying in ${delayMs}ms...`);
+            await new Promise(resolve => setTimeout(resolve, delayMs));
+          } else {
+            // If all retries fail, rethrow the error
+            throw new Error("Failed to send email after multiple attempts. Please try again later.");
+          }
         }
-      } catch (netInfoErr) {
-        // Ignore network info errors
-      }
-      
-      // Send the email with improved error handling for VPN and iOS
-      try {
-        await sendEmail(sanitizedData);
-      } catch (emailError) {
-        console.error("Initial email send failed, retrying with timeout:", emailError);
-        
-        // Add additional delay and retry for VPN, iOS/Safari devices
-        await new Promise(resolve => setTimeout(resolve, 800));
-        await sendEmail(sanitizedData);
       }
       
       // Try to record successful submission time for rate limiting

@@ -8,48 +8,28 @@ import { trackFormInteraction } from './contact/utils/rateLimiting';
 const ContactSection = () => {
   // Track when the form section is viewed
   useEffect(() => {
-    // Force clear any potential issues with local storage that might be affected by VPN changes
+    // Initialize VPN-compatible form tracking
+    trackFormInteraction();
+    
+    // Make sure global fallback objects exist for VPN users
     if (typeof window !== 'undefined') {
+      // Create global fallbacks for VPN users with storage restrictions
+      window.__formStartTime = window.__formStartTime || Date.now();
+      
+      // Clear any potential issues with local storage
       try {
         const today = new Date().toDateString();
         const countKey = `submissions_${today}`;
         
-        // Reset limit if it's unreasonably high (could happen with VPN IP changes)
+        // If count is unreasonably high, reset it
         const count = parseInt(localStorage.getItem(countKey) || '0');
         if (count > 10) {
           localStorage.setItem(countKey, '0');
         }
-        
-        // Additional VPN compatibility: Clear any stale data or corrupted entries
-        const lastSubmission = localStorage.getItem('lastFormSubmission');
-        if (lastSubmission) {
-          const lastSubmissionTime = parseInt(lastSubmission);
-          // If lastSubmission is corrupted or more than 24 hours old, reset it
-          if (isNaN(lastSubmissionTime) || Date.now() - lastSubmissionTime > 86400000) {
-            localStorage.removeItem('lastFormSubmission');
-          }
-        }
-        
-        // Try to access and clear sessionStorage as well for complete reset
-        if (window.sessionStorage.getItem('formStartTime')) {
-          const formStartTime = parseInt(window.sessionStorage.getItem('formStartTime') || '0');
-          // If the form start time is more than 1 hour old, reset it
-          if (Date.now() - formStartTime > 3600000) {
-            window.sessionStorage.removeItem('formStartTime');
-          }
-        }
       } catch (err) {
-        console.error('Storage error:', err);
-        // Fallback: if localStorage access fails, try to use sessionStorage instead
-        try {
-          window.sessionStorage.setItem('vpnCompatibilityMode', 'true');
-        } catch (sessionErr) {
-          console.error('Session storage error:', sessionErr);
-        }
+        console.warn("Storage reset failed, but form will work anyway:", err);
       }
     }
-    
-    trackFormInteraction();
   }, []);
 
   return (
