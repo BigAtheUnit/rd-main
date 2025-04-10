@@ -26,7 +26,7 @@ const Navbar = () => {
   const scrollToSection = (sectionId: string, e: React.MouseEvent) => {
     e.preventDefault();
     
-    if (isProductsPage) {
+    if (location.pathname !== '/') {
       window.location.href = `/#${sectionId}`;
       return;
     }
@@ -93,13 +93,12 @@ const Navbar = () => {
           >
             Testimonials
           </a>
-          <a 
-            href="#contact" 
-            onClick={(e) => scrollToSection('contact', e)}
+          <Link 
+            to="/contact" 
             className="bg-robin-orange text-white px-5 py-2 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
-          </a>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -160,16 +159,13 @@ const Navbar = () => {
           >
             Testimonials
           </a>
-          <a 
-            href="#contact"
-            onClick={(e) => {
-              toggleMenu();
-              scrollToSection('contact', e);
-            }}
+          <Link 
+            to="/contact"
+            onClick={toggleMenu}
             className="text-robin-dark hover:text-robin-orange font-medium text-lg w-full text-center bg-robin-orange text-white px-6 py-3 rounded-md hover:bg-robin-dark transition-colors"
           >
             Contact Us
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

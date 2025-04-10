@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { ArrowUp, Facebook, Twitter, Linkedin, Instagram, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -61,7 +62,7 @@ const Footer = () => {
               <li><a href="/#solutions" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Solutions</a></li>
               <li><a href="/#sectors" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Sectors</a></li>
               <li><a href="/#testimonials" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Success Stories</a></li>
-              <li><a href="/#contact" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Contact</a></li>
+              <li><Link to="/contact" className="text-robin-cream/70 hover:text-robin-orange transition-colors">Contact</Link></li>
             </ul>
           </div>
           
@@ -88,12 +89,12 @@ const Footer = () => {
                 <span className="block text-robin-cream/70">Nottingham City Centre, UK</span>
               </li>
               <li>
-                <a 
-                  href="/#contact" 
+                <Link 
+                  to="/contact" 
                   className="inline-block bg-robin-orange text-white px-4 py-2 rounded-md font-medium hover:bg-white hover:text-robin-dark transition-colors"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
