@@ -21,7 +21,7 @@ function robindigital_add_meta_tags() {
     // Default values
     $title = get_bloginfo('name');
     $description = get_bloginfo('description');
-    $image = get_theme_mod('robindigital_default_og_image', '');
+    $image = get_theme_mod('robindigital_default_og_image', '/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png');
     $domain = 'https://www.robindigital.io';
     
     // If we're on a singular post/page, get specific meta data
@@ -54,6 +54,8 @@ function robindigital_add_meta_tags() {
     
     if ($image) {
         echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
+        echo '<meta property="og:image:width" content="1200" />' . "\n";
+        echo '<meta property="og:image:height" content="630" />' . "\n";
     }
     
     // Twitter Card tags
@@ -108,6 +110,7 @@ function robindigital_structured_data() {
         'name' => 'Robin Digital',
         'url' => 'https://www.robindigital.io',
         'logo' => get_template_directory_uri() . '/assets/images/logo.png',
+        'image' => 'https://www.robindigital.io/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png',
         'description' => get_bloginfo('description'),
         'address' => [
             '@type' => 'PostalAddress',
