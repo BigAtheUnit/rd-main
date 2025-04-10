@@ -10,6 +10,30 @@ RewriteRule . /index.php [L]
 </IfModule>
 # END WordPress
 
+# Security Headers
+<IfModule mod_headers.c>
+  # Protect against XSS attacks
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # Prevent MIME-type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # Prevent clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # Content Security Policy
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.gpteng.co https://fonts.googleapis.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://your-hostinger-domain.com; frame-src 'self'; object-src 'none'; base-uri 'self';"
+  
+  # HTTP Strict Transport Security (HSTS)
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+  
+  # Referrer Policy
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Permissions Policy
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+</IfModule>
+
 # Enable CORS for REST API
 <IfModule mod_headers.c>
   # Add Access-Control-Allow-Origin header for API routes
@@ -70,4 +94,20 @@ Options -Indexes
   ExpiresByType font/woff "access plus 1 year"
   ExpiresByType font/woff2 "access plus 1 year"
   ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# Additional security measures
+# Block potentially malicious requests
+<IfModule mod_rewrite.c>
+  RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+  RewriteRule .* index.php [F,L]
+</IfModule>
+
+# Force HTTPS
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 </IfModule>
