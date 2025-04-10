@@ -10,19 +10,19 @@ interface NewsletterCheckboxProps {
 
 const NewsletterCheckbox: React.FC<NewsletterCheckboxProps> = ({ checked, onCheckedChange }) => {
   return (
-    <div className="flex items-center space-x-2 pt-2">
+    <div className="flex items-start space-x-2 pt-2">
       <Checkbox 
         id="newsletter" 
         name="newsletter"
         checked={checked}
         onCheckedChange={onCheckedChange}
-        className="data-[state=checked]:bg-robin-orange data-[state=checked]:border-robin-orange"
+        className="mt-1 data-[state=checked]:bg-robin-orange data-[state=checked]:border-robin-orange transition-colors duration-300"
       />
       <Label 
         htmlFor="newsletter" 
-        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+        className="text-sm text-robin-dark/70 leading-tight peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
       >
-        Keep me updated with industry news and insights
+        Keep me updated with industry news, design tips, and special offers from Robin Digital
       </Label>
     </div>
   );

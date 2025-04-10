@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactSection from '@/components/ContactSection';
+import { motion } from 'framer-motion';
 
 const Contact = () => {
   useEffect(() => {
@@ -26,17 +27,33 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-robin-cream flex flex-col overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-white to-robin-cream flex flex-col overflow-x-hidden">
       <Navbar />
-      <main className="pt-24">
-        <div className="container mx-auto px-4 md:px-6 py-16">
-          <h1 className="text-3xl md:text-5xl font-bold text-robin-dark mb-8 text-center">
-            Contact <span className="text-robin-orange">Us</span>
-          </h1>
-          <p className="text-xl text-robin-dark/70 max-w-3xl mx-auto text-center mb-16">
-            Have a question or ready to start your next digital project? Reach out to us and let's create something amazing together.
-          </p>
+      <main className="flex-1">
+        {/* Hero Section */}
+        <div className="relative">
+          {/* Background gradients */}
+          <div className="absolute inset-0 bg-gradient-to-r from-robin-orange/5 to-robin-cream/30 pointer-events-none" />
+          <div className="absolute -right-40 top-20 w-80 h-80 bg-robin-orange/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute -left-40 top-40 w-80 h-80 bg-robin-orange/5 rounded-full blur-3xl pointer-events-none" />
+          
+          <div className="container mx-auto px-4 md:px-6 pt-28 pb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-3xl mx-auto text-center"
+            >
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark mb-4">
+                Let's <span className="text-robin-orange">Connect</span>
+              </h1>
+              <p className="text-xl text-robin-dark/70 leading-relaxed">
+                Have a question or ready to start your next digital project? We're here to help transform your ideas into reality.
+              </p>
+            </motion.div>
+          </div>
         </div>
+        
         <ContactSection />
       </main>
       <Footer />

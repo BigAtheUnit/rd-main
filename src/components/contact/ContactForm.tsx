@@ -1,5 +1,6 @@
 
 import React, { useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import FormField from './FormField';
 import FormActions from './FormActions';
@@ -48,36 +49,39 @@ const ContactForm = () => {
   }, []);
 
   return (
-    <Card className="bg-gradient-to-br from-white to-robin-cream/70 shadow-lg rounded-xl border-t-4 border-robin-orange overflow-hidden transform transition-all duration-300 hover:shadow-xl">
-      <div className="p-8 relative">
+    <Card className="h-full bg-white shadow-xl rounded-2xl border-t-4 border-robin-orange overflow-hidden transition-all duration-300 hover:shadow-2xl">
+      <div className="p-6 md:p-8 relative h-full">
         {/* Background gradient effect */}
-        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-robin-orange/5 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-white to-robin-cream/30 pointer-events-none"></div>
         
         {/* Shine animation effect */}
         <div className="absolute -left-10 top-0 h-full w-20 bg-white/20 transform rotate-15 animate-shine pointer-events-none"></div>
         
-        <h3 className="text-2xl font-bold text-robin-dark mb-6 relative">Send us a message</h3>
+        <h3 className="text-2xl font-bold text-robin-dark mb-2 relative">Get in Touch</h3>
+        <p className="text-robin-dark/70 mb-6">We'd love to hear from you. Fill out the form below.</p>
         
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative" id="contact-form">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-5 relative" id="contact-form">
           <div className="space-y-4">
-            <FormField
-              id="name"
-              label="Your Name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="John Smith"
-              required
-            />
-            
-            <FormField
-              id="email"
-              label="Email Address"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="your.email@example.com"
-              required
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <FormField
+                id="name"
+                label="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="John Smith"
+                required
+              />
+              
+              <FormField
+                id="email"
+                label="Email Address"
+                type="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
             
             <FormField
               id="Organisation" // Matches EmailJS template capitalization
