@@ -21,7 +21,7 @@ function robindigital_add_meta_tags() {
     // Default values
     $title = get_bloginfo('name');
     $description = get_bloginfo('description');
-    $default_image = '/lovable-uploads/4c04d567-fd3c-4ee3-8f64-6ebf906b28dc.png';
+    $default_image = '/lovable-uploads/1e3140ae-6f63-4a97-beb8-3517db2288db.png';
     $image = get_theme_mod('robindigital_default_og_image', $default_image);
     $domain = 'https://www.robindigital.io';
     
@@ -68,11 +68,12 @@ function robindigital_add_meta_tags() {
     
     if ($image) {
         echo '<meta property="og:image" content="' . esc_url($image) . '" />' . "\n";
+        echo '<meta property="og:image:secure_url" content="' . esc_url($image) . '" />' . "\n";
         echo '<meta property="og:image:width" content="1200" />' . "\n";
         echo '<meta property="og:image:height" content="630" />' . "\n";
         // Add these tags to improve Facebook compatibility
         echo '<meta property="og:image:type" content="image/png" />' . "\n";
-        echo '<meta property="og:image:alt" content="Robin Digital pattern with robin birds" />' . "\n";
+        echo '<meta property="og:image:alt" content="Robin Digital - Digital Solutions That Transform" />' . "\n";
     }
     
     // Twitter Card tags
@@ -126,7 +127,7 @@ add_action('after_setup_theme', 'robindigital_responsive_image_support');
 function robindigital_structured_data() {
     $domain = 'https://www.robindigital.io';
     $logo = get_template_directory_uri() . '/assets/images/logo.png';
-    $image = $domain . '/lovable-uploads/4c04d567-fd3c-4ee3-8f64-6ebf906b28dc.png';
+    $image = $domain . '/lovable-uploads/1e3140ae-6f63-4a97-beb8-3517db2288db.png';
     
     $schema = [
         '@context' => 'https://schema.org',
