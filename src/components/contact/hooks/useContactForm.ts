@@ -134,10 +134,12 @@ export function useContactForm() {
         });
       }
       
+      // Updated more exciting success message
       toast({
-        title: "Message sent successfully",
-        description: "Thank you for reaching out! We'll get back to you as soon as possible.",
-        duration: 5000,
+        title: "🎉 Message sent successfully! 🎉",
+        description: "Fantastic! Your message is on its way to our team. We're thrilled to hear from you and will be in touch very soon!",
+        duration: 6000,
+        className: "bg-gradient-to-r from-robin-orange/90 to-robin-orange border-robin-orange text-white",
       });
       
       // Clear form after successful submission

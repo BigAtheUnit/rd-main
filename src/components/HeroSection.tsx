@@ -4,12 +4,12 @@ import { ArrowDownCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const HeroSection = () => {
-  const scrollToContact = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
+    const section = document.getElementById(sectionId);
+    if (section) {
       const yOffset = -100; // Adjust offset to position sections correctly
-      const y = contactSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
       window.scrollTo({ top: y, behavior: 'smooth' });
     }
   };
@@ -39,7 +39,7 @@ const HeroSection = () => {
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
               <a 
                 href="#contact" 
-                onClick={scrollToContact}
+                onClick={(e) => scrollToSection(e, 'contact')}
                 className={cn(
                   "bg-robin-orange text-white px-8 py-3 rounded-md font-medium",
                   "hover:bg-robin-dark transition-colors text-center hover-scale",
@@ -50,6 +50,7 @@ const HeroSection = () => {
               </a>
               <a 
                 href="#solutions" 
+                onClick={(e) => scrollToSection(e, 'solutions')}
                 className={cn(
                   "border-2 border-robin-dark/10 bg-white/50 backdrop-blur-sm",
                   "text-robin-dark px-8 py-3 rounded-md font-medium",
@@ -65,7 +66,7 @@ const HeroSection = () => {
       </div>
       
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#solutions" className="text-robin-dark/60 hover:text-robin-orange transition-colors">
+        <a href="#solutions" onClick={(e) => scrollToSection(e, 'solutions')} className="text-robin-dark/60 hover:text-robin-orange transition-colors">
           <ArrowDownCircle size={32} />
         </a>
       </div>
