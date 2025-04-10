@@ -9,7 +9,7 @@ emailjs.init("2e9rybcQIWSRcCfQ9"); // Updated public key for EmailJS
 export interface ContactFormData {
   name: string;
   email: string;
-  organisation: string; // Changed from "organization" to "organisation" to match template
+  Organisation: string; // Changed to match EmailJS template capitalization
   message: string;
   newsletter: boolean;
 }
@@ -21,7 +21,7 @@ export function useContactForm() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
     email: '',
-    organisation: '', // Changed from "organization" to "organisation"
+    Organisation: '', // Changed to match EmailJS template capitalization
     message: '',
     newsletter: false
   });
@@ -86,7 +86,7 @@ export function useContactForm() {
       const sanitizedData = {
         name: sanitizeInput(formData.name),
         email: formData.email, // Email doesn't need sanitization for EmailJS
-        organisation: sanitizeInput(formData.organisation), // Changed from "organization" to "organisation"
+        Organisation: sanitizeInput(formData.Organisation), // Changed to match EmailJS template capitalization
         message: sanitizeInput(formData.message),
         newsletter: formData.newsletter
       };
@@ -106,11 +106,19 @@ export function useContactForm() {
         });
       }
       
+      console.log("Sending email with EmailJS using:", {
+        serviceId: "service_3j234du",
+        templateId: "template_833msmm",
+        formElement: formRef.current,
+        publicKey: "2e9rybcQIWSRcCfQ9"
+      });
+      
       // Send email using EmailJS with updated service and template IDs
       const result = await emailjs.sendForm(
-        "service_3j234du", // Updated Service ID
-        "template_833msmm", // Updated Template ID
-        formRef.current
+        "service_3j234du", // Service ID
+        "template_833msmm", // Template ID
+        formRef.current, 
+        "2e9rybcQIWSRcCfQ9" // Public key
       );
       
       console.log("EmailJS result:", result.text);
@@ -136,7 +144,7 @@ export function useContactForm() {
       setFormData({
         name: '',
         email: '',
-        organisation: '', // Changed from "organization" to "organisation"
+        Organisation: '', // Changed to match EmailJS template capitalization
         message: '',
         newsletter: false
       });

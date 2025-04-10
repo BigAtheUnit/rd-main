@@ -27,7 +27,7 @@ const ContactForm = () => {
         
         <h3 className="text-2xl font-bold text-robin-dark mb-6 relative">Send us a message</h3>
         
-        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 relative" id="contact-form">
           <div className="space-y-4">
             <FormField
               id="name"
@@ -49,11 +49,11 @@ const ContactForm = () => {
             />
             
             <FormField
-              id="organisation" // Changed from "organization" to "organisation"
-              label="Organisation" // Changed label to match
-              value={formData.organisation} // Changed from "organization" to "organisation"
+              id="Organisation" // Changed to match EmailJS template capitalization 
+              label="Organisation"
+              value={formData.Organisation} // Updated to match capitalization
               onChange={handleChange}
-              placeholder="Your organisation name" // Changed from "organization" to "organisation"
+              placeholder="Your organisation name"
             />
             
             <FormField
