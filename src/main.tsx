@@ -1,4 +1,3 @@
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
@@ -10,13 +9,14 @@ import { Toaster as SonnerToaster } from './components/ui/sonner.tsx'
 import './lib/performance.ts'
 
 // Import our utility to remove any lovable references
+// (but keep the required script for the new Lovable features)
 import './components/contact/utils/lovableRemover.ts'
 
 // Apply CSP meta tag for browsers that support it (as a fallback to server headers)
 const applyCSPMetaTag = () => {
   const meta = document.createElement('meta');
   meta.httpEquiv = 'Content-Security-Policy';
-  meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.robindigital.io https://www.google-analytics.com; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; block-all-mixed-content;";
+  meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google-analytics.com https://www.googletagmanager.com https://fonts.googleapis.com https://cdn.gpteng.co; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https: www.google-analytics.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://www.robindigital.io https://www.google-analytics.com; frame-src 'self' https://www.youtube.com https://player.vimeo.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests; block-all-mixed-content;";
   document.head.appendChild(meta);
 };
 
