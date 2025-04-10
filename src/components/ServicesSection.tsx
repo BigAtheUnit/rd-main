@@ -19,12 +19,12 @@ const ServicesSection = () => {
   // Determine which services to display:
   const displayServices = React.useMemo(() => {
     if (services && services.length > 0) {
-      if (services.length >= 10) {
-        // If we have 10 or more services from API, take the first 10
-        return services.slice(0, 10);
+      if (services.length >= 7) {
+        // If we have 7 or more services from API, take the first 7
+        return services.slice(0, 7);
       } else {
-        // If we have less than 10 services from API, combine with defaults
-        const remainingCount = 10 - services.length;
+        // If we have less than 7 services from API, combine with defaults
+        const remainingCount = 7 - services.length;
         return [...services, ...defaultServices.slice(0, remainingCount)];
       }
     }
@@ -65,7 +65,7 @@ const ServicesSection = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 xl:grid-cols-3 xl:grid-rows-3 gap-8 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
           {displayServices.map((service: Service, index: number) => (
             <Dialog 
               key={`service-${service.id}-${index}`}
