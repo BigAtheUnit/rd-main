@@ -21,7 +21,7 @@ function robindigital_add_schema_markup() {
     }
     
     $domain = 'https://www.robindigital.io';
-    $default_image = $domain . '/lovable-uploads/4c04d567-fd3c-4ee3-8f64-6ebf906b28dc.png';
+    $default_image = $domain . '/lovable-uploads/b0eb51f1-73b2-41c3-a1db-c5c31d33b7d7.png';
     
     // Organization schema
     $schema = array(
