@@ -20,38 +20,25 @@ const ContactForm = () => {
   
   const isMobile = useIsMobile();
 
-  // Log platform info for debugging and hide editor on iOS
+  // Apply hiding for Lovable editor on component mount
   useEffect(() => {
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    
-    console.log("Form mounted - Platform info:", {
-      userAgent: navigator.userAgent,
-      platform: navigator.platform,
-      isIOS: isIOS
-    });
-    
-    // Hide the Lovable editor on iOS devices
-    if (isIOS) {
-      // Apply the parameter to the URL to hide the Lovable badge
-      if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-        // Create the new URL with the parameter
-        const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-        const newUrl = window.location.href + separator + 'forceHideBadge=true';
-        
-        // Apply the URL change without page reload
-        window.history.replaceState({}, document.title, newUrl);
-      }
-      
-      // Add meta tag to prevent zooming on iOS
-      const viewportMeta = document.querySelector('meta[name="viewport"]');
-      if (viewportMeta) {
-        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-      }
-      
-      // Set local storage flag to hide Lovable editor
-      localStorage.setItem('hideLovableEditor', 'true');
+    // Hide the Lovable editor for all browsers
+    if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+      const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
+      const newUrl = window.location.href + separator + 'forceHideBadge=true';
+      window.history.replaceState({}, document.title, newUrl);
     }
+    
+    // Set local storage flag to hide Lovable editor
+    localStorage.setItem('hideLovableEditor', 'true');
+    
+    // Add meta tag to prevent zooming on mobile
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+    }
+    
+    console.log("Form mounted - Badge hiding applied to all browsers");
   }, []);
 
   return (

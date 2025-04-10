@@ -4,28 +4,29 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ContactSection from '@/components/ContactSection';
 import { motion } from 'framer-motion';
+import { applyIOSFixes } from '@/components/contact/utils/browserDetection';
 
 const Contact = () => {
   useEffect(() => {
     document.title = "Robin Digital | Contact Us";
     window.scrollTo(0, 0);
     
-    // Check if iOS and attempt to hide the Lovable editor
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                 (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-    
-    if (isIOS) {
-      // If on iOS, apply the URL parameter to hide the Lovable editor
-      if (window.location.href.indexOf('forceHideBadge=true') === -1) {
-        const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
-        const newUrl = window.location.href + separator + 'forceHideBadge=true';
-        
-        // Use history API to avoid page reload
-        window.history.replaceState({}, document.title, newUrl);
-      }
+    // Hide the Lovable editor badge for all browsers, not just iOS
+    if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+      const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
+      const newUrl = window.location.href + separator + 'forceHideBadge=true';
       
-      // Set local storage flag
-      localStorage.setItem('hideLovableEditor', 'true');
+      // Use history API to avoid page reload
+      window.history.replaceState({}, document.title, newUrl);
+    }
+    
+    // Set local storage flag to hide Lovable editor
+    localStorage.setItem('hideLovableEditor', 'true');
+    
+    // Apply meta tag to prevent zooming on mobile
+    const viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
     }
   }, []);
 
@@ -50,7 +51,7 @@ const Contact = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-robin-dark mb-4">
                 Let's <span className="text-robin-orange">Connect</span>
               </h1>
-              <p className="text-xl text-robin-dark leading-relaxed">
+              <p className="text-xl text-robin-dark leading-relaxed mb-6">
                 Have a question or ready to start your next digital project? We're here to help transform your ideas into reality.
               </p>
             </motion.div>

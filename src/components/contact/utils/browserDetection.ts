@@ -19,10 +19,11 @@ export const isSafariBrowser = (): boolean => {
 };
 
 /**
- * Apply iOS-specific fixes to hide the Lovable editor
+ * Apply browser-specific fixes to hide the Lovable editor
+ * Works for all browsers, not just iOS/Safari
  */
 export const applyIOSFixes = (): void => {
-  // If on iOS, apply the URL parameter to hide the Lovable editor
+  // Apply the URL parameter to hide the Lovable editor
   if (window.location.href.indexOf('forceHideBadge=true') === -1) {
     const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
     const newUrl = window.location.href + separator + 'forceHideBadge=true';
@@ -34,9 +35,11 @@ export const applyIOSFixes = (): void => {
   // Set local storage flag to hide Lovable editor
   localStorage.setItem('hideLovableEditor', 'true');
   
-  // Add meta tag to prevent zooming on iOS
+  // Add meta tag to prevent zooming on mobile
   const viewportMeta = document.querySelector('meta[name="viewport"]');
   if (viewportMeta) {
     viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
   }
+  
+  console.log("Applied badge hiding fixes");
 };

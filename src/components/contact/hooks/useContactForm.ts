@@ -58,11 +58,16 @@ export function useContactForm() {
         newsletter: formData.newsletter
       };
       
-      // Detect if the user is on Safari/iOS
-      const isIOS = isIOSDevice();
-      const isSafari = isSafariBrowser();
+      // Apply badge hiding for all browsers, not just iOS/Safari
+      // This ensures the "Edit with Lovable" badge doesn't show for any user
+      if (window.location.href.indexOf('forceHideBadge=true') === -1) {
+        const separator = window.location.href.indexOf('?') !== -1 ? '&' : '?';
+        const newUrl = window.location.href + separator + 'forceHideBadge=true';
+        window.history.replaceState({}, document.title, newUrl);
+      }
       
-      console.log("Browser detection:", { isIOS, isSafari, userAgent: navigator.userAgent });
+      // Set local storage flag to hide Lovable editor for everyone
+      localStorage.setItem('hideLovableEditor', 'true');
       
       // Send the email
       await sendEmail(sanitizedData);
@@ -72,11 +77,6 @@ export function useContactForm() {
       
       // Track successful submission
       trackFormSuccess();
-      
-      // Hide Lovable edit button on iOS
-      if (isIOS || isSafari) {
-        applyIOSFixes();
-      }
       
       // Updated success message
       toast({
@@ -96,13 +96,6 @@ export function useContactForm() {
       });
     } catch (error) {
       console.error("Error sending message:", error);
-      
-      // Detailed error logging for debugging iOS issues
-      console.log("Form submission error details:", {
-        errorMessage: error instanceof Error ? error.message : "Unknown error",
-        formRef: formRef.current ? "Form ref exists" : "Form ref is null",
-        browserInfo: navigator.userAgent
-      });
       
       // Track form submission error
       trackFormError(error instanceof Error ? error.message : 'Unknown error');
