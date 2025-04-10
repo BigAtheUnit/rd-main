@@ -9,12 +9,13 @@ import ContactCTA from '@/components/products/ContactCTA';
 import { useScrollToContact } from '@/components/products/useScrollToContact';
 import { productsData } from '@/components/products/productData';
 import { ProductType } from '@/components/products/productTypes';
+import { LucideIcon } from 'lucide-react';
 
 const ProductsPage = () => {
   const [selectedProduct, setSelectedProduct] = useState<{
     title: string;
     fullDescription: string;
-    icon: React.ReactNode;
+    icon: LucideIcon;
   } | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { handleContactClick } = useScrollToContact();
