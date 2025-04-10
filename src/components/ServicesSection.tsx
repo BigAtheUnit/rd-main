@@ -68,7 +68,7 @@ const ServicesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3 xl:grid-cols-3 xl:grid-rows-3 gap-8 mt-12">
           {displayServices.map((service: Service, index: number) => (
             <Dialog 
-              key={`service-${service.id}-${index}`}  // Fixed key uniqueness issue
+              key={`service-${service.id}-${index}`}
               open={openDialog === service.id} 
               onOpenChange={(open) => setOpenDialog(open ? service.id : null)}
             >
