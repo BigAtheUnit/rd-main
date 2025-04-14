@@ -14,6 +14,30 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://robindigital.com/blog</loc>
+    <lastmod>2025-04-14</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/digital-transformation-charity-sector</loc>
+    <lastmod>2025-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/accessibility-web-design-public-sector</loc>
+    <lastmod>2025-03-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/ai-educational-institutions-guide</loc>
+    <lastmod>2025-03-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://robindigital.com/privacy-policy</loc>
     <lastmod>2023-04-10</lastmod>
     <changefreq>monthly</changefreq>

@@ -76,3 +76,16 @@ export interface Product {
   price: number;
   image: string;
 }
+
+export interface BlogPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  date: string;
+  formattedDate: string;
+  author: string;
+  categories: string[];
+}
