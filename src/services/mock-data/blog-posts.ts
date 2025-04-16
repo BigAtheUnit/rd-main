@@ -254,7 +254,7 @@ export const mockBlogPosts: BlogPost[] = [
       
       <p>To understand how accessibility fits into broader digital strategy trends, explore our guide on <a href="/blog/digital-strategy-public-sector-2025-trends">digital strategy for the public sector in 2025</a>.</p>
     `,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1176&auto=format&fit=crop",
     date: "2025-03-10",
     formattedDate: "March 10, 2025",
     author: "Adam Huckerby",
