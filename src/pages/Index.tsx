@@ -9,7 +9,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
-import { FileText } from 'lucide-react';
+import { FileText, BookOpen } from 'lucide-react';
 
 const Index = () => {
   useEffect(() => {
@@ -25,7 +25,7 @@ const Index = () => {
           <div className="flex justify-center">
             <Button asChild className="bg-robin-orange hover:bg-robin-orange/90 text-white">
               <Link to="/blog" className="flex items-center gap-2">
-                <FileText size={18} />
+                <BookOpen size={18} />
                 Read Our Latest Insights & Case Studies
               </Link>
             </Button>

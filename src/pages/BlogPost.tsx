@@ -20,7 +20,7 @@ const BlogPost = () => {
       document.title = "Blog Post Not Found | Robin Digital";
     }
     window.scrollTo(0, 0);
-  }, [post]);
+  }, []);
   
   if (!post) {
     return (
@@ -77,8 +77,15 @@ const BlogPost = () => {
             </div>
             
             <div className="prose prose-lg max-w-none mb-10 text-robin-dark/90">
-              {/* This would be the rich content of the blog post */}
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              <div className="blog-content" dangerouslySetInnerHTML={{ __html: post.content }} />
+            </div>
+            
+            <div className="my-12 p-6 bg-white rounded-xl shadow-md border-2 border-robin-orange/10">
+              <h3 className="text-xl font-bold mb-3 text-robin-dark">Ready to take the next step?</h3>
+              <p className="mb-4 text-robin-dark/80">Let's discuss how we can help your organisation succeed online.</p>
+              <Button asChild className="bg-robin-orange hover:bg-robin-orange/90 text-white">
+                <Link to="/contact">Contact Us Today</Link>
+              </Button>
             </div>
             
             <Separator className="my-8" />
