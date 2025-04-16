@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, ArrowRight } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
-import { mockBlogPosts } from '@/services/mock-data/blog-posts';
+import { mockBlogPosts } from '@/services/mock-data/blog-posts/index';
 import { Badge } from '@/components/ui/badge';
 
 interface BlogRelatedProps {

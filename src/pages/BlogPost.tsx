@@ -6,7 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
-import { mockBlogPosts } from '@/services/mock-data/blog-posts';
+import { mockBlogPosts } from '@/services/mock-data/blog-posts/index';
 import BlogRelated from '@/components/blog/BlogRelated';
 import { Badge } from '@/components/ui/badge';
 
