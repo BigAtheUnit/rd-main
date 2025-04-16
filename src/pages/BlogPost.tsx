@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { mockBlogPosts } from '@/services/mock-data/blog-posts';
 import BlogRelated from '@/components/blog/BlogRelated';
+import { Badge } from '@/components/ui/badge';
 
 const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -20,7 +21,7 @@ const BlogPost = () => {
       document.title = "Blog Post Not Found | Robin Digital";
     }
     window.scrollTo(0, 0);
-  }, []);
+  }, [post]);
   
   if (!post) {
     return (
@@ -94,10 +95,10 @@ const BlogPost = () => {
               <h3 className="text-xl font-semibold mb-4 text-robin-dark">Tags</h3>
               <div className="flex flex-wrap gap-3">
                 {post.categories.map((category) => (
-                  <div key={category} className="flex items-center bg-white px-4 py-2 rounded-md shadow-sm border border-robin-orange/10">
+                  <Badge key={category} variant="outline" className="bg-white border-robin-orange/20 text-robin-dark hover:bg-robin-orange/5">
                     <Tag size={14} className="mr-2 text-robin-orange" />
                     {category}
-                  </div>
+                  </Badge>
                 ))}
               </div>
             </div>

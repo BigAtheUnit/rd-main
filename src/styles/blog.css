@@ -45,10 +45,12 @@
   color: #ff7d00;
   text-decoration: underline;
   transition: color 0.2s ease;
+  font-weight: 500;
 }
 
 .blog-content a:hover {
   color: #e56e00;
+  text-decoration: underline;
 }
 
 .blog-content blockquote {
@@ -104,6 +106,36 @@
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Lead paragraph styling */
+.blog-content .lead {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 1.75rem;
+  line-height: 1.7;
+}
+
+/* Internal links styling */
+.blog-content a[href^="/blog"] {
+  position: relative;
+  padding-right: 1.5rem;
+}
+
+.blog-content a[href^="/blog"]::after {
+  content: "→";
+  position: absolute;
+  right: 0.3rem;
+  top: 0;
+  font-size: 0.9em;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.blog-content a[href^="/blog"]:hover::after {
+  transform: translateX(3px);
+  opacity: 1;
+}
+
 /* Additional styles for better readability on mobile */
 @media (max-width: 768px) {
   .blog-content h2 {
@@ -117,4 +149,52 @@
   .blog-content p, .blog-content li {
     font-size: 1rem;
   }
+  
+  .blog-content .lead {
+    font-size: 1.1rem;
+  }
+}
+
+/* Category badges within blog content */
+.blog-content .category-badge {
+  display: inline-block;
+  background-color: rgba(255, 125, 0, 0.1);
+  color: #ff7d00;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.25rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Related articles section */
+.related-articles {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.related-articles h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.related-articles ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.related-articles li {
+  margin-bottom: 0.75rem;
+}
+
+.related-articles a {
+  color: #ff7d00;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.related-articles a:hover {
+  text-decoration: underline;
 }

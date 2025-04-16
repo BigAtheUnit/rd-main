@@ -21,10 +21,12 @@ export const mockBlogPosts: BlogPost[] = [
       <p>AI-powered chatbots like Tidio or Intercom now provide instant support on charity websites. Whether it's answering FAQs or guiding someone through a donation process, these bots work 24/7 and improve user experience.</p>
       <p><strong>Bonus:</strong> You can train them with your own organisational tone and language.</p>
       
-      <img src="/lovable-uploads/103a39e1-9bd6-489e-b437-2fb0efc3735b.png" alt="AI chatbot interface showing donation process" />
+      <img src="https://images.unsplash.com/photo-1611926653458-09294b3142bf?q=80&w=1170&auto=format&fit=crop" alt="AI chatbot interface showing donation process" />
       
       <h2>2. Predictive Donor Insights</h2>
       <p>Platforms like Gravyty or Kindful are using AI to analyse donor behaviour and predict who is most likely to give next. This helps fundraising teams focus their energy where it counts.</p>
+      
+      <p>If you're looking to optimize your overall digital approach, our guide on <a href="/blog/donor-centred-web-design-charity-guide">donor-centred web design</a> provides additional strategies to improve conversion rates alongside these AI tools.</p>
       
       <h2>3. Automated Admin and Grant Writing</h2>
       <p>AI tools like Jasper or ChatGPT can help charities generate first drafts for grant applications, newsletters, or reports. That's hours saved every week — especially helpful for smaller teams.</p>
@@ -34,8 +36,10 @@ export const mockBlogPosts: BlogPost[] = [
       
       <h2>5. Campaign Optimisation Tools</h2>
       <p>AI tools like Canva Magic Write or Meta's Advantage+ help charities optimise content, target ads better, and boost results. These tools learn from engagement patterns to refine your messaging automatically.</p>
+      
+      <p>Not sure which AI tool is right for your organization? Check out our detailed guide on <a href="/blog/choose-right-generative-ai-tool-workplace">how to choose the right generative AI tool</a> for your specific needs.</p>
     `,
-    image: "/lovable-uploads/669d1ee3-d953-4651-9924-05accf615dc7.png",
+    image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1170&auto=format&fit=crop",
     date: "2025-04-14",
     formattedDate: "April 14, 2025",
     author: "Robin Digital",
@@ -54,7 +58,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>1. Citizen-Centred Design</h2>
       <p>Gone are the days of clunky portals. 2025 is about designing experiences around real user journeys. The best public sector websites now involve service users in testing and co-design.</p>
       
-      <img src="/lovable-uploads/4c04d567-fd3c-4ee3-8f64-6ebf906b28dc.png" alt="UX Designer working with citizen panel on public service design" />
+      <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1170&auto=format&fit=crop" alt="UX Designer working with citizen panel on public service design" />
       
       <h2>2. Data-Driven Decision Making</h2>
       <p>Public bodies are increasingly using interactive dashboards and real-time data visualisation tools (e.g. Power BI, Tableau) to guide policy, identify inequalities, and demonstrate accountability.</p>
@@ -62,13 +66,17 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>3. Digital Inclusion by Design</h2>
       <p>From assistive tech to mobile-friendly layouts, digital inclusion is baked into the design process. This includes translation tools, plain English content, and ensuring low-income communities aren't left behind.</p>
       
+      <p>Digital inclusion and <a href="/blog/accessibility-web-design-public-sector">web accessibility standards</a> have become critical considerations for all public sector websites, with legal requirements driving better user experiences for everyone.</p>
+      
       <h2>4. Sustainable Technology Choices</h2>
       <p>Green hosting, carbon footprint calculators, and energy-efficient design are all now part of responsible digital procurement.</p>
       
       <h2>5. Cybersecurity and Public Trust</h2>
       <p>With ransomware attacks on the rise, public trust depends on robust security. Public sector digital strategies now prioritise security-by-default and transparent data governance.</p>
+      
+      <p>Building trust through security isn't just good practice—it's becoming a <a href="/blog/cybersecurity-brand-asset-trust-online">valuable brand asset</a> that can differentiate your organization in a crowded digital landscape.</p>
     `,
-    image: "/lovable-uploads/1e3140ae-6f63-4a97-beb8-3517db2288db.png",
+    image: "https://images.unsplash.com/photo-1576267423048-15c0040fec78?q=80&w=1170&auto=format&fit=crop",
     date: "2025-04-11",
     formattedDate: "April 11, 2025",
     author: "Adam Huckerby",
@@ -87,7 +95,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>1. It's Not Mobile-Friendly</h2>
       <p>Most parents now use their phones to access school info. If your site isn't responsive, you're frustrating your audience and losing credibility.</p>
       
-      <img src="/lovable-uploads/a66dd7fe-3331-45db-a03b-de02400f9e5b.png" alt="Parent checking school website on mobile phone" />
+      <img src="https://images.unsplash.com/photo-1605627079912-97c3810a11a4?q=80&w=1170&auto=format&fit=crop" alt="Parent checking school website on mobile phone" />
       
       <h2>2. Important Info is Hard to Find</h2>
       <p>School websites should be simple and intuitive. Key items like lunch menus, contact forms, policies and newsletters should never be more than a few clicks away.</p>
@@ -98,6 +106,8 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>4. You're Not Meeting Accessibility Standards</h2>
       <p>Inclusion is a must. If your site doesn't meet WCAG 2.1 standards, you could be excluding users with visual impairments or learning difficulties.</p>
       
+      <p>For a deeper dive into why <a href="/blog/accessibility-foundation-website-design">accessibility should be the foundation</a> of your website design rather than an afterthought, check out our comprehensive guide.</p>
+      
       <h2>5. There's No Easy Way to Update It</h2>
       <p>A good content management system (CMS) empowers staff to update pages easily. If you rely on a developer for every tweak, it's time for a change.</p>
       
@@ -106,8 +116,10 @@ export const mockBlogPosts: BlogPost[] = [
       
       <h2>7. It's Slow or Unreliable</h2>
       <p>Performance issues lead to higher bounce rates and parent frustration. Speed matters.</p>
+      
+      <p>Looking to integrate modern digital tools into your school's strategy beyond just the website? Our article on <a href="/blog/ai-educational-institutions-guide">implementing AI in educational institutions</a> offers practical guidance for schools ready to take the next step.</p>
     `,
-    image: "/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png",
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=1122&auto=format&fit=crop",
     date: "2025-04-09",
     formattedDate: "April 9, 2025",
     author: "Robin Digital",
@@ -126,7 +138,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>1. Simplify the Donation Journey</h2>
       <p>Can someone donate in under a minute? Remove clutter, reduce form fields, and keep your donate button visible. Every extra click loses donors.</p>
       
-      <img src="/lovable-uploads/089d8670-cb0d-4e00-9f6e-e3b12f34e1da.png" alt="Simplified donation form with progress indicator" />
+      <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1171&auto=format&fit=crop" alt="Simplified donation form with progress indicator" />
       
       <h2>2. Speak to Their Motivation</h2>
       <p>Avoid internal jargon. Use language that speaks to the impact a donor can make — "£10 feeds a child for a week" is far more compelling than "general operations fund".</p>
@@ -137,10 +149,14 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>4. Mobile Matters</h2>
       <p>Your donor likely found you through social media or email. Ensure your donation experience is seamless on mobile.</p>
       
+      <p>For charities looking to leverage technology further, our guide to <a href="/blog/top-5-ai-tools-charities-nonprofits-2025">top AI tools transforming nonprofits</a> can help you extend your digital capabilities beyond just web design.</p>
+      
       <h2>5. Acknowledge and Steward</h2>
       <p>A confirmation page isn't enough. Consider automated thank-you emails, updates, or even a post-donation survey. It all reinforces that the donor matters.</p>
+      
+      <p>Interested in a more comprehensive approach to digital? Read about <a href="/blog/digital-transformation-charity-sector">digital transformation in the charity sector</a> to see how website improvements fit into a broader strategy.</p>
     `,
-    image: "/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png",
+    image: "https://images.unsplash.com/photo-1593113598332-cd59a9e4de24?q=80&w=1170&auto=format&fit=crop",
     date: "2025-04-13",
     formattedDate: "April 13, 2025",
     author: "Adam Huckerby",
@@ -159,7 +175,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>Integrated Systems Approach</h2>
       <p>Leading charities now connect their website, CRM, donation platforms, and communication tools into a cohesive ecosystem. This integration eliminates data silos and provides a 360-degree view of supporters and beneficiaries.</p>
       
-      <img src="/lovable-uploads/b0eb51f1-73b2-41c3-a1db-c5c31d33b7d7.png" alt="Integrated charity digital ecosystem diagram" />
+      <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?q=80&w=1170&auto=format&fit=crop" alt="Integrated charity digital ecosystem diagram" />
       
       <h2>Data-Driven Decision Making</h2>
       <p>Digital transformation enables charities to harness the power of data analytics. From tracking campaign effectiveness to understanding supporter behavior patterns, data insights help optimize resource allocation and strategy.</p>
@@ -167,13 +183,17 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>Digital Service Delivery</h2>
       <p>Many charities are now delivering their services through digital channels. This includes online counseling, virtual training programs, and digital resource libraries—enabling them to extend their reach while reducing operational costs.</p>
       
+      <p>To enhance your online fundraising efforts as part of this transformation, our guide on <a href="/blog/donor-centred-web-design-charity-guide">donor-centred web design</a> offers practical approaches that complement these broader digital initiatives.</p>
+      
       <h2>Remote Working Infrastructure</h2>
       <p>The pandemic accelerated the adoption of remote working tools in the charity sector. Digital transformation includes creating secure, flexible infrastructure that supports staff wherever they are.</p>
       
       <h2>Digital Fundraising Innovation</h2>
       <p>Beyond simple donation pages, advanced digital fundraising now includes peer-to-peer platforms, virtual events, cryptocurrency donations, and personalized supporter journeys.</p>
+      
+      <p>AI tools are increasingly becoming essential to this transformation journey. Learn about the <a href="/blog/top-5-ai-tools-charities-nonprofits-2025">top 5 AI tools transforming charities</a> that can help accelerate your organization's digital evolution.</p>
     `,
-    image: "/lovable-uploads/fa1b2a6e-51e3-4d19-aa05-d6ef0903d74b.png",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop",
     date: "2025-03-15",
     formattedDate: "March 15, 2025",
     author: "Robin Digital",
@@ -199,7 +219,7 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Sufficient time to read and use content</li>
       </ul>
       
-      <img src="/lovable-uploads/1e3140ae-6f63-4a97-beb8-3517db2288db.png" alt="Person using assistive technology to access government website" />
+      <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1176&auto=format&fit=crop" alt="Person using assistive technology to access government website" />
       
       <h2>Benefits Beyond Compliance</h2>
       <p>Accessible websites deliver advantages that benefit everyone:</p>
@@ -210,6 +230,8 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Increased mobile usability</li>
         <li>Future-proofing your digital presence</li>
       </ul>
+      
+      <p>For more on why accessibility should be fundamental to your approach rather than an afterthought, read our article on <a href="/blog/accessibility-foundation-website-design">why accessibility should be the foundation of your website design</a>.</p>
       
       <h2>Practical Implementation</h2>
       <p>Achieving accessibility requires a systematic approach:</p>
@@ -229,8 +251,10 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Automated testing tools like Axe or WAVE</li>
         <li>Accessible design systems and component libraries</li>
       </ul>
+      
+      <p>To understand how accessibility fits into broader digital strategy trends, explore our guide on <a href="/blog/digital-strategy-public-sector-2025-trends">digital strategy for the public sector in 2025</a>.</p>
     `,
-    image: "/lovable-uploads/2ddae788-6e1b-4c0a-8e90-e401d9f120e9.png",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1170&auto=format&fit=crop",
     date: "2025-03-10",
     formattedDate: "March 10, 2025",
     author: "Adam Huckerby",
@@ -256,7 +280,7 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Content summarization and research assistance</li>
       </ul>
       
-      <img src="/lovable-uploads/103a39e1-9bd6-489e-b437-2fb0efc3735b.png" alt="AI-powered personalized learning dashboard" />
+      <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1164&auto=format&fit=crop" alt="AI-powered personalized learning dashboard" />
       
       <h2>Ethical Considerations</h2>
       <p>Educational AI implementations must prioritize:</p>
@@ -267,6 +291,8 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Human oversight and intervention</li>
         <li>Digital inclusion and accessibility</li>
       </ul>
+      
+      <p>As you consider AI adoption, our article on <a href="/blog/choose-right-generative-ai-tool-workplace">choosing the right generative AI tool for your workplace</a> provides additional guidance specific to educational settings.</p>
       
       <h2>Implementation Strategy</h2>
       <p>A phased approach works best for educational institutions:</p>
@@ -287,8 +313,10 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Mechanisms for addressing concerns</li>
         <li>Compliance with education-specific regulations</li>
       </ul>
+      
+      <p>For educational institutions considering a broader website refresh alongside AI implementation, our guide to <a href="/blog/school-website-redesign-signs">signs it's time for a school website redesign</a> may help identify opportunities for improvement.</p>
     `,
-    image: "/lovable-uploads/4ab2613f-3380-4c13-8856-aa4562794813.png",
+    image: "https://images.unsplash.com/photo-1510751007277-36932aac9ebd?q=80&w=1169&auto=format&fit=crop",
     date: "2025-03-05",
     formattedDate: "March 5, 2025",
     author: "Robin Digital",
@@ -317,7 +345,7 @@ export const mockBlogPosts: BlogPost[] = [
       
       <p>If you need help with multiple areas, consider whether one platform can handle them all or if you'll need a suite of tools.</p>
       
-      <img src="/lovable-uploads/669d1ee3-d953-4651-9924-05accf615dc7.png" alt="Comparison of AI tools for different use cases" />
+      <img src="https://images.unsplash.com/photo-1677442135110-e273ee868734?q=80&w=1132&auto=format&fit=crop" alt="Comparison of AI tools for different use cases" />
       
       <h2>2. Consider Your Sector's Requirements</h2>
       <p>Different industries have different needs:</p>
@@ -328,6 +356,8 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Education providers should look for AI that supports learning, not shortcuts.</li>
         <li>Businesses might prioritise scalability and integration with CRM or analytics.</li>
       </ul>
+      
+      <p>For specific AI applications in the charity sector, our article on <a href="/blog/top-5-ai-tools-charities-nonprofits-2025">top AI tools transforming charities and nonprofits</a> provides tailored recommendations.</p>
       
       <h2>3. Look at Integration and Ease of Use</h2>
       <p>The best AI tool is the one your team will actually use. Choose platforms with:</p>
@@ -369,8 +399,10 @@ export const mockBlogPosts: BlogPost[] = [
         <li>Writesonic – blog and copywriting for SEO</li>
         <li>Copy.ai – AI for teams and workflows</li>
       </ul>
+      
+      <p>For small businesses looking to integrate AI into a broader digital strategy, our guide to <a href="/blog/top-digital-trends-small-businesses-2025">top digital trends for small businesses in 2025</a> provides additional context on how AI fits with other emerging technologies.</p>
     `,
-    image: "/lovable-uploads/103a39e1-9bd6-489e-b437-2fb0efc3735b.png",
+    image: "https://images.unsplash.com/photo-1679931974241-bf91f0e8e8e8?q=80&w=1169&auto=format&fit=crop",
     date: "2025-04-15",
     formattedDate: "April 15, 2025",
     author: "Adam Huckerby",
@@ -391,12 +423,14 @@ export const mockBlogPosts: BlogPost[] = [
       
       <p>Tools like Google Business Profile and schema markup are essential.</p>
       
-      <img src="/lovable-uploads/b0eb51f1-73b2-41c3-a1db-c5c31d33b7d7.png" alt="Voice search on a smartphone finding local businesses" />
+      <img src="https://images.unsplash.com/photo-1622675363311-3e1904dc1885?q=80&w=1170&auto=format&fit=crop" alt="Voice search on a smartphone finding local businesses" />
       
       <h2>2. Automation with AI</h2>
       <p>From invoice processing to customer responses, small businesses are using AI-powered tools like Zapier, Tidio, and ChatGPT to reduce admin time and improve customer experience.</p>
       
       <p>This isn't about replacing people — it's about letting your team focus on what matters.</p>
+      
+      <p>For guidance on selecting the right AI solutions for your specific needs, see our detailed guide on <a href="/blog/choose-right-generative-ai-tool-workplace">choosing the right generative AI tool</a> for your workplace.</p>
       
       <h2>3. Social Selling and Shortform Video</h2>
       <p>Video content continues to dominate. Platforms like Instagram Reels, TikTok, and YouTube Shorts are helping even microbusinesses reach huge audiences with minimal spend.</p>
@@ -408,8 +442,10 @@ export const mockBlogPosts: BlogPost[] = [
       
       <h2>5. Sustainability and Digital Carbon Footprint</h2>
       <p>Consumers increasingly expect ethical practices — including online. This includes green hosting, optimised image loading, and transparent supply chains.</p>
+      
+      <p>As you upgrade your online presence, don't overlook the importance of <a href="/blog/accessibility-foundation-website-design">website accessibility</a> — it's not just good practice, it's becoming essential for reaching all potential customers.</p>
     `,
-    image: "/lovable-uploads/fa1b2a6e-51e3-4d19-aa05-d6ef0903d74b.png",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop",
     date: "2025-04-12",
     formattedDate: "April 12, 2025",
     author: "Robin Digital",
@@ -426,7 +462,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>1. Accessibility Is a Legal Requirement</h2>
       <p>Under the Equality Act 2010, UK websites must be accessible to people with disabilities. This includes screen reader support, keyboard navigation, and proper colour contrast.</p>
       
-      <img src="/lovable-uploads/1e3140ae-6f63-4a97-beb8-3517db2288db.png" alt="Person using screen reader technology on a website" />
+      <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?q=80&w=1170&auto=format&fit=crop" alt="Person using screen reader technology on a website" />
       
       <h2>2. It Expands Your Audience</h2>
       <p>An accessible site works for:</p>
@@ -447,8 +483,12 @@ export const mockBlogPosts: BlogPost[] = [
       
       <h2>5. It's the Right Thing to Do</h2>
       <p>Inclusion builds trust. Prioritising accessibility shows users you care about everyone, not just the majority.</p>
+      
+      <p>For public sector organizations where accessibility is a legal mandate, our guide on <a href="/blog/accessibility-web-design-public-sector">accessibility in web design for the public sector</a> provides specific compliance guidance.</p>
+      
+      <p>When building customer trust online, accessibility works hand in hand with security. Learn how <a href="/blog/cybersecurity-brand-asset-trust-online">cybersecurity can be a valuable brand asset</a> that complements your accessibility efforts.</p>
     `,
-    image: "/lovable-uploads/4c04d567-fd3c-4ee3-8f64-6ebf906b28dc.png",
+    image: "https://images.unsplash.com/photo-1587614382346-4ec70e388b28?q=80&w=1170&auto=format&fit=crop",
     date: "2025-04-10",
     formattedDate: "April 10, 2025",
     author: "Adam Huckerby",
@@ -467,7 +507,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>1. Secure Websites = Confident Visitors</h2>
       <p>From SSL certificates to secure payment gateways, visible signs of safety (like the padlock icon) give users confidence in your platform.</p>
       
-      <img src="/lovable-uploads/089d8670-cb0d-4e00-9f6e-e3b12f34e1da.png" alt="Secure website browser showing padlock icon and security badge" />
+      <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1170&auto=format&fit=crop" alt="Secure website browser showing padlock icon and security badge" />
       
       <h2>2. Data Protection Shows Professionalism</h2>
       <p>Clearly stating your GDPR compliance, cookie policy, and data handling procedures sends the message that your organisation is transparent and responsible.</p>
@@ -477,11 +517,16 @@ export const mockBlogPosts: BlogPost[] = [
       
       <h2>4. Cybersecurity Can Be a Selling Point</h2>
       <p>Highlight your cybersecurity policies as part of your pitch — especially if you handle sensitive or financial data. It can give you the edge over competitors.</p>
+      
+      <p>Security works hand-in-hand with accessibility to create truly inclusive websites. Learn why <a href="/blog/accessibility-foundation-website-design">accessibility should be the foundation</a> of your website design to complement your security measures.</p>
+      
+      <p>For public sector organizations where both security and accessibility are critical legal requirements, our guide on <a href="/blog/digital-strategy-public-sector-2025-trends">digital strategy trends for the public sector</a> provides a comprehensive approach.</p>
     `,
-    image: "/lovable-uploads/669d1ee3-d953-4651-9924-05accf615dc7.png",
+    image: "https://images.unsplash.com/photo-1614064642760-88f5640d4247?q=80&w=1287&auto=format&fit=crop",
     date: "2025-04-08",
     formattedDate: "April 8, 2025",
     author: "Robin Digital",
     categories: ["Cybersecurity", "Digital Strategy", "Trust", "Brand Building"]
   }
 ];
+
