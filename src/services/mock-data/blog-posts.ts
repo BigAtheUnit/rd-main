@@ -1,9 +1,147 @@
-
 import { BlogPost } from '../models/content-types';
 
 export const mockBlogPosts: BlogPost[] = [
   {
     id: 1,
+    title: "Top 5 AI Tools Transforming Charities and Nonprofits in 2025",
+    slug: "top-5-ai-tools-charities-nonprofits-2025",
+    excerpt: "Discover the top AI tools helping charities work smarter in 2025. From donor prediction to automated admin, here's what's changing the game.",
+    content: `
+      <p>Artificial intelligence isn't just for big tech firms — it's quietly revolutionising how charities operate too. In 2025, more nonprofits are using AI to save time, increase impact, and better understand supporters.</p>
+      
+      <p>Here are five AI tools making a real difference for UK-based charities and nonprofits today.</p>
+      
+      <h2>1. Chatbots for Support and Donations</h2>
+      <p>AI-powered chatbots like Tidio or Intercom now provide instant support on charity websites. Whether it's answering FAQs or guiding someone through a donation process, these bots work 24/7 and improve user experience.</p>
+      <p>Bonus: You can train them with your own organisational tone and language.</p>
+      
+      <h2>2. Predictive Donor Insights</h2>
+      <p>Platforms like Gravyty or Kindful are using AI to analyse donor behaviour and predict who is most likely to give next. This helps fundraising teams focus their energy where it counts.</p>
+      
+      <h2>3. Automated Admin and Grant Writing</h2>
+      <p>AI tools like Jasper or ChatGPT can help charities generate first drafts for grant applications, newsletters, or reports. That's hours saved every week — especially helpful for smaller teams.</p>
+      
+      <h2>4. Data Cleaning and CRM Syncing</h2>
+      <p>Tools like Zapier AI or HubSpot AI make data clean-up and CRM syncing easier. They can identify duplicates, flag outdated info, and ensure your donor database is tidy and up to date.</p>
+      
+      <h2>5. Campaign Optimisation Tools</h2>
+      <p>AI tools like Canva Magic Write or Meta's Advantage+ help charities optimise content, target ads better, and boost results. These tools learn from engagement patterns to refine your messaging automatically.</p>
+      
+      <p>Want help integrating AI into your charity's digital strategy? <a href="/contact">Get in touch with Robin Digital</a> for ethical, effective AI solutions tailored to your mission.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    date: "2025-04-14",
+    formattedDate: "April 14, 2025",
+    author: "Robin Digital",
+    categories: ["Charity Sector", "AI Integration", "Digital Strategy"]
+  },
+  {
+    id: 2,
+    title: "Digital Strategy for the Public Sector: 2025 Trends You Can't Ignore",
+    slug: "digital-strategy-public-sector-2025-trends",
+    excerpt: "From data dashboards to digital inclusion, here are the key trends shaping public sector digital strategy in 2025 — and how to stay ahead.",
+    content: `
+      <p>The pace of change in the public sector has accelerated dramatically post-pandemic. Digital is no longer a nice-to-have — it's essential to delivering services that are faster, fairer, and more accessible.</p>
+      
+      <p>Here are the key digital trends shaping 2025 and how councils, NHS bodies, and public service providers can respond.</p>
+      
+      <h2>1. Citizen-Centred Design</h2>
+      <p>Gone are the days of clunky portals. 2025 is about designing experiences around real user journeys. The best public sector websites now involve service users in testing and co-design.</p>
+      
+      <h2>2. Data-Driven Decision Making</h2>
+      <p>Public bodies are increasingly using interactive dashboards and real-time data visualisation tools (e.g. Power BI, Tableau) to guide policy, identify inequalities, and demonstrate accountability.</p>
+      
+      <h2>3. Digital Inclusion by Design</h2>
+      <p>From assistive tech to mobile-friendly layouts, digital inclusion is baked into the design process. This includes translation tools, plain English content, and ensuring low-income communities aren't left behind.</p>
+      
+      <h2>4. Sustainable Technology Choices</h2>
+      <p>Green hosting, carbon footprint calculators, and energy-efficient design are all now part of responsible digital procurement.</p>
+      
+      <h2>5. Cybersecurity and Public Trust</h2>
+      <p>With ransomware attacks on the rise, public trust depends on robust security. Public sector digital strategies now prioritise security-by-default and transparent data governance.</p>
+      
+      <p>At Robin Digital, we help public sector organisations modernise services without losing sight of access, trust, or compliance. <a href="/contact">Talk to us</a> about building your next digital strategy.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    date: "2025-04-11",
+    formattedDate: "April 11, 2025",
+    author: "Adam Huckerby",
+    categories: ["Public Sector", "Digital Strategy", "Cybersecurity"]
+  },
+  {
+    id: 3,
+    title: "Is Your School's Website Letting You Down? 7 Signs It's Time for a Redesign",
+    slug: "school-website-redesign-signs",
+    excerpt: "From clunky navigation to poor mobile usability — here's how to tell if your school website needs a redesign in 2025.",
+    content: `
+      <p>Your website is the digital front door of your school — and in 2025, parents, students, and Ofsted expect more than just term dates and photos.</p>
+      
+      <p>Here are seven warning signs your website might be letting you down.</p>
+      
+      <h2>1. It's Not Mobile-Friendly</h2>
+      <p>Most parents now use their phones to access school info. If your site isn't responsive, you're frustrating your audience and losing credibility.</p>
+      
+      <h2>2. Important Info is Hard to Find</h2>
+      <p>School websites should be simple and intuitive. Key items like lunch menus, contact forms, policies and newsletters should never be more than a few clicks away.</p>
+      
+      <h2>3. The Design Looks Dated</h2>
+      <p>An outdated design can give the impression of a school that's behind the times — even if that's far from the truth. A fresh, modern layout builds trust and pride.</p>
+      
+      <h2>4. You're Not Meeting Accessibility Standards</h2>
+      <p>Inclusion is a must. If your site doesn't meet WCAG 2.1 standards, you could be excluding users with visual impairments or learning difficulties.</p>
+      
+      <h2>5. There's No Easy Way to Update It</h2>
+      <p>A good content management system (CMS) empowers staff to update pages easily. If you rely on a developer for every tweak, it's time for a change.</p>
+      
+      <h2>6. It Doesn't Reflect Your Ethos</h2>
+      <p>Your values should shine through in the design, imagery, and language. If it feels generic, it won't engage your community.</p>
+      
+      <h2>7. It's Slow or Unreliable</h2>
+      <p>Performance issues lead to higher bounce rates and parent frustration. Speed matters.</p>
+      
+      <p>Robin Digital builds school websites that are fast, friendly, and future-proof. If you're ready to raise your digital standards, <a href="/contact">get in touch today</a>.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1503676382389-4809596d5290?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    date: "2025-04-09",
+    formattedDate: "April 9, 2025",
+    author: "Robin Digital",
+    categories: ["Education", "Web Development", "UX/UI Design"]
+  },
+  {
+    id: 4,
+    title: "What Is Donor-Centred Web Design? A Guide for Charities That Want to Raise More",
+    slug: "donor-centred-web-design-charity-guide",
+    excerpt: "Want more donations online? Learn how donor-centred web design boosts conversions and deepens relationships.",
+    content: `
+      <p>Fundraising success isn't just about what you say — it's how you present it. Donor-centred design is all about making your website work for your supporters, not just your team.</p>
+      
+      <p>Here's what it means, and how to apply it.</p>
+      
+      <h2>1. Simplify the Donation Journey</h2>
+      <p>Can someone donate in under a minute? Remove clutter, reduce form fields, and keep your donate button visible. Every extra click loses donors.</p>
+      
+      <h2>2. Speak to Their Motivation</h2>
+      <p>Avoid internal jargon. Use language that speaks to the impact a donor can make — "£10 feeds a child for a week" is far more compelling than "general operations fund".</p>
+      
+      <h2>3. Show Proof of Impact</h2>
+      <p>Use photos, stories, and stats to show where donations go. Transparency builds trust and repeat giving.</p>
+      
+      <h2>4. Mobile Matters</h2>
+      <p>Your donor likely found you through social media or email. Ensure your donation experience is seamless on mobile.</p>
+      
+      <h2>5. Acknowledge and Steward</h2>
+      <p>A confirmation page isn't enough. Consider automated thank-you emails, updates, or even a post-donation survey. It all reinforces that the donor matters.</p>
+      
+      <p>Ready to make your website work harder for your fundraising goals? Robin Digital specialises in donor-centred websites that convert. <a href="/contact">Let's talk</a>.</p>
+    `,
+    image: "https://images.unsplash.com/photo-1579208575657-c595a05383b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    date: "2025-04-13",
+    formattedDate: "April 13, 2025",
+    author: "Adam Huckerby",
+    categories: ["Charity Sector", "UX/UI Design", "Conversion Optimization"]
+  },
+  {
+    id: 5,
     title: "How Digital Transformation Is Reshaping the Charity Sector",
     slug: "digital-transformation-charity-sector",
     excerpt: "Discover how charities are leveraging digital tools to increase donations, improve operations, and create more impact with limited resources.",
@@ -35,7 +173,7 @@ export const mockBlogPosts: BlogPost[] = [
     categories: ["Charity Sector", "Digital Strategy", "Case Studies"]
   },
   {
-    id: 2,
+    id: 6,
     title: "Accessibility in Web Design: Best Practices for Public Sector Sites",
     slug: "accessibility-web-design-public-sector",
     excerpt: "Learn how public sector organizations can create inclusive digital experiences that comply with accessibility standards and serve all citizens equally.",
@@ -68,158 +206,6 @@ export const mockBlogPosts: BlogPost[] = [
     formattedDate: "March 10, 2025",
     author: "Michael Chen",
     categories: ["Accessibility", "Web Development", "Public Sector"]
-  },
-  {
-    id: 3,
-    title: "Leveraging AI for Educational Institutions: A Practical Guide",
-    slug: "ai-educational-institutions-guide",
-    excerpt: "Explore how schools, colleges, and universities can implement AI tools to enhance learning experiences, streamline administration, and prepare students for the future.",
-    content: `
-      <p>Artificial intelligence is revolutionizing education, offering powerful tools to enhance teaching, learning, and administration. This guide explores practical applications of AI in educational settings.</p>
-      
-      <h2>Personalized Learning Experiences</h2>
-      <p>AI-driven adaptive learning platforms can tailor content to individual student needs, providing customized learning paths that address knowledge gaps and build on strengths.</p>
-      
-      <h2>Streamlining Administrative Tasks</h2>
-      <p>From automating grading to managing enrollments, AI can free up valuable time for educators and administrators, allowing them to focus more on student engagement.</p>
-      
-      <h2>Enhancing Student Support</h2>
-      <p>AI chatbots and virtual assistants can provide 24/7 support to students, answering common questions and guiding them to appropriate resources.</p>
-      
-      <h2>Data-Driven Decision Making</h2>
-      <p>Analytics powered by AI can help institutions identify trends, predict outcomes, and make informed decisions about curriculum development and resource allocation.</p>
-      
-      <h2>Case Study: University of Birmingham</h2>
-      <p>The University of Birmingham implemented an AI-driven analytics platform that improved student retention rates by 15% through early intervention strategies based on predictive modeling.</p>
-      
-      <h2>Ethical Considerations</h2>
-      <p>As with any technology, AI in education raises important ethical questions. We discuss concerns around data privacy, algorithm bias, and the appropriate balance between technology and human interaction.</p>
-      
-      <h2>Getting Started with AI</h2>
-      <p>Practical steps for educational institutions looking to implement AI solutions, from assessing needs to selecting appropriate tools and training staff.</p>
-      
-      <h2>Conclusion</h2>
-      <p>When thoughtfully implemented, AI can transform educational experiences, creating more efficient institutions and better preparing students for a technology-driven future.</p>
-    `,
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "2025-03-05",
-    formattedDate: "March 5, 2025",
-    author: "Dr. Emily Wright",
-    categories: ["Education", "AI Integration", "Digital Strategy"]
-  },
-  {
-    id: 4,
-    title: "How We Redesigned the National Trust's Digital Donation Platform",
-    slug: "national-trust-digital-donation-platform",
-    excerpt: "A behind-the-scenes look at our work with the National Trust to create a seamless, user-friendly donation experience that increased online giving by 35%.",
-    content: `
-      <p>The National Trust approached Robin Digital with a challenge: their online donation platform was outdated, difficult to use, and failing to convert visitors into donors. This case study reveals our approach and the impressive results we achieved.</p>
-      
-      <h2>Understanding the Challenge</h2>
-      <p>We began with comprehensive user research, identifying key pain points in the existing donation journey and opportunities for improvement.</p>
-      
-      <h2>User-Centered Design Process</h2>
-      <p>Our design team created a streamlined donation flow that minimized friction and incorporated psychological triggers to encourage giving.</p>
-      
-      <h2>Mobile-First Approach</h2>
-      <p>With over 60% of visitors accessing the site via mobile devices, we prioritized a responsive design that worked flawlessly across all screen sizes.</p>
-      
-      <h2>A/B Testing for Optimization</h2>
-      <p>We implemented rigorous A/B testing to refine messaging, button placement, and suggested donation amounts, continually improving conversion rates.</p>
-      
-      <h2>Technical Implementation</h2>
-      <p>The platform was built using modern web technologies, with a focus on speed, reliability, and security—essential considerations for handling financial transactions.</p>
-      
-      <h2>Results and Impact</h2>
-      <p>The redesigned platform led to a 35% increase in online donations, a 28% increase in average donation value, and a 40% reduction in abandonment rate. The National Trust estimated an additional £1.2 million in annual donations as a result.</p>
-      
-      <h2>Lessons Learned</h2>
-      <p>Key insights from the project that can be applied to other donation platforms and non-profit digital experiences.</p>
-      
-      <h2>Conclusion</h2>
-      <p>This project demonstrates how thoughtful digital design can significantly impact a charity's fundraising capability, creating a win-win situation for both the organization and its supporters.</p>
-    `,
-    image: "https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "2025-02-28",
-    formattedDate: "February 28, 2025",
-    author: "James Wilson",
-    categories: ["Case Studies", "Charity Sector", "UX/UI Design"]
-  },
-  {
-    id: 5,
-    title: "Essential Digital Accessibility Laws Every Organization Should Know",
-    slug: "digital-accessibility-laws-organizations",
-    excerpt: "An overview of the legal landscape around digital accessibility in the UK, EU, and globally, with practical compliance recommendations.",
-    content: `
-      <p>Digital accessibility is not just a best practice—it's increasingly a legal requirement. Organizations that fail to make their digital properties accessible face potential lawsuits, fines, and reputation damage.</p>
-      
-      <h2>UK Accessibility Regulations</h2>
-      <p>The Public Sector Bodies (Websites and Mobile Applications) Accessibility Regulations 2018 requires public sector websites and apps to meet accessibility standards. We break down the requirements and deadlines.</p>
-      
-      <h2>The Equality Act 2010</h2>
-      <p>This landmark legislation protects disabled people from discrimination and requires reasonable adjustments to be made, including for digital services.</p>
-      
-      <h2>European Union Regulations</h2>
-      <p>The European Accessibility Act and Web Accessibility Directive affect organizations operating in EU countries. We explain the implications, even post-Brexit.</p>
-      
-      <h2>Global Perspective: ADA and International Standards</h2>
-      <p>The Americans with Disabilities Act has global influence, and international organizations must navigate various legal frameworks. We provide a comprehensive overview.</p>
-      
-      <h2>WCAG Compliance Levels</h2>
-      <p>Understanding the difference between WCAG 2.0, 2.1, and upcoming 2.2 standards, and what level of compliance (A, AA, AAA) is legally required in different contexts.</p>
-      
-      <h2>Practical Steps to Compliance</h2>
-      <p>A roadmap for organizations looking to achieve and maintain legal compliance with accessibility regulations.</p>
-      
-      <h2>Case Law and Precedents</h2>
-      <p>Notable legal cases that have shaped the interpretation and enforcement of accessibility laws.</p>
-      
-      <h2>Conclusion</h2>
-      <p>Digital accessibility is both a legal obligation and a business opportunity. Organizations that prioritize inclusive design not only mitigate legal risk but also expand their market reach and demonstrate corporate social responsibility.</p>
-    `,
-    image: "https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "2025-02-20",
-    formattedDate: "February 20, 2025",
-    author: "Alexandra Bennett",
-    categories: ["Accessibility", "Legal Compliance", "Digital Strategy"]
-  },
-  {
-    id: 6,
-    title: "Creating Digital Experiences That Convert: Lessons from E-commerce",
-    slug: "digital-experiences-convert-ecommerce-lessons",
-    excerpt: "Insights from successful e-commerce websites that can be applied to charity and public sector sites to improve user engagement and conversion rates.",
-    content: `
-      <p>While e-commerce and non-profit websites serve different purposes, they share a common goal: converting visitors into action-takers. This article explores valuable lessons from e-commerce that can benefit charity and public sector digital experiences.</p>
-      
-      <h2>The Psychology of Conversion</h2>
-      <p>Understanding the cognitive factors that influence decision-making online, from trust signals to social proof and urgency triggers.</p>
-      
-      <h2>Simplifying User Journeys</h2>
-      <p>How reducing friction and streamlining pathways can significantly improve conversion rates, whether the goal is a purchase, donation, or service registration.</p>
-      
-      <h2>Effective Call-to-Action Design</h2>
-      <p>Principles for creating compelling CTAs that stand out and motivate users to take the desired action.</p>
-      
-      <h2>Personalization Techniques</h2>
-      <p>How tailoring content and recommendations based on user behavior can enhance engagement and conversion in any sector.</p>
-      
-      <h2>Mobile Optimization Strategies</h2>
-      <p>Essential approaches for creating mobile experiences that convert, from responsive design to touch-friendly interfaces.</p>
-      
-      <h2>Testing and Iteration</h2>
-      <p>The importance of continuous testing and data-driven refinement in maximizing conversion rates over time.</p>
-      
-      <h2>Case Study: How Oxfam Applied E-commerce Principles</h2>
-      <p>Examining how Oxfam implemented e-commerce best practices to their donation platform, resulting in a significant increase in online giving.</p>
-      
-      <h2>Conclusion</h2>
-      <p>By applying proven e-commerce strategies thoughtfully, non-profit and public sector organizations can create more effective digital experiences that better serve their missions.</p>
-    `,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    date: "2025-02-15",
-    formattedDate: "February 15, 2025",
-    author: "Thomas Reynolds",
-    categories: ["Digital Strategy", "UX/UI Design", "Conversion Optimization"]
   },
   {
     id: 7,

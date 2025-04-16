@@ -3,21 +3,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://robindigital.com/</loc>
-    <lastmod>2023-04-10</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://robindigital.com/products</loc>
-    <lastmod>2023-04-10</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://robindigital.com/blog</loc>
-    <lastmod>2025-04-14</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/top-5-ai-tools-charities-nonprofits-2025</loc>
+    <lastmod>2025-04-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/digital-strategy-public-sector-2025-trends</loc>
+    <lastmod>2025-04-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/school-website-redesign-signs</loc>
+    <lastmod>2025-04-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://robindigital.com/blog/donor-centred-web-design-charity-guide</loc>
+    <lastmod>2025-04-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://robindigital.com/blog/digital-transformation-charity-sector</loc>
@@ -39,13 +63,13 @@
   </url>
   <url>
     <loc>https://robindigital.com/privacy-policy</loc>
-    <lastmod>2023-04-10</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://robindigital.com/terms-of-service</loc>
-    <lastmod>2023-04-10</lastmod>
+    <lastmod>2025-04-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

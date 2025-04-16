@@ -86,6 +86,12 @@ const Navbar = () => {
           >
             Products
           </Link>
+          <Link 
+            to="/blog" 
+            className="text-robin-dark hover:text-robin-orange font-medium transition-colors"
+          >
+            Blog
+          </Link>
           <a 
             href="#testimonials" 
             onClick={(e) => scrollToSection('testimonials', e)}
@@ -148,6 +154,13 @@ const Navbar = () => {
             className="text-robin-dark hover:text-robin-orange font-medium text-lg"
           >
             Products
+          </Link>
+          <Link 
+            to="/blog"
+            onClick={toggleMenu}
+            className="text-robin-dark hover:text-robin-orange font-medium text-lg"
+          >
+            Blog
           </Link>
           <a 
             href="#testimonials"
