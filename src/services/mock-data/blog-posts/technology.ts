@@ -104,7 +104,7 @@ export const technologyPosts: BlogPost[] = [
       <h2>1. Secure Websites = Confident Visitors</h2>
       <p>From SSL certificates to secure payment gateways, visible signs of safety (like the padlock icon) give users confidence in your platform.</p>
       
-      <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=1170&auto=format&fit=crop" alt="Secure website browser showing padlock icon and security badge" />
+      <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" alt="Secure computer screen showing cybersecurity dashboard" />
       
       <h2>2. Data Protection Shows Professionalism</h2>
       <p>Clearly stating your GDPR compliance, cookie policy, and data handling procedures sends the message that your organisation is transparent and responsible.</p>
@@ -119,7 +119,7 @@ export const technologyPosts: BlogPost[] = [
       
       <p>For public sector organizations where both security and accessibility are critical legal requirements, our guide on <a href="/blog/digital-strategy-public-sector-2025-trends">digital strategy trends for the public sector</a> provides a comprehensive approach.</p>
     `,
-    image: "https://images.unsplash.com/photo-1614064642760-88f5640d4247?q=80&w=1287&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
     date: "2025-04-08",
     formattedDate: "April 8, 2025",
     author: "Robin Digital",
