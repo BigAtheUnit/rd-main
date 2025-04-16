@@ -1,4 +1,3 @@
-
 import { BlogPost } from '../models/content-types';
 
 // Function to format blog HTML content with proper styling for readability
@@ -138,7 +137,7 @@ export const mockBlogPosts: BlogPost[] = [
       <h2>1. Simplify the Donation Journey</h2>
       <p>Can someone donate in under a minute? Remove clutter, reduce form fields, and keep your donate button visible. Every extra click loses donors.</p>
       
-      <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?q=80&w=1171&auto=format&fit=crop" alt="Simplified donation form with progress indicator" />
+      <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop" alt="Simplified donation form with progress indicator" />
       
       <h2>2. Speak to Their Motivation</h2>
       <p>Avoid internal jargon. Use language that speaks to the impact a donor can make — "£10 feeds a child for a week" is far more compelling than "general operations fund".</p>
@@ -156,7 +155,7 @@ export const mockBlogPosts: BlogPost[] = [
       
       <p>Interested in a more comprehensive approach to digital? Read about <a href="/blog/digital-transformation-charity-sector">digital transformation in the charity sector</a> to see how website improvements fit into a broader strategy.</p>
     `,
-    image: "https://images.unsplash.com/photo-1593113598332-cd59a9e4de24?q=80&w=1170&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1115&auto=format&fit=crop",
     date: "2025-04-13",
     formattedDate: "April 13, 2025",
     author: "Adam Huckerby",
@@ -345,7 +344,7 @@ export const mockBlogPosts: BlogPost[] = [
       
       <p>If you need help with multiple areas, consider whether one platform can handle them all or if you'll need a suite of tools.</p>
       
-      <img src="https://images.unsplash.com/photo-1677442135110-e273ee868734?q=80&w=1132&auto=format&fit=crop" alt="Comparison of AI tools for different use cases" />
+      <img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1170&auto=format&fit=crop" alt="Comparison of AI tools for different use cases" />
       
       <h2>2. Consider Your Sector's Requirements</h2>
       <p>Different industries have different needs:</p>
@@ -402,7 +401,7 @@ export const mockBlogPosts: BlogPost[] = [
       
       <p>For small businesses looking to integrate AI into a broader digital strategy, our guide to <a href="/blog/top-digital-trends-small-businesses-2025">top digital trends for small businesses in 2025</a> provides additional context on how AI fits with other emerging technologies.</p>
     `,
-    image: "https://images.unsplash.com/photo-1679931974241-bf91f0e8e8e8?q=80&w=1169&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1170&auto=format&fit=crop",
     date: "2025-04-15",
     formattedDate: "April 15, 2025",
     author: "Adam Huckerby",
@@ -529,4 +528,3 @@ export const mockBlogPosts: BlogPost[] = [
     categories: ["Cybersecurity", "Digital Strategy", "Trust", "Brand Building"]
   }
 ];
-
